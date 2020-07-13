@@ -3,7 +3,10 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
-import winston from 'winston';
+import mongoose from 'mongoose';
+
+//  import .env file
+require('dotenv/config');
 
 // Defining port
 const port = process.env.PORT || 9000;
@@ -23,6 +26,14 @@ app.use(express.static(__dirname + '/views/'));
 
 // Defining the Routes
 app.use('/api', require('./routes/index'));
+// Lyrics route
+app.use('/lyrics', require('./routes/lyrics'));
+
+// Connect to database
+mongoose.connect(process.env.DB_CONNECTION,
+    { useNewUrlParser: true, useUnifiedTopology: true}, () =>
+    console.log('Connected to database')
+);
 
 // Listening to port
 app.listen(port);

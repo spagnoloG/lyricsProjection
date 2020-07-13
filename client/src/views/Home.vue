@@ -1,18 +1,58 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/mevn.jpg" width="350" />
-    <HelloWorld msg="Basic Boilerplate Template" />
+    <welcome-top></welcome-top>
+    <main-jumbotron></main-jumbotron>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import { eventBus } from '../main.js';
+import WelcomeTop from "../components/main-page/WelcomeTop.vue";
+import MainJumbotron from "../components/main-page/MainJumbotron.vue"
 
 export default {
   name: "home",
-  components: {
-    HelloWorld
+  data: function() {
+    return {
+      lyrics: []
+    };
+  },
+   components: {
+     WelcomeTop,
+     MainJumbotron,
+  },
+  methods: {
+    // updateAllDataFromApi() {
+    //   axios
+    //     .get("http://localhost:9000/lyrics")
+    //     .then(res => {
+    //       console.log(res);
+    //       const data = res.data;
+    //       for (let key in data) {
+    //         const lyric = {
+    //           index: data[key].index,
+    //           title: data[key].title,
+    //           content: data[key].content
+    //         };
+    //         this.lyrics.push(lyric);
+    //       }
+    //       console.log(this.lyrics);
+    //     })
+    //     .catch(error => console.log(error));
+    //   this.buttonClicked = true;
+    // }
+  },
+  created() {
+    // eventBus.$on('openTextEditor', (data) => {
+    //   this.showTextEditor = data;
+    // });
   }
 };
 </script>
+
+<style scoped>
+.main-heading {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 3rem;
+}
+</style>
