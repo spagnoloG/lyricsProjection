@@ -15,12 +15,12 @@
     </p>
 
     <b-button pill variant="warning" 
-    href="/project" 
+    :to="{ name: 'project' }"
     class="btn-jumbotron"
     size="lg"><b-icon icon="play-fill"></b-icon> Projeciraj</b-button>
     
     <b-button pill variant="info" 
-    href="/add" 
+    :to="{ name: 'add' }"
     class="btn-jumbotron"
     size="lg"><b-icon icon="pencil-square"></b-icon>  Dodaj novo pesem</b-button>
 

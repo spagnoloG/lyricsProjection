@@ -6,9 +6,10 @@
 </template>
 
 <script>
-// import { eventBus } from '../main.js';
+//import { eventBus } from '../main.js';
 import WelcomeTop from "../components/main-page/WelcomeTop.vue";
-import MainJumbotron from "../components/main-page/MainJumbotron.vue"
+import MainJumbotron from "../components/main-page/MainJumbotron.vue";
+//
 
 export default {
   name: "home",
@@ -17,36 +18,12 @@ export default {
       lyrics: []
     };
   },
-   components: {
-     WelcomeTop,
-     MainJumbotron,
+  components: {
+    WelcomeTop,
+    MainJumbotron
   },
-  methods: {
-    // updateAllDataFromApi() {
-    //   axios
-    //     .get("http://localhost:9000/lyrics")
-    //     .then(res => {
-    //       console.log(res);
-    //       const data = res.data;
-    //       for (let key in data) {
-    //         const lyric = {
-    //           index: data[key].index,
-    //           title: data[key].title,
-    //           content: data[key].content
-    //         };
-    //         this.lyrics.push(lyric);
-    //       }
-    //       console.log(this.lyrics);
-    //     })
-    //     .catch(error => console.log(error));
-    //   this.buttonClicked = true;
-    // }
-  },
-  created() {
-    // eventBus.$on('openTextEditor', (data) => {
-    //   this.showTextEditor = data;
-    // });
-  }
+  methods: {},
+  created() {}
 };
 </script>
 

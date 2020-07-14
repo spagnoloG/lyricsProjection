@@ -1,10 +1,30 @@
 <template>
-  <h3>TO DO</h3>
+  <div>
+    <welcome-top> </welcome-top>
+    <update-text-editor v-bind:song-index="id"> </update-text-editor>
+  </div>
+  
 </template>
 
 <script>
-export default {
+import WelcomeTop from "../components/main-page/WelcomeTop.vue";
+import updateTextEditor from "../components/edit-page/updateTextEditor.vue";
+import axios from 'axios';
 
+export default {
+  name: "EditLyric",
+  data() {
+    return {
+      lyric: {}
+    };
+  },
+  computed: {
+    id () { return Number(this.$route.params.id) }
+  },
+  components: {
+    WelcomeTop,
+    updateTextEditor
+  },
 }
 </script>
 

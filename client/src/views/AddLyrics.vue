@@ -1,7 +1,7 @@
 <template>
   <div>
     <welcome-top></welcome-top>
-    <text-editor></text-editor>
+    <text-editor v-bind:new-index="index" ></text-editor>
   </div>
 </template>
 
@@ -17,7 +17,7 @@ export default {
       // Lyric
       title: "",
       content: String,
-      index: Number,
+      index: 1,
       // Lyrics Array
       lyrics: []
     };
@@ -26,23 +26,7 @@ export default {
     WelcomeTop,
     TextEditor
   },
-  created() {
-    eventBus.$on("postLyricTitleToDb", lyric => {
-      this.title = lyric.title;
-      this.content = lyric.content;
-      // Form a document
-      const document = {
-        title: String(this.title),
-        content: this.content,
-        index: this.index
-      };
-      // Post a document
-      axios.post("http://localhost:9000/lyrics", document)
-        .then(res => {alert("Pesem uspešno dodana, št. pesmi: " + this.index); console.log(res);})
-        .catch(error => {console.log(error); alert("Napaka!!");});
-      this.$router.push({ path: "/" });
-    });
-  },
+  created() {},
   methods: {
     updateAllDataFromApi() {
       axios

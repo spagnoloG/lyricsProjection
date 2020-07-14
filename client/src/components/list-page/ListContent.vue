@@ -19,7 +19,7 @@
       <b-modal id="modal-center" centered title="Možnosti:" ok-only ok-variant="dark">
         <h3>{{ selectedLyric.title }}</h3>
         <p>Številka pesmi: {{ selectedLyric.index }}</p>
-        <b-button @click="updateLyric()" variant="primary" pill class="update-delete-project-btn">Uredi</b-button>
+        <b-button :to="{ name: 'edit', params: { id: selectedLyric.index } }" variant="primary" pill class="update-delete-project-btn">Uredi</b-button>
         <b-button @click="projectLyric()" variant="warning" pill class="update-delete-project-btn">Projeciraj</b-button>
         <b-button @click="deleteLyric()" variant="danger" pill class="update-delete-project-btn">Izbriši</b-button>
       </b-modal>
@@ -61,7 +61,7 @@ export default {
       this.selectedLyric = this.lyrics[index -1];
     },
     deleteLyric(){console.log("delete!")},
-    updateLyric(){this.$router.push({ path: "/edit" });},
+    updateLyric () { this.$router.push({ path: "/edit/" });},
     projectLyric(){console.log("project!")}
   }
 };

@@ -34,9 +34,14 @@ export default new Router({
       component: AddLyrics
     },
     {
-      path: "/edit",
+      path: "/edit/:id",
       name: "edit",
       component: EditLyric
+    },
+    {
+      path: "*",
+      name: "Error404",
+      component: () => import('./views/Error404')
     }
   ]
 });

@@ -2,15 +2,13 @@
   <div>
     <!-- Welcome message -->
     <div>
-      <b-jumbotron header-level="5" header="Vnesi pesem" lead>
-        <p
-          class="header-paragraph"
-        >Ko zaključis z vnašanjem besedila pesmi, klikni na "Shrani" gumb.</p>
+      <b-jumbotron header-level=5 header="Uredi besedilo pemi" lead>
+        <p class="header-paragraph">Ko zaključis z urejanjem besedila pesmi, klikni na "Shrani" gumb.</p>
       </b-jumbotron>
     </div>
 
     <!-- Editor and stuff -->
-    <b-container>
+    <b-container v-if="loadedData">
       <!-- naslov pesmi -->
       <b-row class="text-center enter-lyrics-title">
         <b-col></b-col>
@@ -78,17 +76,15 @@
         <b-col></b-col>
         <b-col cols="5">
           <!-- submit button -->
-          <b-button
-            type="submit"
-            variant="dark"
-            class="menu-button"
-            :to="{ name: 'home'}"
-            @click="submitEntry()"
-          >Shrani</b-button>
+          <b-button type="submit" variant="dark" class="menu-button" @click="submitEntry()">Shrani</b-button>
         </b-col>
         <b-col></b-col>
       </b-row>
     </b-container>
+
+    <div v-if="!loadedData">
+      <b-button @click="loadedData = true">Začni z urejanjem</b-button>
+    </div>
   </div>
 
   <!-- <button class="menubar__button" @click="commands.undo">
@@ -101,7 +97,8 @@
 
 <script>
 import { Editor, EditorContent, EditorMenuBar } from "tiptap";
-import axios from 'axios';
+import { eventBus } from "../../main.js";
+import axios from "axios";
 
 import {
   Blockquote,
@@ -127,9 +124,6 @@ export default {
     EditorContent,
     EditorMenuBar
   },
-  props: {
-    newIndex: Number
-  },
   data() {
     return {
       editor: new Editor({
@@ -154,47 +148,57 @@ export default {
         ],
         content: `
           <p>
-            Vnesi besedilo pesmi...
+            OJLA
           </p>
         `,
-        onUpdate: ({ getHTML }) => {
+        onUpdate: ({getHTML} ) => {
           this.form.content = String(getHTML());
-        }
+        },
       }),
       form: {
         title: "",
         content: String
-      }
+      },
+      lyric: Object,
+      loadedData: false
     };
+  },
+  props: {
+    songIndex: Number
   },
   beforeDestroy() {
     this.editor.destroy();
   },
+  watch: {
+    loadedData: function() {
+      this.updateData();
+    }
+  },
   methods: {
-    async submitEntry() {
-      if (this.form.title === "") {
+    submitEntry() {
+      if(this.form.title  === "") {
         alert("Vnesi naslov!");
       } else {
         console.log(this.form.content);
-        // Form a document
-        const document = {
-          title: this.form.title,
-          content: this.form.content,
-          index: this.newIndex
-        };
-        // Post a document
-        console.log("api call")
-        axios
-          .post("http://localhost:9000/lyrics", document)
-          .then(res => {
-            console.log(res);
-          })
-          .catch(error => {
-            console.log(error);
-            alert("Napaka!");
-          });
-          console.log("after api post")
       }
+    },
+    updateData() {
+      console.log(this.lyric)
+      this.form.title = this.lyric.title;
+      this.editor.setContent(this.lyric.content, true)
+    }
+  },
+  async created() {
+    try{
+      let response = await axios.get('http://localhost:9000/lyrics/' + this.songIndex)
+      try {
+        this.lyric = Object.assign({}, response.data[0])
+      }catch(err) {
+        console.log(err)
+      }
+      console.log(this.lyric);
+    } catch(err) {
+      console.log(err)
     }
   }
 };
