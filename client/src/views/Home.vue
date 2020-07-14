@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { eventBus } from '../main.js';
+// import { eventBus } from '../main.js';
 import WelcomeTop from "../components/main-page/WelcomeTop.vue";
 import MainJumbotron from "../components/main-page/MainJumbotron.vue"
 

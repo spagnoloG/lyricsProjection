@@ -4,6 +4,7 @@ import Home from "./views/Home.vue";
 import AddLyrics from "./views/AddLyrics.vue";
 import Project from "./views/Project.vue";
 import List from "./views/List.vue";
+import EditLyric from "./views/EditLyric.vue";
 
 Vue.use(Router);
 
@@ -31,8 +32,11 @@ export default new Router({
       path: "/add",
       name: "add",
       component: AddLyrics
+    },
+    {
+      path: "/edit",
+      name: "edit",
+      component: EditLyric
     }
-     
-
   ]
 });

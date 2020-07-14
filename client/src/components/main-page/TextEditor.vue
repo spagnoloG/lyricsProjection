@@ -2,8 +2,8 @@
   <div>
     <!-- Welcome message -->
     <div>
-      <b-jumbotron header-level=4 header="Vnesi pesem" lead>
-        <p>Ko zaključis z vnašanjem besedila pesmi, klikni na "Shrani" gumb.</p>
+      <b-jumbotron header-level=5 header="Vnesi pesem" lead>
+        <p class="header-paragraph">Ko zaključis z vnašanjem besedila pesmi, klikni na "Shrani" gumb.</p>
       </b-jumbotron>
     </div>
 
@@ -12,7 +12,7 @@
       <!-- naslov pesmi -->
       <b-row class="text-center enter-lyrics-title">
         <b-col></b-col>
-        <b-col cols="5">
+        <b-col cols="3">
           <b-form-group
             id="input-group-1"
             label-size="lg"
@@ -185,5 +185,8 @@ export default {
 }
 .save-button {
   margin: 3% auto 3% auto;
+}
+.header-paragraph {
+  font-size: 0.9rem;
 }
 </style>
