@@ -62,6 +62,7 @@
 
 <script>
 import axios from "axios";
+import {eventBus} from "../../main.js";
 
 export default {
   data() {
@@ -133,6 +134,12 @@ export default {
       })
       .catch(error => console.log(error));
     }
+  },
+  mounted() {
+    eventBus.$on("listSearchTerm",(lyricId) => {
+      console.log(lyricId);
+      // TODO
+    })
   }
 };
 </script>

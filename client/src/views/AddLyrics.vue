@@ -8,7 +8,6 @@
 <script>
 import WelcomeTop from "../components/main-page/WelcomeTop.vue";
 import TextEditor from "../components/main-page/TextEditor.vue";
-import { eventBus } from "../main.js";
 import axios from "axios";
 
 export default {
@@ -42,7 +41,12 @@ export default {
             };
             this.lyrics.push(lyric);
           }
-          this.index = this.lyrics.length + 1;
+          let helper = this.lyrics.length -1;
+          if(helper === -1) {
+            this.index = 1
+          } else {
+            this.index = this.lyrics[helper].index +1;
+          }
         })
         .catch(error => console.log(error));
     },
