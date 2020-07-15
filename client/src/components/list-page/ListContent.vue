@@ -20,7 +20,7 @@
         <h3>{{ selectedLyric.title }}</h3>
         <p>Številka pesmi: {{ selectedLyric.index }}</p>
         <b-button :to="{ name: 'edit', params: { id: selectedLyric.index } }" variant="primary" pill class="update-delete-project-btn">Uredi</b-button>
-        <b-button @click="projectLyric()" variant="warning" pill class="update-delete-project-btn">Projeciraj</b-button>
+        <b-button :to="{ name: 'project', params: { id: selectedLyric.index }}" variant="warning" pill class="update-delete-project-btn">Projeciraj</b-button>
         <b-button @click="deleteLyric()" variant="danger" pill class="update-delete-project-btn">Izbriši</b-button>
       </b-modal>
     </div>
@@ -61,8 +61,6 @@ export default {
       this.selectedLyric = this.lyrics[index -1];
     },
     deleteLyric(){console.log("delete!")},
-    updateLyric () { this.$router.push({ path: "/edit/" });},
-    projectLyric(){console.log("project!")}
   }
 };
 </script>

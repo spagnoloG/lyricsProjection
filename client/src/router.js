@@ -23,8 +23,7 @@ export default new Router({
       component: List
     },
     {
-      // Pospidiri to komponento in utvari nov route za dodaj pesem
-      path: "/project",
+      path: "/project/:id",
       name: "project",
       component: Project
     },

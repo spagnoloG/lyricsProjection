@@ -2,8 +2,10 @@
   <div>
     <!-- Welcome message -->
     <div>
-      <b-jumbotron header-level=5 header="Uredi besedilo pemi" lead>
-        <p class="header-paragraph">Ko zaključis z urejanjem besedila pesmi, klikni na "Shrani" gumb.</p>
+      <b-jumbotron header-level="5" header="Uredi besedilo pemi" lead>
+        <p
+          class="header-paragraph"
+        >Ko zaključis z urejanjem besedila pesmi, klikni na "Shrani" gumb.</p>
       </b-jumbotron>
     </div>
 
@@ -76,7 +78,7 @@
         <b-col></b-col>
         <b-col cols="5">
           <!-- submit button -->
-          <b-button type="submit" variant="dark" class="menu-button" @click="submitEntry()">Shrani</b-button>
+          <b-button type="submit" variant="dark" class="menu-button" :to="{name: 'list'}" @click="submitEntry()">Shrani</b-button>
         </b-col>
         <b-col></b-col>
       </b-row>
@@ -97,7 +99,6 @@
 
 <script>
 import { Editor, EditorContent, EditorMenuBar } from "tiptap";
-import { eventBus } from "../../main.js";
 import axios from "axios";
 
 import {
@@ -151,9 +152,9 @@ export default {
             OJLA
           </p>
         `,
-        onUpdate: ({getHTML} ) => {
+        onUpdate: ({ getHTML }) => {
           this.form.content = String(getHTML());
-        },
+        }
       }),
       form: {
         title: "",
@@ -175,30 +176,37 @@ export default {
     }
   },
   methods: {
-    submitEntry() {
-      if(this.form.title  === "") {
+    async submitEntry() {
+      if (this.form.title === "") {
         alert("Vnesi naslov!");
       } else {
         console.log(this.form.content);
-      }
+        axios
+          .patch("http://localhost:9000/lyrics/" + this.songIndex, {
+            title: this.form.title,
+            content: this.form.content
+            })
+          .then(res => {
+            console.log(res.data);
+          })
+          .catch(err => console.log(err.response.data));
+       }
     },
     updateData() {
-      console.log(this.lyric)
+      console.log(this.lyric);
       this.form.title = this.lyric.title;
-      this.editor.setContent(this.lyric.content, true)
+      this.editor.setContent(this.lyric.content, true);
     }
   },
   async created() {
-    try{
-      let response = await axios.get('http://localhost:9000/lyrics/' + this.songIndex)
-      try {
-        this.lyric = Object.assign({}, response.data[0])
-      }catch(err) {
-        console.log(err)
-      }
+    try {
+      let response = await axios.get(
+        "http://localhost:9000/lyrics/" + this.songIndex
+      );
+      this.lyric = Object.assign({}, response.data[0]);
       console.log(this.lyric);
-    } catch(err) {
-      console.log(err)
+    } catch (err) {
+      console.log(err);
     }
   }
 };

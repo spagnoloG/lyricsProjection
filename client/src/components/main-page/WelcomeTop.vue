@@ -17,7 +17,7 @@
       <!-- Routes and Options -->
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="ml-auto" right>
-          <b-nav-item :to="{ name: 'project' }">Projeciraj</b-nav-item>
+          <b-nav-item :to="{ path: 'project/0' }">Projeciraj</b-nav-item>
           <b-nav-item :to="{ name: 'list' }">Pregled</b-nav-item>
         </b-navbar-nav>
       </b-collapse>

@@ -15,7 +15,7 @@
     </p>
 
     <b-button pill variant="warning" 
-    :to="{ name: 'project' }"
+    :to="{ path: 'project/0' }"
     class="btn-jumbotron"
     size="lg"><b-icon icon="play-fill"></b-icon> Projeciraj</b-button>
     
