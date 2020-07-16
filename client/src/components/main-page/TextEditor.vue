@@ -27,36 +27,36 @@
         </b-col>
         <b-col></b-col>
       </b-row>
-      <!-- EDITOR MENU -->
+      <!-- Editor menu -->
       <b-row class="text-center editor-menu">
         <b-col></b-col>
         <b-col cols="5">
           <div class="editor">
             <editor-menu-bar :editor="editor" v-slot="{ commands, isActive }">
-              <div class="menubar">
-                <b-button
-                  :class="{ 'is-active': isActive.bold() }"
-                  @click="commands.bold"
-                  v-b-tooltip.hover
-                  title="Krepko"
-                  variant="dark"
-                  class="menu-button"
-                  pill
-                >
-                  <b-icon-type-bold></b-icon-type-bold>
-                </b-button>
+              <div class="editor-menu">
+                <b-button-toolbar>
+                  <b-button-group class="btn-group">
+                    <b-button
+                      :class="{ 'is-active': isActive.bold() }"
+                      @click="commands.bold"
+                      v-b-tooltip.hover
+                      title="Krepko"
+                      variant="dark"
+                    >
+                      <b-icon-type-bold></b-icon-type-bold>
+                    </b-button>
 
-                <b-button
-                  :class="{ 'is-active': isActive.italic() }"
-                  @click="commands.italic"
-                  v-b-tooltip.hover
-                  title="Ležeče"
-                  variant="dark"
-                  class="menu-button"
-                  pill
-                >
-                  <b-icon-type-italic></b-icon-type-italic>
-                </b-button>
+                    <b-button
+                      :class="{ 'is-active': isActive.italic() }"
+                      @click="commands.italic"
+                      v-b-tooltip.hover
+                      title="Ležeče"
+                      variant="dark"
+                    >
+                      <b-icon-type-italic></b-icon-type-italic>
+                    </b-button>
+                  </b-button-group>
+                </b-button-toolbar>
               </div>
             </editor-menu-bar>
           </div>
@@ -67,7 +67,7 @@
         <b-col></b-col>
         <b-col cols="8">
           <div class="editor">
-            <!-- EDITOR -->
+            <!-- Editor -->
             <editor-content class="editor-content" :editor="editor" />
           </div>
         </b-col>
@@ -94,7 +94,7 @@
 
 <script>
 import { Editor, EditorContent, EditorMenuBar } from "tiptap";
-import axios from 'axios';
+import axios from "axios";
 
 import {
   Blockquote,
@@ -176,7 +176,7 @@ export default {
           index: this.newIndex
         };
         // Post a document
-        console.log("api call")
+        console.log("api call");
         axios
           .post("http://localhost:9000/lyrics", document)
           .then(res => {
@@ -186,7 +186,7 @@ export default {
             console.log(error);
             alert("Napaka!");
           });
-          console.log("after api post")
+        console.log("after api post");
       }
     }
   }
@@ -212,5 +212,8 @@ export default {
 }
 .editor-content {
   border-style: hidden;
+}
+.btn-group {
+  margin: auto;
 }
 </style>
