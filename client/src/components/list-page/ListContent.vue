@@ -11,14 +11,10 @@
       >Pesem uspešno izbrisana!</b-alert>
     </div>
     <!-- Search bar -->
-    <div>
+    <div class="search-bar">
       <b-navbar type="dark" variant="dark">
-        <b-navbar-nav class="ml-auto">
-          <b-nav-form right>
-            <label>
+        <b-navbar-nav class="search-box">
               <b-input type="text" v-model="search" placeholder="išči pesmi" />
-            </label>
-          </b-nav-form>
         </b-navbar-nav>
       </b-navbar>
     </div>
@@ -27,7 +23,7 @@
       <b-col></b-col>
       <b-col cols="10">
         <div v-for="lyric in filteredLyrics" :key="lyric.index">
-          <b-list-group>
+          <b-list-group horizontal="md">
             <b-list-group-item
               v-b-modal.modal-center
               class="lyric-item"
@@ -189,6 +185,9 @@ export default {
 }
 
 .search-bar {
-  width: 100%;
+  margin-bottom: 3%;
+}
+.search-box {
+  margin: auto;
 }
 </style>
