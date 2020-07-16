@@ -1,22 +1,21 @@
 <template>
   <div>
+    <!-- Show lyric -->
     <div v-if="!openSearchBox">
         <h1>{{ this.lyric.title }}</h1>
         <p>
         <span v-html="this.lyric.content"></span>
         </p>
     </div>
-
+    <!-- Show search box -->
     <div v-if="openSearchBox">
       <input v-focus v-model="inputTerm" class="search-box">
-
     </div>
    
   </div>
 </template>
 
 <script>
-// import SearchBox from "../components/project-page/SearchBox.vue";
 import axios from "axios";
 
 export default {
@@ -87,6 +86,7 @@ export default {
   },
   beforeRouteUpdate() {    
     //updateData();
+    // This component needs to be improved
   }
 };
 </script>

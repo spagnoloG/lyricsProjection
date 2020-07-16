@@ -90,13 +90,6 @@
       </b-row>
     </b-container>
   </div>
-
-  <!-- <button class="menubar__button" @click="commands.undo">
-      <icon name="undo" />
-    </button>
-    <button class="menubar__button" @click="commands.redo">
-      <icon name="redo" />
-  </button>-->
 </template>
 
 <script>

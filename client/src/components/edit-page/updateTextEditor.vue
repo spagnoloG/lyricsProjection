@@ -27,7 +27,7 @@
         </b-col>
         <b-col></b-col>
       </b-row>
-      <!-- EDITOR MENU -->
+      <!-- Editor menu -->
       <b-row class="text-center editor-menu">
         <b-col></b-col>
         <b-col cols="5">
@@ -67,7 +67,7 @@
         <b-col></b-col>
         <b-col cols="8">
           <div class="editor">
-            <!-- EDITOR -->
+            <!-- Editor -->
             <editor-content class="editor__content" :editor="editor" />
           </div>
         </b-col>
@@ -88,13 +88,6 @@
       <b-button @click="loadedData = true">Začni z urejanjem</b-button>
     </div>
   </div>
-
-  <!-- <button class="menubar__button" @click="commands.undo">
-      <icon name="undo" />
-    </button>
-    <button class="menubar__button" @click="commands.redo">
-      <icon name="redo" />
-  </button>-->
 </template>
 
 <script>

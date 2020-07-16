@@ -29,7 +29,6 @@
 </template>
 
 <script>
-//import { eventBus } from '../../main.js';
 
 export default {
   data() {
@@ -37,12 +36,6 @@ export default {
       enableEditor: false
     };
   },
-  methods: {
-    // openTextEditor() {
-    //   this.enableEditor = true;
-    //   eventBus.$emit('openTextEditor', this.enableEditor);
-    // }
-  }
 }
 </script>
 

@@ -30,10 +30,6 @@ export default {};
 </script>
 
 <style scoped>
-/* .nav-spacing {
-    margin-bottom: 3%;
-} */
-
 .glavni-napis {
   margin-left: 5%;
 }

@@ -1,6 +1,7 @@
 <template>
   <b-container class="bv-example-row">
     <div>
+      <!-- Delete alert -->
       <b-alert
         :show="dismissCountDown"
         dismissible
@@ -10,18 +11,18 @@
       >Pesem uspešno izbrisana!</b-alert>
     </div>
     <!-- Search bar -->
-    <div class="search-bar">
+    <div>
       <b-navbar type="dark" variant="dark">
         <b-navbar-nav class="ml-auto">
           <b-nav-form right>
             <label>
-              <input type="text" v-model="search" placeholder="išči pesmi" />
+              <b-input type="text" v-model="search" placeholder="išči pesmi" />
             </label>
           </b-nav-form>
         </b-navbar-nav>
       </b-navbar>
     </div>
-
+    <!-- List lyrics -->
     <b-row class="text-center">
       <b-col></b-col>
       <b-col cols="10">
@@ -38,6 +39,7 @@
       </b-col>
       <b-col></b-col>
     </b-row>
+    <!-- Popover menu -->
     <div>
       <b-modal
         ref="option-modal"
@@ -162,12 +164,6 @@ export default {
         .catch(error => console.log(error));
     }
   },
-  mounted() {
-    eventBus.$on("listSearchTerm", lyricId => {
-      console.log(lyricId);
-      // TODO
-    });
-  },
   computed: {
     filteredLyrics() {
       return this.lyrics.filter(lyric => {
@@ -190,5 +186,9 @@ export default {
   position: absolute;
   right: 20px;
   bottom: 15px;
+}
+
+.search-bar {
+  width: 100%;
 }
 </style>
