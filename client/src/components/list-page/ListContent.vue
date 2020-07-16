@@ -9,10 +9,23 @@
         @dismiss-count-down="countDownChanged"
       >Pesem uspešno izbrisana!</b-alert>
     </div>
+    <!-- Search bar -->
+    <div class="search-bar">
+      <b-navbar type="dark" variant="dark">
+        <b-navbar-nav class="ml-auto">
+          <b-nav-form right>
+            <label>
+              <input type="text" v-model="search" placeholder="išči pesmi" />
+            </label>
+          </b-nav-form>
+        </b-navbar-nav>
+      </b-navbar>
+    </div>
+
     <b-row class="text-center">
       <b-col></b-col>
       <b-col cols="10">
-        <div v-for="lyric in lyrics" :key="lyric.index">
+        <div v-for="lyric in filteredLyrics" :key="lyric.index">
           <b-list-group>
             <b-list-group-item
               v-b-modal.modal-center
@@ -26,7 +39,14 @@
       <b-col></b-col>
     </b-row>
     <div>
-      <b-modal ref="option-modal" id="modal-center" centered title="Možnosti:" ok-only ok-variant="dark">
+      <b-modal
+        ref="option-modal"
+        id="modal-center"
+        centered
+        title="Možnosti:"
+        ok-only
+        ok-variant="dark"
+      >
         <h3>{{ selectedLyric.title }}</h3>
         <p>Številka pesmi: {{ selectedLyric.index }}</p>
         <b-button
@@ -34,20 +54,26 @@
           variant="primary"
           pill
           class="update-delete-project-btn"
-        >Uredi</b-button>
+        >
+          <b-icon icon="pencil"></b-icon>Uredi
+        </b-button>
         <b-button
           :to="{ name: 'project', params: { id: selectedLyric.index }}"
           variant="warning"
           pill
           class="update-delete-project-btn"
-        >Projeciraj</b-button>
+        >
+          <b-icon icon="play-fill"></b-icon>Projeciraj
+        </b-button>
         <div>
           <b-button
             variant="danger"
             pill
             class="update-delete-project-btn m-1"
             v-b-toggle.collapse-1
-          >Izbriši</b-button>
+          >
+            <b-icon icon="trash2"></b-icon>Izbriši
+          </b-button>
           <b-collapse id="collapse-1">
             <b-card>
               Si prepričan/a?
@@ -62,7 +88,7 @@
 
 <script>
 import axios from "axios";
-import {eventBus} from "../../main.js";
+import { eventBus } from "../../main.js";
 
 export default {
   data() {
@@ -71,7 +97,8 @@ export default {
       selected: Number,
       selectedLyric: Object,
       dismissSecs: 5,
-      dismissCountDown: 0
+      dismissCountDown: 0,
+      search: ""
     };
   },
   beforeCreate() {
@@ -106,9 +133,9 @@ export default {
       axios
         .delete("http://localhost:9000/lyrics/" + this.selectedLyric.index)
         .then(res => {
-          console.log(res)
-          this.$refs['option-modal'].hide()
-          this.updateList()
+          console.log(res);
+          this.$refs["option-modal"].hide();
+          this.updateList();
           this.showAlert();
         })
         .catch(error => {
@@ -117,29 +144,36 @@ export default {
     },
     updateList() {
       axios
-      .get("http://localhost:9000/lyrics")
-      .then(res => {
-        console.log(res);
-        this.lyrics.length = 0
-        const data = res.data;
-        for (let key in data) {
-          const lyric = {
-            index: data[key].index,
-            title: data[key].title,
-            content: data[key].content
-          };
-          this.lyrics.push(lyric);
-        }
-        console.log(this.lyrics);
-      })
-      .catch(error => console.log(error));
+        .get("http://localhost:9000/lyrics")
+        .then(res => {
+          console.log(res);
+          this.lyrics.length = 0;
+          const data = res.data;
+          for (let key in data) {
+            const lyric = {
+              index: data[key].index,
+              title: data[key].title,
+              content: data[key].content
+            };
+            this.lyrics.push(lyric);
+          }
+          console.log(this.lyrics);
+        })
+        .catch(error => console.log(error));
     }
   },
   mounted() {
-    eventBus.$on("listSearchTerm",(lyricId) => {
+    eventBus.$on("listSearchTerm", lyricId => {
       console.log(lyricId);
       // TODO
-    })
+    });
+  },
+  computed: {
+    filteredLyrics() {
+      return this.lyrics.filter(lyric => {
+        return lyric.title.match(this.search);
+      });
+    }
   }
 };
 </script>

@@ -68,7 +68,7 @@
         <b-col cols="8">
           <div class="editor">
             <!-- EDITOR -->
-            <editor-content class="editor__content" :editor="editor" />
+            <editor-content class="editor-content" :editor="editor" />
           </div>
         </b-col>
         <b-col></b-col>
@@ -216,5 +216,8 @@ export default {
 }
 .header-paragraph {
   font-size: 0.9rem;
+}
+.editor-content {
+  border-style: hidden;
 }
 </style>

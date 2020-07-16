@@ -9,6 +9,7 @@
 
     <div v-if="openSearchBox">
       <input v-focus v-model="inputTerm" class="search-box">
+
     </div>
    
   </div>
@@ -65,9 +66,7 @@ export default {
         this.openSearchBox = true;
         setTimeout(() => {
           this.openSearchBox = false;
-          window.removeEventListener("keypress", this.doCommand);
-          console.log(this.inputTerm);
-          // this.$router.push({name: 'project', params: { id:3}})
+          // this.$router.push({path:`/project/1`})
           window.location.replace("http://localhost:8080/project/" + this.inputTerm);
         }, 2000);
       }
@@ -94,6 +93,9 @@ export default {
 
 <style scoped>
 .search-box {
-     margin-top: 4rem;
+     margin-top: 10%;
+     font-size: 2rem;
+     width: 10%;
+     text-align: center;
 }
 </style>
