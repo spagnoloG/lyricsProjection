@@ -165,6 +165,7 @@ export default {
   },
   methods: {
     async submitEntry() {
+      var Url = "http://" + window.location.hostname + ":9000/lyrics"
       if (this.form.title === "") {
         alert("Vnesi naslov!");
       } else {
@@ -178,7 +179,7 @@ export default {
         // Post a document
         console.log("api call");
         axios
-          .post("http://localhost:9000/lyrics", document)
+          .post(Url, document)
           .then(res => {
             console.log(res);
           })

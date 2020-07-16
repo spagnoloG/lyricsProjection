@@ -174,8 +174,9 @@ export default {
         alert("Vnesi naslov!");
       } else {
         console.log(this.form.content);
+        var Url = "http://" + window.location.hostname + ":9000/lyrics/"
         axios
-          .patch("http://localhost:9000/lyrics/" + this.songIndex, {
+          .patch(Url + this.songIndex, {
             title: this.form.title,
             content: this.form.content
             })
@@ -193,8 +194,9 @@ export default {
   },
   async created() {
     try {
+      var Url = "http://" + window.location.hostname + ":9000/lyrics/"
       let response = await axios.get(
-        "http://localhost:9000/lyrics/" + this.songIndex
+        Url + this.songIndex
       );
       this.lyric = Object.assign({}, response.data[0]);
       console.log(this.lyric);

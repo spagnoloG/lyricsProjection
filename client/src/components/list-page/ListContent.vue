@@ -100,8 +100,9 @@ export default {
     };
   },
   beforeCreate() {
+    var Url = "http://" + window.location.hostname + ":9000/lyrics"
     axios
-      .get("http://localhost:9000/lyrics")
+      .get(Url)
       .then(res => {
         console.log(res);
         const data = res.data;
@@ -128,8 +129,9 @@ export default {
       this.dismissCountDown = this.dismissSecs;
     },
     deleteLyric() {
+      var Url = "http://" + window.location.hostname + ":9000/lyrics/"
       axios
-        .delete("http://localhost:9000/lyrics/" + this.selectedLyric.index)
+        .delete(Url + this.selectedLyric.index)
         .then(res => {
           console.log(res);
           this.$refs["option-modal"].hide();
@@ -137,12 +139,14 @@ export default {
           this.showAlert();
         })
         .catch(error => {
-          console.log(error);
+          console.log(error)
+          alert("napaka");
         });
     },
     updateList() {
+      var Url = "http://" + window.location.hostname + ":9000/lyrics"
       axios
-        .get("http://localhost:9000/lyrics")
+        .get(Url)
         .then(res => {
           console.log(res);
           this.lyrics.length = 0;

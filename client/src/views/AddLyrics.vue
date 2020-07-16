@@ -28,8 +28,9 @@ export default {
   created() {},
   methods: {
     updateAllDataFromApi() {
+      var Url = "http://" + window.location.hostname + ":9000/lyrics"
       axios
-        .get("http://localhost:9000/lyrics")
+        .get(Url)
         .then(res => {
           console.log(res);
           const data = res.data;

@@ -32,8 +32,9 @@ export default {
     };
   },
   async mounted() {
+    var Url = "http://" + window.location.hostname + ":9000/lyrics/"
     axios
-      .get("http://localhost:9000/lyrics/" + this.id)
+      .get(Url + this.id)
       .then(res => {
         const data = res.data;
         this.lyric.title = data[0].title;
@@ -57,6 +58,7 @@ export default {
   },
   methods: {
     doCommand(e) {
+      var Url = "http://" + window.location.hostname + ":9000/project/"
       let cmd = String.fromCharCode(e.keyCode).toLowerCase();
       if(isNaN(cmd)) {
         console.log(cmd);
@@ -66,13 +68,14 @@ export default {
         setTimeout(() => {
           this.openSearchBox = false;
           // this.$router.push({path:`/project/1`})
-          window.location.replace("http://localhost:8080/project/" + this.inputTerm);
+          window.location.replace(Url + this.inputTerm);
         }, 2000);
       }
     },
     updateData() {
+      var Url = "http://" + window.location.hostname + ":9000/lyrics/"
       axios
-      .get("http://localhost:9000/lyrics/" + this.id)
+      .get(Url + this.id)
       .then(res => {
         const data = res.data;
         this.lyric.title = data[0].title;
