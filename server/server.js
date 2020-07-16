@@ -30,7 +30,7 @@ app.use('/api', require('./routes/index'));
 app.use('/lyrics', require('./routes/lyrics'));
 
 // Connect to database
-mongoose.connect("mongodb://192.168.122.117:27017/projectionDb",
+mongoose.connect("mongodb://localhost:27017/projectionDb",
     { useNewUrlParser: true, useUnifiedTopology: true}, () =>
     console.log('Connected to database')
 );
