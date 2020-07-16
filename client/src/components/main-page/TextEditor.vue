@@ -169,7 +169,6 @@ export default {
       if (this.form.title === "") {
         alert("Vnesi naslov!");
       } else {
-        console.log(this.form.content);
         // Form a document
         const document = {
           title: this.form.title,
@@ -177,17 +176,15 @@ export default {
           index: this.newIndex
         };
         // Post a document
-        console.log("api call");
         axios
           .post(Url, document)
           .then(res => {
-            console.log(res);
+            return res;
           })
           .catch(error => {
-            console.log(error);
             alert("Napaka!");
+            return error;
           });
-        console.log("after api post");
       }
     }
   }

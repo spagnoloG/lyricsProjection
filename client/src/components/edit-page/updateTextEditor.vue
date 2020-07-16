@@ -173,21 +173,16 @@ export default {
       if (this.form.title === "") {
         alert("Vnesi naslov!");
       } else {
-        console.log(this.form.content);
         var Url = "http://" + window.location.hostname + ":9000/lyrics/"
         axios
           .patch(Url + this.songIndex, {
             title: this.form.title,
             content: this.form.content
             })
-          .then(res => {
-            console.log(res.data);
-          })
-          .catch(err => console.log(err.response.data));
+          .catch(error => {alert("Napaka"); return error;});
        }
     },
     updateData() {
-      console.log(this.lyric);
       this.form.title = this.lyric.title;
       this.editor.setContent(this.lyric.content, true);
     }
@@ -199,9 +194,9 @@ export default {
         Url + this.songIndex
       );
       this.lyric = Object.assign({}, response.data[0]);
-      console.log(this.lyric);
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      alert("Napaka");
+      return error;
     }
   }
 };

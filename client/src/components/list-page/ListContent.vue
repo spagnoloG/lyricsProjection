@@ -86,7 +86,6 @@
 
 <script>
 import axios from "axios";
-import { eventBus } from "../../main.js";
 
 export default {
   data() {
@@ -104,7 +103,6 @@ export default {
     axios
       .get(Url)
       .then(res => {
-        console.log(res);
         const data = res.data;
         for (let key in data) {
           const lyric = {
@@ -114,9 +112,8 @@ export default {
           };
           this.lyrics.push(lyric);
         }
-        console.log(this.lyrics);
       })
-      .catch(error => console.log(error));
+      .catch(error => alert(error));
   },
   methods: {
     selectLyric(lyric) {
@@ -133,14 +130,14 @@ export default {
       axios
         .delete(Url + this.selectedLyric.index)
         .then(res => {
-          console.log(res);
           this.$refs["option-modal"].hide();
           this.updateList();
           this.showAlert();
+          return res;
         })
         .catch(error => {
-          console.log(error)
           alert("napaka");
+          return error;
         });
     },
     updateList() {
@@ -148,7 +145,6 @@ export default {
       axios
         .get(Url)
         .then(res => {
-          console.log(res);
           this.lyrics.length = 0;
           const data = res.data;
           for (let key in data) {
@@ -159,9 +155,8 @@ export default {
             };
             this.lyrics.push(lyric);
           }
-          console.log(this.lyrics);
         })
-        .catch(error => console.log(error));
+        .catch(error => alert(error));
     }
   },
   computed: {

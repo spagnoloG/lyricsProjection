@@ -18,11 +18,6 @@ export default {
     JumboAndNav,
     ListContent
   },
-  created() {
-      eventBus.$on("listSearchTerm", (title) => {
-        console.log("Searced for " + title);
-     });
-  },
 };
 </script>
 

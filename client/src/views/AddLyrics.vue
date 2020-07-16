@@ -32,7 +32,6 @@ export default {
       axios
         .get(Url)
         .then(res => {
-          console.log(res);
           const data = res.data;
           for (let key in data) {
             const lyric = {
@@ -49,7 +48,7 @@ export default {
             this.index = this.lyrics[helper].index +1;
           }
         })
-        .catch(error => console.log(error));
+        .catch(error => {alert("napaka"); return error});
     },
   },
   mounted() {

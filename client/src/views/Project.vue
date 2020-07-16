@@ -2,16 +2,15 @@
   <div>
     <!-- Show lyric -->
     <div v-if="!openSearchBox">
-        <h1>{{ this.lyric.title }}</h1>
-        <p>
+      <h1>{{ this.lyric.title }}</h1>
+      <p>
         <span v-html="this.lyric.content"></span>
-        </p>
+      </p>
     </div>
     <!-- Show search box -->
     <div v-if="openSearchBox">
-      <input v-focus v-model="inputTerm" class="search-box">
+      <input v-focus v-model="inputTerm" class="search-box" />
     </div>
-   
   </div>
 </template>
 
@@ -32,7 +31,7 @@ export default {
     };
   },
   async mounted() {
-    var Url = "http://" + window.location.hostname + ":9000/lyrics/"
+    var Url = "http://" + window.location.hostname + ":9000/lyrics/";
     axios
       .get(Url + this.id)
       .then(res => {
@@ -42,7 +41,7 @@ export default {
         this.lyric.content = data[0].content;
       })
       .catch(error => {
-        console.log(error);
+        return error;
       });
   },
   computed: {
@@ -58,12 +57,9 @@ export default {
   },
   methods: {
     doCommand(e) {
-      var Url = "http://" + window.location.hostname + ":8080/project/"
+      var Url = "http://" + window.location.hostname + ":8080/project/";
       let cmd = String.fromCharCode(e.keyCode).toLowerCase();
-      if(isNaN(cmd)) {
-        console.log(cmd);
-      } else {
-        console.log(cmd)
+      if (!isNaN(cmd)) {
         this.openSearchBox = true;
         setTimeout(() => {
           this.openSearchBox = false;
@@ -73,21 +69,21 @@ export default {
       }
     },
     updateData() {
-      var Url = "http://" + window.location.hostname + ":9000/lyrics/"
+      var Url = "http://" + window.location.hostname + ":9000/lyrics/";
       axios
-      .get(Url + this.id)
-      .then(res => {
-        const data = res.data;
-        this.lyric.title = data[0].title;
-        this.lyric.index = data[0].index;
-        this.lyric.content = data[0].content;
-      })
-      .catch(error => {
-        console.log(error);
-      });
+        .get(Url + this.id)
+        .then(res => {
+          const data = res.data;
+          this.lyric.title = data[0].title;
+          this.lyric.index = data[0].index;
+          this.lyric.content = data[0].content;
+        })
+        .catch(error => {
+          return error;
+        });
     }
   },
-  beforeRouteUpdate() {    
+  beforeRouteUpdate() {
     //updateData();
     // This component needs to be improved
   }
@@ -96,9 +92,9 @@ export default {
 
 <style scoped>
 .search-box {
-     margin-top: 10%;
-     font-size: 2rem;
-     width: 10%;
-     text-align: center;
+  margin-top: 10%;
+  font-size: 2rem;
+  width: 10%;
+  text-align: center;
 }
 </style>
