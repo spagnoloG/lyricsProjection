@@ -25,7 +25,7 @@ export default new Router({
     {
       path: "/project/:id",
       name: "project",
-      component: Project,
+      component: Project
     },
     {
       path: "/add",
@@ -40,7 +40,7 @@ export default new Router({
     {
       path: "*",
       name: "Error404",
-      component: () => import('./views/Error404')
-    },
+      component: () => import("./views/Error404")
+    }
   ]
 });

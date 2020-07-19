@@ -3,9 +3,9 @@
     <!-- Welcome message -->
     <div>
       <b-jumbotron header-level="5" header="Uredi besedilo pemi" lead>
-        <p
-          class="header-paragraph"
-        >Ko zaključis z urejanjem besedila pesmi, klikni na "Shrani" gumb.</p>
+        <p class="header-paragraph">
+          Ko zaključis z urejanjem besedila pesmi, klikni na "Shrani" gumb.
+        </p>
       </b-jumbotron>
     </div>
 
@@ -22,7 +22,12 @@
             label-for="input-2"
             description="Ne pozabi na veliko začetnico!"
           >
-            <b-form-input id="input-1" v-model="form.title" required placeholder="Vnesi naslov"></b-form-input>
+            <b-form-input
+              id="input-1"
+              v-model="form.title"
+              required
+              placeholder="Vnesi naslov"
+            ></b-form-input>
           </b-form-group>
         </b-col>
         <b-col></b-col>
@@ -78,7 +83,14 @@
         <b-col></b-col>
         <b-col cols="5">
           <!-- submit button -->
-          <b-button type="submit" variant="dark" class="menu-button" :to="{name: 'list'}" @click="submitEntry()">Shrani</b-button>
+          <b-button
+            type="submit"
+            variant="dark"
+            class="menu-button"
+            :to="{ name: 'list' }"
+            @click="submitEntry()"
+            >Shrani</b-button
+          >
         </b-col>
         <b-col></b-col>
       </b-row>
@@ -173,14 +185,17 @@ export default {
       if (this.form.title === "") {
         alert("Vnesi naslov!");
       } else {
-        var Url = "http://" + window.location.hostname + ":9000/lyrics/"
+        var Url = "http://" + window.location.hostname + ":9000/lyrics/";
         axios
           .patch(Url + this.songIndex, {
             title: this.form.title,
             content: this.form.content
-            })
-          .catch(error => {alert("Napaka"); return error;});
-       }
+          })
+          .catch(error => {
+            alert("Napaka");
+            return error;
+          });
+      }
     },
     updateData() {
       this.form.title = this.lyric.title;
@@ -189,10 +204,8 @@ export default {
   },
   async created() {
     try {
-      var Url = "http://" + window.location.hostname + ":9000/lyrics/"
-      let response = await axios.get(
-        Url + this.songIndex
-      );
+      var Url = "http://" + window.location.hostname + ":9000/lyrics/";
+      let response = await axios.get(Url + this.songIndex);
       this.lyric = Object.assign({}, response.data[0]);
     } catch (error) {
       alert("Napaka");

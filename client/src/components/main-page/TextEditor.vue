@@ -3,9 +3,9 @@
     <!-- Welcome message -->
     <div>
       <b-jumbotron header-level="5" header="Vnesi pesem" lead>
-        <p
-          class="header-paragraph"
-        >Ko zaključis z vnašanjem besedila pesmi, klikni na "Shrani" gumb.</p>
+        <p class="header-paragraph">
+          Ko zaključis z vnašanjem besedila pesmi, klikni na "Shrani" gumb.
+        </p>
       </b-jumbotron>
     </div>
 
@@ -22,7 +22,12 @@
             label-for="input-2"
             description="Ne pozabi na veliko začetnico!"
           >
-            <b-form-input id="input-1" v-model="form.title" required placeholder="Vnesi naslov"></b-form-input>
+            <b-form-input
+              id="input-1"
+              v-model="form.title"
+              required
+              placeholder="Vnesi naslov"
+            ></b-form-input>
           </b-form-group>
         </b-col>
         <b-col></b-col>
@@ -82,9 +87,10 @@
             type="submit"
             variant="dark"
             class="menu-button"
-            :to="{ name: 'home'}"
+            :to="{ name: 'home' }"
             @click="submitEntry()"
-          >Shrani</b-button>
+            >Shrani</b-button
+          >
         </b-col>
         <b-col></b-col>
       </b-row>
@@ -165,7 +171,7 @@ export default {
   },
   methods: {
     async submitEntry() {
-      var Url = "http://" + window.location.hostname + ":9000/lyrics"
+      var Url = "http://" + window.location.hostname + ":9000/lyrics";
       if (this.form.title === "") {
         alert("Vnesi naslov!");
       } else {

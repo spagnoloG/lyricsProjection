@@ -1,7 +1,7 @@
 <template>
   <div>
     <welcome-top></welcome-top>
-    <text-editor v-bind:new-index="index" ></text-editor>
+    <text-editor v-bind:new-index="index"></text-editor>
   </div>
 </template>
 
@@ -28,7 +28,7 @@ export default {
   created() {},
   methods: {
     updateAllDataFromApi() {
-      var Url = "http://" + window.location.hostname + ":9000/lyrics"
+      var Url = "http://" + window.location.hostname + ":9000/lyrics";
       axios
         .get(Url)
         .then(res => {
@@ -41,15 +41,18 @@ export default {
             };
             this.lyrics.push(lyric);
           }
-          let helper = this.lyrics.length -1;
-          if(helper === -1) {
-            this.index = 1
+          let helper = this.lyrics.length - 1;
+          if (helper === -1) {
+            this.index = 1;
           } else {
-            this.index = this.lyrics[helper].index +1;
+            this.index = this.lyrics[helper].index + 1;
           }
         })
-        .catch(error => {alert("napaka"); return error});
-    },
+        .catch(error => {
+          alert("napaka");
+          return error;
+        });
+    }
   },
   mounted() {
     this.updateAllDataFromApi();
@@ -57,5 +60,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

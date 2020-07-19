@@ -6,15 +6,16 @@
         :show="dismissCountDown"
         dismissible
         variant="success"
-        @dismissed="dismissCountDown=0"
+        @dismissed="dismissCountDown = 0"
         @dismiss-count-down="countDownChanged"
-      >Pesem uspešno izbrisana!</b-alert>
+        >Pesem uspešno izbrisana!</b-alert
+      >
     </div>
     <!-- Search bar -->
     <div class="search-bar">
       <b-navbar type="dark" variant="dark">
         <b-navbar-nav class="search-box">
-              <b-input type="text" v-model="search" placeholder="išči pesmi" />
+          <b-input type="text" v-model="search" placeholder="išči pesmi" />
         </b-navbar-nav>
       </b-navbar>
     </div>
@@ -29,7 +30,9 @@
               class="lyric-item"
               button
               @click="selectLyric(lyric)"
-            >Pesem št: {{ lyric.index }}, naslov: {{ lyric.title }}</b-list-group-item>
+              >Pesem št: {{ lyric.index }}, naslov:
+              {{ lyric.title }}</b-list-group-item
+            >
           </b-list-group>
         </div>
       </b-col>
@@ -56,7 +59,7 @@
           <b-icon icon="pencil"></b-icon>Uredi
         </b-button>
         <b-button
-          :to="{ name: 'project', params: { id: selectedLyric.index }}"
+          :to="{ name: 'project', params: { id: selectedLyric.index } }"
           variant="warning"
           pill
           class="update-delete-project-btn"
@@ -75,7 +78,12 @@
           <b-collapse id="collapse-1">
             <b-card>
               Si prepričan/a?
-              <b-button class="final-delete-btn" @click="deleteLyric()" variant="outline-danger">Da</b-button>
+              <b-button
+                class="final-delete-btn"
+                @click="deleteLyric()"
+                variant="outline-danger"
+                >Da</b-button
+              >
             </b-card>
           </b-collapse>
         </div>
@@ -99,7 +107,7 @@ export default {
     };
   },
   beforeCreate() {
-    var Url = "http://" + window.location.hostname + ":9000/lyrics"
+    var Url = "http://" + window.location.hostname + ":9000/lyrics";
     axios
       .get(Url)
       .then(res => {
@@ -126,7 +134,7 @@ export default {
       this.dismissCountDown = this.dismissSecs;
     },
     deleteLyric() {
-      var Url = "http://" + window.location.hostname + ":9000/lyrics/"
+      var Url = "http://" + window.location.hostname + ":9000/lyrics/";
       axios
         .delete(Url + this.selectedLyric.index)
         .then(res => {
@@ -141,7 +149,7 @@ export default {
         });
     },
     updateList() {
-      var Url = "http://" + window.location.hostname + ":9000/lyrics"
+      var Url = "http://" + window.location.hostname + ":9000/lyrics";
       axios
         .get(Url)
         .then(res => {

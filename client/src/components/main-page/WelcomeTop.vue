@@ -13,7 +13,7 @@
         <strong class="glavni-napis">Župnija Šempeter pri Gorici</strong>
       </b-navbar-brand>
 
-    <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
       <!-- Routes and Options -->
       <b-collapse id="nav-collapse" is-nav>
