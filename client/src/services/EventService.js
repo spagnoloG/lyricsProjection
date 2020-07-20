@@ -16,5 +16,14 @@ export default {
     },
     getLyric(index) {
         return apiClient.get('/lyrics/' + index)
+    },
+    deleteLyric(index) {
+        return apiClient.delete('/lyrics/' + index)
+    },
+    updateLyric(lyric) {
+        return apiClient.patch('/lyrics/' + lyric.index, {
+            title: lyric.title,
+            content: lyric.content
+        })
     }
 }
