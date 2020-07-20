@@ -2,7 +2,6 @@
     <div class="home">
         <welcome-top></welcome-top>
         <main-jumbotron></main-jumbotron>
-        <button @click="fetchLyric(3)">Fetchaj</button>
     </div>
 </template>
 
@@ -13,19 +12,9 @@ import { mapActions } from "vuex";
 
 export default {
     name: "home",
-    data: function() {
-        return {
-            lyrics: []
-        };
-    },
     components: {
         WelcomeTop,
         MainJumbotron
-    },
-    methods: {
-      ...mapActions('lyric',['fetchLyric'])
-    },
-    mounted() {
     }
 };
 </script>
