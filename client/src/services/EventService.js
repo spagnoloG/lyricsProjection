@@ -15,6 +15,6 @@ export default {
         return apiClient.get('/lyrics')
     },
     getLyric(index) {
-        return apiClient.get('/events/' + index)
+        return apiClient.get('/lyrics/' + index)
     }
 }
