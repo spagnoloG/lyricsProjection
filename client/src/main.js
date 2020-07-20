@@ -15,6 +15,11 @@ Vue.directive("focus", {
   }
 });
 
+// MULTIPLE USERS ADDING LYRICS:)
+// setInterval(()=> {
+//   store.dispatch("lyric/fetchLyrics");
+// }, 3000)
+
 //Use bootstrap library for styles
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);

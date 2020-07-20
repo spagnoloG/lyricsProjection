@@ -25,5 +25,8 @@ export default {
             title: lyric.title,
             content: lyric.content
         })
+    },
+    postLyric(lyric) {
+        return apiClient.post('/lyrics/', lyric)
     }
 }

@@ -8,7 +8,6 @@
 <script>
 import WelcomeTop from "../components/main-page/WelcomeTop.vue";
 import updateTextEditor from "../components/edit-page/updateTextEditor.vue";
-import axios from "axios";
 
 export default {
     name: "EditLyric",

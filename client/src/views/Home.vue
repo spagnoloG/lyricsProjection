@@ -8,7 +8,6 @@
 <script>
 import WelcomeTop from "../components/main-page/WelcomeTop.vue";
 import MainJumbotron from "../components/main-page/MainJumbotron.vue";
-import { mapActions } from "vuex";
 
 export default {
     name: "home",

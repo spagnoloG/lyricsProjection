@@ -41,7 +41,6 @@ export default {
     },
     methods: {
         doCommand(e) {
-            var Url = "http://" + window.location.hostname + ":8080/project/";
             let cmd = String.fromCharCode(e.keyCode).toLowerCase();
             console.log(cmd)
             if (!isNaN(cmd)) {
