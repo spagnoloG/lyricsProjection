@@ -8,13 +8,6 @@
     </div>
   </div>
 </template>
-
-<script>
-import { eventBus } from "../../main.js";
-
-export default {};
-</script>
-
 <style scoped>
 .jumbo-tron {
   margin-bottom: 0;

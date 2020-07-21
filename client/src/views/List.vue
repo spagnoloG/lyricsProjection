@@ -18,8 +18,8 @@ export default {
     ListContent
   },
   created() {
-    this.$store.dispatch('lyric/fetchLyrics');
-  },
+    this.$store.dispatch("lyric/fetchLyrics");
+  }
 };
 </script>
 
