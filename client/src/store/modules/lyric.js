@@ -38,7 +38,11 @@ export const mutations = {
     },
     UPDATE_LYRIC(state, {lyric, toUpdate}) {
         if (toUpdate != -1) {
-             state.lyrics[toUpdate] = lyric
+            //Object.assign(state.lyrics[toUpdate], lyric);
+             //state.lyrics[toUpdate] = lyric
+             //https://github.com/vuejs/vuex/blob/dev/examples/todomvc/store/mutations.js
+             state.lyrics.splice(toUpdate,1, lyric)
+             console.log(state.lyrics[toUpdate])
         }
     }
 }

@@ -87,7 +87,6 @@
                         type="submit"
                         variant="dark"
                         class="menu-button"
-                        :to="{ name: 'list' }"
                         @click="submitEntry()"
                     >Shrani</b-button>
                 </b-col>
@@ -197,6 +196,8 @@ export default {
             } else {
                 this.$store.dispatch("lyric/updateLyric", document);
             }
+
+            this.$router.push({name:'list'})
         },
         updateData() {
             this.form.title = this.currentLyric.title;
@@ -206,9 +207,7 @@ export default {
     created() {
         this.$store.dispatch("lyric/fetchLyric", this.songIndex);
     },
-    beforeDestroy() {
-        this.$store.dispatch("lyric/fetchLyrics");
-    }
+    beforeDestroy() {}
 };
 </script>
 
