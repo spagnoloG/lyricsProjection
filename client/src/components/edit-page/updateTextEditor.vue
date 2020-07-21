@@ -197,7 +197,7 @@ export default {
                 this.$store.dispatch("lyric/updateLyric", document);
             }
 
-            this.$router.push({name:'list'})
+            this.$router.push({ name: "list" });
         },
         updateData() {
             this.form.title = this.currentLyric.title;

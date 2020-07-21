@@ -22,8 +22,8 @@
         <b-row class="text-center">
             <b-col></b-col>
             <b-col cols="10">
-                <div v-for="lyric in filteredLyrics" :key="lyric.index">
-                    <b-list-group horizontal="md">
+                <!-- <div v-for="lyric in filteredLyrics" :key="lyric.index"> -->
+                    <!-- <b-list-group horizontal="md">
                         <b-list-group-item
                             v-b-modal.modal-center
                             class="lyric-item"
@@ -33,8 +33,25 @@
                             Pesem št: {{ lyric.index }}, naslov:
                             {{ lyric.title }}
                         </b-list-group-item>
-                    </b-list-group>
-                </div>
+                    </b-list-group>-->
+                    <div class="overflow-auto">
+                        <!-- Use text in props -->
+                        <b-pagination
+                            v-model="currentPage"
+                            :total-rows="lyricsTotal"
+                            :per-page="perPage"
+                            first-number
+                            pills
+                        ></b-pagination>
+                        <b-table
+                            id="my-table"
+                            :items="filteredLyrics"
+                            :per-page="perPage"
+                            :current-page="currentPage"
+                            small
+                        ></b-table>
+                    </div>
+                <!-- </div> -->
             </b-col>
             <b-col></b-col>
         </b-row>
@@ -101,7 +118,9 @@ export default {
             selectedLyric: Object,
             dismissSecs: 5,
             dismissCountDown: 0,
-            search: ""
+            search: "",
+            perPage: 10,
+            currentPage: 1
         };
     },
     methods: {
@@ -115,13 +134,10 @@ export default {
             this.dismissCountDown = this.dismissSecs;
         },
         deleteLyric() {
-            this.$store.dispatch(
-                "lyric/deleteLyric",
-                this.selectedLyric.index
-            );
+            this.$store.dispatch("lyric/deleteLyric", this.selectedLyric.index);
             this.$refs["option-modal"].hide();
             this.showAlert();
-        },
+        }
     },
     computed: {
         filteredLyrics() {
@@ -130,7 +146,8 @@ export default {
             });
         },
         ...mapState({
-            lyrics: state => state.lyric.lyrics
+            lyrics: state => state.lyric.lyrics,
+            lyricsTotal: state => state.lyric.lyricsTotal
         })
     },
     created() {}

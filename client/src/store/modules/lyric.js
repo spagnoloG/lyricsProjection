@@ -82,9 +82,9 @@ export const actions = {
             // })
     },
     fetchLyric({ commit, getters, state }, index) {
-        if (index == state.currentLyric.index) {
-            return state.currentLyric
-        }
+        // if (index == state.currentLyric.index) {
+        //     return state.currentLyric
+        // }
 
         var lyric = getters.getLyricByIndex(index)
 
