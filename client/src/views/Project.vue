@@ -58,7 +58,7 @@ export default {
           this.gotoShown = false
           this.$router.push({ path: '/project/' + this.gotoInput })
           this.gotoInput = ""
-        }, 2000)
+        }, 1000)
       }
     },
     ...mapActions("lyric", ["fetchLyric", "fetchLyrics"])
@@ -66,6 +66,7 @@ export default {
   mounted() {
     this.fetchLyrics();
     this.fetchLyric(this.id);
+    console.log(this.$isMobile())
   },
   beforeRouteUpdate(to, from, next) {
     this.fetchLyric(this.gotoInput);
