@@ -1,37 +1,45 @@
 <template>
   <div>
+    <!-- Show search box -->
+    <div v-if="gotoShown">
+      <input
+        v-model="gotoInput"
+        v-focus 
+        class="search-box"
+        type="number"
+      />
+    </div>
     <!-- Show lyric -->
-    <div v-if="!openSearchBox">
-      <h1>{{ this.currentLyric.title }}</h1>
+    <div v-else-if="lyric">
+      <h1>{{ title }}</h1>
       <p>
-        <span v-html="this.currentLyric.content"></span>
+        <span v-html="content"></span>
       </p>
     </div>
-    <!-- Show search box -->
-    <div v-if="openSearchBox">
-      <input v-focus v-model="inputTerm" class="search-box" />
+    <!-- Show no lyric or loading -->
+    <div v-else>
+        <h2>Besedilo se nalaga ali ne obstaja</h2>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   name: "Project",
   data() {
     return {
-      openSearchBox: false,
-      inputTerm: ""
+      gotoShown: false,
+      gotoInput: "",
+      gotoTimeout: null,
     };
   },
   computed: {
-    id() {
-      return Number(this.$route.params.id);
-    },
-    ...mapState({
-      currentLyric: state => state.lyric.currentLyric
-    })
+    id () { return Number(this.$route.params.id) },
+    lyric () { return this.$store.getters['lyric/getAllLyrics'].find(el => el.index === this.id) },
+    title () { return this.lyric ? this.lyric.title : null },
+    content () { return this.lyric ? this.lyric.content : null },
   },
   created() {
     window.addEventListener("keypress", this.doCommand);
@@ -40,27 +48,26 @@ export default {
     window.removeEventListener("keypress", this.doCommand);
   },
   methods: {
-    doCommand(e) {
+    doCommand (e) {
       let cmd = String.fromCharCode(e.keyCode).toLowerCase();
-      console.log(cmd);
       if (!isNaN(cmd)) {
-        this.openSearchBox = true;
-        setTimeout(() => {
-          this.openSearchBox = false;
-          this.$router.push({ path: `/project/` + this.inputTerm });
-        }, 2000);
+          clearTimeout(this.gotoTimeout)
+        this.gotoShown = true
+        this.gotoTimeout = setTimeout(() => {
+          this.gotoShown = false
+          this.$router.push({ path: '/project/' + this.gotoInput })
+          this.gotoInput = ""
+        }, 2000)
       }
-      this.inputTerm = "";
     },
     ...mapActions("lyric", ["fetchLyric", "fetchLyrics"])
   },
   mounted() {
     this.fetchLyrics();
-    console.log(this.id);
     this.fetchLyric(this.id);
   },
   beforeRouteUpdate(to, from, next) {
-    this.fetchLyric(this.inputTerm);
+    this.fetchLyric(this.gotoInput);
     next();
   }
 };

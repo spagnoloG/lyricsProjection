@@ -103,6 +103,12 @@ export const actions = {
       });
     }
   },
+  /**
+   * @param {Object} context - context object passed to the function automatically by VueX
+   * @param {Number} index - Index of the lyric that is to be deleted
+   *
+   * @returns { Object } - Response object returned from the API
+   */
   deleteLyric({ commit }, index) {
     // Find position of lyric in array by index
     let foundLyric = state.lyrics.find(lyric => lyric.index === index);
