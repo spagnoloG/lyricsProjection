@@ -1,8 +1,7 @@
 <template>
   <div>
-    <div v-if="$isMobile()">MOBILE</div>
     <!-- Show search box -->
-    <div v-if="gotoShown">
+    <div v-if="gotoShown || showMobileInput">
       <input
         v-model="gotoInput"
         v-focus 
@@ -34,6 +33,7 @@ export default {
       gotoShown: false,
       gotoInput: "",
       gotoTimeout: null,
+      showMobileInput: false
     };
   },
   computed: {
@@ -66,7 +66,10 @@ export default {
   mounted() {
     this.fetchLyrics();
     this.fetchLyric(this.id);
-    console.log(this.$isMobile())
+    // Mobile device checker
+    if(this.$isMobile()) {
+      this.showMobileInput = true;
+    }
   },
   beforeRouteUpdate(to, from, next) {
     this.fetchLyric(this.gotoInput);
