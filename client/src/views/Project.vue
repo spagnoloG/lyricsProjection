@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div v-if="$isMobile()">MOBILE</div>
     <!-- Show search box -->
     <div v-if="gotoShown">
       <input
