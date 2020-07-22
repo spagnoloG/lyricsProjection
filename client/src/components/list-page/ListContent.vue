@@ -154,7 +154,7 @@ export default {
     computed: {
         filteredLyrics() {
             return this.lyrics.filter(lyric => {
-                return lyric.title.match(this.search); //|| lyric.index.match(Number(this.search))
+                return lyric.title.toUpperCase().match(this.search.toUpperCase()); //|| lyric.index.match(Number(this.search))
             });
         },
         ...mapState({
