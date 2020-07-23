@@ -2,14 +2,9 @@
   <div>
     <!-- Show search box -->
     <div v-if="gotoShown || showMobileInput">
-      <input
-        v-model="gotoInput"
-        v-focus 
-        class="search-box"
-        type="number"
-      />
+      <input v-model="gotoInput" v-focus class="search-box" type="number" />
+      <hr />
     </div>
-    <hr>
     <!-- Show lyric -->
     <div v-if="lyric || showMobileInput">
       <h1>{{ title }}</h1>
@@ -19,7 +14,7 @@
     </div>
     <!-- Show no lyric or loading -->
     <div v-else>
-        <h2 style="max-width: 95vw;">Besedilo se nalaga ali ne obstaja</h2>
+      <h2 style="max-width: 95vw;">Besedilo se nalaga ali ne obstaja</h2>
     </div>
   </div>
 </template>
@@ -34,14 +29,24 @@ export default {
       gotoShown: false,
       gotoInput: "",
       gotoTimeout: null,
-      showMobileInput: false
+      showMobileInput: false,
     };
   },
   computed: {
-    id () { return Number(this.$route.params.id) },
-    lyric () { return this.$store.getters['lyric/getAllLyrics'].find(el => el.index === this.id) },
-    title () { return this.lyric ? this.lyric.title : null },
-    content () { return this.lyric ? this.lyric.content : null },
+    id() {
+      return Number(this.$route.params.id);
+    },
+    lyric() {
+      return this.$store.getters["lyric/getAllLyrics"].find(
+        (el) => el.index === this.id
+      );
+    },
+    title() {
+      return this.lyric ? this.lyric.title : null;
+    },
+    content() {
+      return this.lyric ? this.lyric.content : null;
+    },
   },
   created() {
     window.addEventListener("keypress", this.doCommand);
@@ -50,32 +55,34 @@ export default {
     window.removeEventListener("keypress", this.doCommand);
   },
   methods: {
-    doCommand (e) {
+    doCommand(e) {
       let cmd = String.fromCharCode(e.keyCode).toLowerCase();
       if (!isNaN(cmd)) {
-          clearTimeout(this.gotoTimeout)
-        this.gotoShown = true
+        clearTimeout(this.gotoTimeout);
+        this.gotoShown = true;
         this.gotoTimeout = setTimeout(() => {
-          this.gotoShown = false
-          this.$router.push({ path: '/project/' + this.gotoInput })
-          this.gotoInput = ""
-        }, 1000)
+          this.gotoShown = false;
+          if(this.gotoInput !== "") {
+            this.$router.push({ path: "/project/" + this.gotoInput });
+          }
+          this.gotoInput = "";
+        }, 1000);
       }
     },
-    ...mapActions("lyric", ["fetchLyric", "fetchLyrics"])
+    ...mapActions("lyric", ["fetchLyric", "fetchLyrics"]),
   },
   mounted() {
     this.fetchLyrics();
     this.fetchLyric(this.id);
     // Mobile device checker
-    if(screen.width >= 430) {
+    if (screen.width <= 430) {
       this.showMobileInput = true;
     }
   },
   beforeRouteUpdate(to, from, next) {
     this.fetchLyric(this.gotoInput);
     next();
-  }
+  },
 };
 </script>
 
