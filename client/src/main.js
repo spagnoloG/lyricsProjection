@@ -5,7 +5,6 @@ import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 import store from "@/store/store.js";
-import VueMobileDetection from 'vue-mobile-detection'
 
 // Register a global custom directive called v-focus
 Vue.directive("focus", {
@@ -21,8 +20,6 @@ Vue.directive("focus", {
 //   store.dispatch("lyric/fetchLyrics");
 // }, 3000)
 
-// Use mobile checker
-Vue.use(VueMobileDetection);
 
 //Use bootstrap library for styles
 Vue.use(BootstrapVue);

@@ -9,8 +9,9 @@
         type="number"
       />
     </div>
+    <hr>
     <!-- Show lyric -->
-    <div v-else-if="lyric">
+    <div v-if="lyric || showMobileInput">
       <h1>{{ title }}</h1>
       <p>
         <span v-html="content"></span>
@@ -18,7 +19,7 @@
     </div>
     <!-- Show no lyric or loading -->
     <div v-else>
-        <h2>Besedilo se nalaga ali ne obstaja</h2>
+        <h2 style="max-width: 95vw;">Besedilo se nalaga ali ne obstaja</h2>
     </div>
   </div>
 </template>
@@ -67,7 +68,7 @@ export default {
     this.fetchLyrics();
     this.fetchLyric(this.id);
     // Mobile device checker
-    if(this.$isMobile()) {
+    if(screen.width >= 430) {
       this.showMobileInput = true;
     }
   },
