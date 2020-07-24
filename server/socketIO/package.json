@@ -4,7 +4,7 @@
   "description": "no",
   "main": "index.js",
   "scripts": {
-    "start" : "nodemon app.js"
+    "serve" : "nodemon app.js"
   },
   "license": "MIT",
   "dependencies": {
