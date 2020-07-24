@@ -8,7 +8,6 @@ var lyricIndex = 0
 Socketio.on("connection", socket => {
     socket.on("moveTo", data => {
         lyricIndex = data
-        console.log(data)
         Socketio.emit("remoteIndex", lyricIndex);
     });
 });
