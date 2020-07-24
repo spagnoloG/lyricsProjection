@@ -146,7 +146,7 @@ export default {
       if (screen.width <= 430) {
         // Do the socketIo thing
         // Socket.io
-        this.socket = io("http://192.168.1.106:3000");
+        this.socket = io("http://" + window.location.hostname + ":3000");
         //  Send socketIo message
         this.socket.emit("moveTo", this.selectedLyric.index);
         this.$refs["option-modal"].hide();

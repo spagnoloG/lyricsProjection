@@ -53,7 +53,7 @@ export default {
   created() {
     window.addEventListener("keypress", this.doCommand);
      // Socket.io
-    this.socket = io("http://localhost:3000");
+    this.socket = io("http://" + window.location.hostname + ":3000");
     //  Listen to Socket.io messages
     this.socket.on("remoteIndex", data => {
       this.$router.push({ path: "/project/" + data});
