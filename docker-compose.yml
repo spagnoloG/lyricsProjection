@@ -2,23 +2,23 @@ version: '3'
 services:
   vue-client:
     build: ./client
-    command: yarn run serve
+    command: npm run serve
     ports:
-      - "8080:80"
+      - "8080:8080"
 
   node-server:
     build: ./server/api
-    command: yarn run serve
+    command: npm run serve
     ports:
       - "9000:9000"
     links:
       - mongo
     
-    socket-io-server:
-      build: ./server/socketIO
-      command: yarn run serve
-      ports:
-        -"3000:3000"
+  socket-io-server:
+    build: ./server/socketIO
+    command: npm run serve
+    ports:
+      - "3000:3000"
       
   mongo:
     image: mongo

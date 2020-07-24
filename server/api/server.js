@@ -4,19 +4,6 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import mongoose from 'mongoose';
-// SocketIO
-// const Socketio = require("socket.io")(Http);
-// const Http = require("http").Server(express)
-
-// let lyricIndex = -1
-
-// var position = {
-//     x: 200,
-//     y: 200
-// }
-
-//  import .env file
-require('dotenv/config');
 
 // Defining port
 const port = process.env.PORT || 9000;
@@ -49,16 +36,5 @@ mongoose.connect("mongodb://localhost:27017/projectionDb",
 app.listen(port);
 console.log(`Listening On http://localhost:${port}/api`);
 
-// Socketio.on("connection", socket => {
-//     socket.on("move", data => {
-//         lyricIndex = data;
-//         socket.emit("lyricIndex", lyricIndex);
-//         console.log(data)
-//     })
-// })
-
-// Http.listen(3000, ()=> {
-//     console.log("Listening at :3000 -> Socket.io");
-// });
 
 module.exports = app;

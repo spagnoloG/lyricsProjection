@@ -1,19 +1,16 @@
 FROM nginx:alpine
 
-RUN set -eux \
-    & apk add \
-        --no-cache \
-        nodejs \
-        yarn
+RUN apk add --update \
+	nodejs-npm
 
 WORKDIR app
 
 COPY package*.json ./
 
-RUN yarn install
+RUN npm install
 
 COPY . .
 
 EXPOSE 8080
 
-CMD ["yarn", "run", "serve"]
+CMD ["npm,", "run", "serve"]
