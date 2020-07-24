@@ -21,6 +21,7 @@
 
 <script>
 import { mapActions } from "vuex";
+import io from "socket.io-client";
 
 export default {
   name: "Project",
@@ -30,6 +31,7 @@ export default {
       gotoInput: "",
       gotoTimeout: null,
       showMobileInput: false,
+      socket: {}
     };
   },
   computed: {
@@ -50,6 +52,12 @@ export default {
   },
   created() {
     window.addEventListener("keypress", this.doCommand);
+     // Socket.io
+    this.socket = io("http://localhost:3000");
+    //  Listen to Socket.io messages
+    this.socket.on("remoteIndex", data => {
+      this.$router.push({ path: "/project/" + data});
+    })
   },
   destroyed() {
     window.removeEventListener("keypress", this.doCommand);
@@ -74,10 +82,12 @@ export default {
   mounted() {
     this.fetchLyrics();
     this.fetchLyric(this.id);
+    
     // Mobile device checker
     if (screen.width <= 430) {
       this.showMobileInput = true;
     }
+
   },
   beforeRouteUpdate(to, from, next) {
     this.fetchLyric(this.gotoInput);

@@ -7,13 +7,13 @@ services:
       - "8080:8080"
 
   node-server:
-    build: ./server
+    build: ./server/api
     command: npm run serve
     ports:
       - "9000:9000"
     links:
       - mongo
-
+      
   mongo:
     image: mongo
     ports:
