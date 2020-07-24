@@ -189,7 +189,7 @@ export default {
     submitEntry() {
       let document = {
         title: this.form.title,
-        content: this.form.content,
+        content: this.form.content.toUpperCase(),
         index: this.currentLyric.index
       };
 
