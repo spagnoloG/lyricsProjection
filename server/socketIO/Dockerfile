@@ -1,4 +1,4 @@
-FROM nginx:alpine
+FROM mhart/alpine-node:10
 
 RUN set -eux \
     & apk add \
@@ -14,6 +14,6 @@ RUN yarn install
 
 COPY . .
 
-EXPOSE 8080
+EXPOSE 3000
 
 CMD ["yarn", "run", "serve"]

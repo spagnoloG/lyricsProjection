@@ -1,16 +1,19 @@
 FROM mhart/alpine-node:10
 
-RUN apk add --update \
-	nodejs-npm
+RUN set -eux \
+    & apk add \
+        --no-cache \
+        nodejs \
+        yarn
 
 WORKDIR app
 
 COPY package*.json ./
 
-RUN npm install
+RUN yarn install
 
 COPY . .
 
 EXPOSE 9000
 
-CMD ["npm", "run", "serve"]
+CMD ["yarn", "run", "serve"]
