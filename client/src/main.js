@@ -21,7 +21,7 @@ Vue.directive("focus", {
 // }, 3000)
 
 
-//Use bootstrap library for styles
+//Use bootstrap library for styless
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 
