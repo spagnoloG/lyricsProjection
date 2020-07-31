@@ -49,7 +49,7 @@ export const mutations = {
 
 export const actions = {
   addNewLyric({ commit }, lyric) {
-    return EventService.postLyric(lyric)
+    return fetchLyrics.postLyric(lyric)
       .then(response => {
         commit('add_new_lyric', lyric);
         // Add response check
@@ -61,7 +61,7 @@ export const actions = {
   },
   //dispatch add -> zraven commita
   fetchLyrics({ commit }) {
-    return EventService.getLyrics().then(response => {
+    return fetchLyrics.getLyrics().then(response => {
       commit('set_lyrics', response.data);
       // SET NEW LYRIC INDEX
       let helper = response.data.length - 1;
@@ -92,7 +92,7 @@ export const actions = {
       commit('set_lyric', lyric);
       return lyric;
     } else {
-      return EventService.getLyric(index).then(response => {
+      return fetchLyrics.getLyric(index).then(response => {
         let data = response.data[0];
         if (typeof data === "undefined") {
           //catch error -> TO DO
@@ -114,7 +114,7 @@ export const actions = {
     let foundLyric = state.lyrics.find(lyric => lyric.index === index);
     let toDelete = state.lyrics.indexOf(foundLyric);
 
-    return EventService.deleteLyric(index).then(response => {
+    return fetchLyrics.deleteLyric(index).then(response => {
       commit('delete_lyric', toDelete);
       // Add a isSuccsesful check to response
       return response;
@@ -132,7 +132,7 @@ export const actions = {
     let foundLyric = state.lyrics.find(lyric => lyric.index === index);
     let toUpdate = state.lyrics.indexOf(foundLyric);
 
-    return EventService.updateLyric(lyric).then(response => {
+    return fetchLyrics.updateLyric(lyric).then(response => {
       commit('update_lyric', {
         lyric,
         toUpdate
