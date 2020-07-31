@@ -1,5 +1,5 @@
 <template>
-  <h1>Add a new lyric</h1>
+  <h1>Dodaj novo pesem</h1>
 </template>
 <script>
 export default {

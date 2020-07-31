@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>This is a home page</h1>
+    <h1>Dobrodošel na domači strani</h1>
   </div>
 </template>
 
