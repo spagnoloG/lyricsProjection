@@ -1,0 +1,36 @@
+<template>
+    <v-app-bar app clipped-left>
+      <v-app-bar-nav-icon @click.stop="switchDrawer"></v-app-bar-nav-icon>
+      <v-toolbar-title>Application</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-icon
+      @click="toggleDarkMode"
+      >mdi-weather-sunset</v-icon>
+    </v-app-bar>
+</template>
+
+<script>
+import { mapGetters } from 'vuex'
+
+export default {
+  name: 'Navbar',
+  computed: {
+    ...mapGetters({
+      drawer: 'appState/getDrawerState',
+      darkMode: 'appState/getThemeState'
+    })
+  },
+  methods: {
+    switchDrawer () {
+      this.$store.dispatch('appState/setDrawerState', !this.drawer)
+    },
+    toggleDarkMode () {
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark
+      this.$store.dispatch('appState/setGlobalTheme', !this.darkMode)
+    }
+  }
+}
+</script>
+
+<style>
+</style>
