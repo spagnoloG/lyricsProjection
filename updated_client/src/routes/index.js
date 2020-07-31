@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/home/Home.vue'
 import AddLyric from '../views/add/AddLyric.vue'
 import List from '../views/list/List.vue'
+import Playlists from '../views/playlists/Playlists.vue'
 
 Vue.use(VueRouter)
 
@@ -29,7 +30,23 @@ const routes = [
     path: '/list',
     name: 'List',
     component: List
+  },
+  {
+    path: '/add-psalm',
+    name: 'AddPsalm',
+    component: () => import('../views/addPsalm/AddPsalm.vue')
+  },
+  {
+    path: '/list-psalms',
+    name: 'ListPsalms',
+    component: () => import('../views/listPsalms/ListPsalms.vue')
+  },
+  {
+    path: '/playlists',
+    name: 'Playlists',
+    component: Playlists
   }
+
 ]
 
 const router = new VueRouter({
