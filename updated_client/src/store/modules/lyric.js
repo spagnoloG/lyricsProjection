@@ -14,29 +14,29 @@ export const state = {
 };
 
 export const mutations = {
-  ADD_NEW_LYRIC(state, lyric) {
+  add_new_lyric(state, lyric) {
     state.lyrics.push(lyric);
   },
-  SET_LYRICS(state, lyrics) {
+  set_lyrics(state, lyrics) {
     state.lyrics = lyrics;
   },
-  SET_LYRICS_TOTAL(state, lyricsTotal) {
+  set_lyrics_total(state, lyricsTotal) {
     state.lyricsTotal = lyricsTotal;
   },
-  SET_LYRIC(state, currentLyric) {
+  set_lyric(state, currentLyric) {
     state.currentLyric.title = currentLyric.title;
     state.currentLyric.content = currentLyric.content;
     state.currentLyric.index = currentLyric.index;
   },
-  SET_NEW_LYRIC_INDEX(state, newLyricIndex) {
+  set_new_lyric_index(state, newLyricIndex) {
     state.newLyricIndex = newLyricIndex;
   },
-  DELETE_LYRIC(state, selector) {
+  delete_lyric(state, selector) {
     if (selector != -1) {
       state.lyrics.splice(selector, 1);
     }
   },
-  UPDATE_LYRIC(state, { lyric, toUpdate }) {
+  update_lyric(state, { lyric, toUpdate }) {
     if (toUpdate != -1) {
       //Object.assign(state.lyrics[toUpdate], lyric);
       //state.lyrics[toUpdate] = lyric
@@ -49,9 +49,9 @@ export const mutations = {
 
 export const actions = {
   addNewLyric({ commit }, lyric) {
-    return fetchLyrics.postLyric(lyric)
+    return EventService.postLyric(lyric)
       .then(response => {
-        commit("ADD_NEW_LYRIC", lyric);
+        commit('add_new_lyric', lyric);
         // Add response check
         return response;
       })
@@ -61,17 +61,17 @@ export const actions = {
   },
   //dispatch add -> zraven commita
   fetchLyrics({ commit }) {
-    return fetchLyrics.getLyrics().then(response => {
-      commit("SET_LYRICS", response.data);
+    return EventService.getLyrics().then(response => {
+      commit('set_lyrics', response.data);
       // SET NEW LYRIC INDEX
       let helper = response.data.length - 1;
       if (helper === -1) {
-        commit("SET_NEW_LYRIC_INDEX", 1);
+        commit('set_new_lyric_index', 1);
       } else {
-        commit("SET_NEW_LYRIC_INDEX", response.data[helper].index + 1);
+        commit('set_new_lyric_index', response.data[helper].index + 1);
       }
       // SET LYRICS TOTAL
-      commit("SET_LYRICS_TOTAL", response.data.length);
+      commit('set_lyrics_total', response.data.length);
     });
     // .catch(error => {
     //     const notification = {
@@ -89,15 +89,15 @@ export const actions = {
     var lyric = getters.getLyricByIndex(index);
 
     if (lyric) {
-      commit("SET_LYRIC", lyric);
+      commit('set_lyric', lyric);
       return lyric;
     } else {
-      return fetchLyricsService.getLyric(index).then(response => {
+      return EventService.getLyric(index).then(response => {
         let data = response.data[0];
         if (typeof data === "undefined") {
           //catch error -> TO DO
         } else {
-          commit("SET_LYRIC", data);
+          commit('set_lyric', data);
         }
         return data;
       });
@@ -114,8 +114,8 @@ export const actions = {
     let foundLyric = state.lyrics.find(lyric => lyric.index === index);
     let toDelete = state.lyrics.indexOf(foundLyric);
 
-    return fetchLyricsService.deleteLyric(index).then(response => {
-      commit("DELETE_LYRIC", toDelete);
+    return EventService.deleteLyric(index).then(response => {
+      commit('delete_lyric', toDelete);
       // Add a isSuccsesful check to response
       return response;
     });
@@ -132,8 +132,8 @@ export const actions = {
     let foundLyric = state.lyrics.find(lyric => lyric.index === index);
     let toUpdate = state.lyrics.indexOf(foundLyric);
 
-    return fetchLyrics.updateLyric(lyric).then(response => {
-      commit("UPDATE_LYRIC", {
+    return EventService.updateLyric(lyric).then(response => {
+      commit('update_lyric', {
         lyric,
         toUpdate
       });
