@@ -1,4 +1,4 @@
-import fetchLyrics from '../../services/FetchLyrics'
+import fetchLyrics from '../../services/fetchLyrics'
 
 export const namespaced = true;
 
@@ -38,11 +38,7 @@ export const mutations = {
   },
   update_lyric(state, { lyric, toUpdate }) {
     if (toUpdate != -1) {
-      //Object.assign(state.lyrics[toUpdate], lyric);
-      //state.lyrics[toUpdate] = lyric
-      //https://github.com/vuejs/vuex/blob/dev/examples/todomvc/store/mutations.js
       state.lyrics.splice(toUpdate, 1, lyric);
-      console.log(state.lyrics[toUpdate]);
     }
   }
 };
