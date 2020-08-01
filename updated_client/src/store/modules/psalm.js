@@ -4,7 +4,7 @@ export const namespaced = true;
 
 export const state = {
   psalms: [], //index, title and category
-  psalmsTotal,
+  psalmsTotal: 0,
   currentPsalm: {
     index: 0,
     title: "",
