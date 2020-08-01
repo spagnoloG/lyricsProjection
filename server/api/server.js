@@ -28,7 +28,7 @@ app.use('/lyrics', require('./routes/lyrics'));
 // Only lyrics indexes and titles
 app.use('/lyricsit', require('./routes/lyricsit'));
 // Psalms route
-//app.use('/psalms', require('./routes/psalms'));
+app.use('/psalms', require('./routes/psalms'));
 // Only lyrics indexes and titles
 //app.use('/psalms/indexes', require('./routes/psalmsit'));
 // Playlists

@@ -15,7 +15,8 @@ const PsalmSchema = mongoose.Schema({
     },
     category: {
       type: String,
-      required: false,
-      default: 'main'
+      required: false
     }
 })
+
+module.exports = mongoose.model('psalms', PsalmSchema);
