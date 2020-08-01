@@ -16,7 +16,7 @@
             <v-icon>mdi-presentation-play</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Seznam predvajanj</v-list-item-title>
+            <v-list-item-title>Seznami predvajanj</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
@@ -34,7 +34,7 @@
             <v-icon>mdi-format-list-text</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Seznami psalmov</v-list-item-title>
+            <v-list-item-title>Seznam psalmov</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
@@ -53,6 +53,15 @@
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>Dodaj nov Psalm</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item :to="{name: 'Options'}">
+          <v-list-item-action >
+            <v-icon>mdi-cog</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Možnosti</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 

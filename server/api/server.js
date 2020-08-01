@@ -25,9 +25,18 @@ app.use(express.static(__dirname + '/views/'));
 app.use('/api', require('./routes/index'));
 // Lyrics route
 app.use('/lyrics', require('./routes/lyrics'));
+// Only lyrics indexes and titles
+app.use('/lyrics/indexes', require('./routes/lyricsit'));
+// Psalms route
+app.use('/psalms', require('./routes/psalms'));
+// Only lyrics indexes and titles
+app.use('/psalms/indexes', require('./routes/psalmsit'));
+// Playlists
+app.use('/playlists', require('./routes/playlists'));
+
 
 // Connect to database
-mongoose.connect("mongodb://localhost:27017/projectionDb",
+mongoose.connect("mongodb://192.168.122.94:27017/projectionDb",
     { useNewUrlParser: true, useUnifiedTopology: true}, () =>
     console.log('Connected to database')
 );
