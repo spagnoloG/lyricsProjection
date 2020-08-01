@@ -15,6 +15,7 @@ const PsalmSchema = mongoose.Schema({
     },
     category: {
       type: String,
-      required: false
+      required: false,
+      default: 'main'
     }
 })
