@@ -26,13 +26,13 @@ app.use('/api', require('./routes/index'));
 // Lyrics route
 app.use('/lyrics', require('./routes/lyrics'));
 // Only lyrics indexes and titles
-app.use('/lyrics/indexes', require('./routes/lyricsit'));
+app.use('/lyricsit', require('./routes/lyricsit'));
 // Psalms route
-app.use('/psalms', require('./routes/psalms'));
+//app.use('/psalms', require('./routes/psalms'));
 // Only lyrics indexes and titles
-app.use('/psalms/indexes', require('./routes/psalmsit'));
+//app.use('/psalms/indexes', require('./routes/psalmsit'));
 // Playlists
-app.use('/playlists', require('./routes/playlists'));
+//app.use('/playlists', require('./routes/playlists'));
 
 
 // Connect to database
