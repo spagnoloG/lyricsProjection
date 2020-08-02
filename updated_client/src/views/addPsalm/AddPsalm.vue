@@ -31,7 +31,7 @@
                 sm="6">
                 <form v-on:submit.prevent>
                   <v-text-field
-                    v-on:keyup.enter="e1++"
+                    v-on:keyup.enter="nextOne"
                     v-model="title"
                     label="Naslov Psalma"
                     outlined
@@ -76,7 +76,6 @@
                 sm="6">
                 <v-select
                 v-on:keyup.enter="e1++"
-                v-model="select"
                 :items="categories"
                 :rules="[v => !!v || 'Item is required']"
                 label="Kategorija"
@@ -102,7 +101,17 @@
       </v-stepper-content>
 
       <v-stepper-content step="3">
-        <v-card class="mb-12" color="grey lighten-1" height="200px"></v-card>
+        <v-card class="mb-12" color="grey lighten-1" height="200px">
+          <v-container>
+              <v-row>
+                <v-col align="center">
+                  <h2
+                  class="font-weight-regular"
+                  >Vnesi besedilo pesmi</h2>
+                </v-col>
+              </v-row>
+            </v-container>
+        </v-card>
 
         <v-container fluid>
           <v-row>
@@ -132,6 +141,13 @@ export default {
         'Divje'
       ],
       content: ''
+    }
+  },
+  methods: {
+    nextOne () {
+      if (this.title !== '') {
+        return this.e1++
+      }
     }
   }
 }
