@@ -18,14 +18,23 @@
           <v-form>
             <v-container>
               <v-row>
+                <v-col align="center">
+                  <h2
+                  class="font-weight-regular"
+                  >Vnesi naslov Psalma</h2>
+                </v-col>
+              </v-row>
+              <v-row>
                 <v-col></v-col>
                 <v-col
                 cols="12"
                 sm="6">
                 <form v-on:submit.prevent>
                   <v-text-field
+                    v-on:keyup.enter="e1++"
                     v-model="title"
                     label="Naslov Psalma"
+                    outlined
                     required>
                   </v-text-field>
                 </form>
@@ -50,7 +59,36 @@
       </v-stepper-content>
 
       <v-stepper-content step="2">
-        <v-card class="mb-12" color="grey lighten-1" height="200px"></v-card>
+        <v-card class="mb-12" color="grey lighten-1" height="200px">
+          <v-form v-on:submit.prevent>
+            <v-container>
+              <v-row>
+                <v-col align="center">
+                  <h2
+                  class="font-weight-regular"
+                  >Izberi kategorijo</h2>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col></v-col>
+                <v-col
+                cols="12"
+                sm="6">
+                <v-select
+                v-on:keyup.enter="e1++"
+                v-model="select"
+                :items="categories"
+                :rules="[v => !!v || 'Item is required']"
+                label="Kategorija"
+                required
+                ></v-select>
+
+                </v-col>
+                <v-col></v-col>
+              </v-row>
+            </v-container>
+          </v-form>
+        </v-card>
 
         <v-container>
           <v-row>
@@ -88,7 +126,11 @@ export default {
     return {
       e1: 1,
       title: '',
-      category: '',
+      categories: [
+        'Božične',
+        'Adventne',
+        'Divje'
+      ],
       content: ''
     }
   }
