@@ -4,6 +4,7 @@ export const namespaced = true
 
 export const state = {
   psalms: [], // index, title and category
+  categories: [],
   psalmsTotal: 0,
   currentPsalm: {
     index: 0,
@@ -42,6 +43,17 @@ export const mutations = {
     if (toUpdate !== -1) {
       state.psalms.splice(toUpdate, 1, psalm)
     }
+  },
+  set_categories (state, categories) {
+    state.categories = categories
+  },
+  delete_category (state, selector) {
+    if (selector !== -1) {
+      state.psalms.splice(selector, 1)
+    }
+  },
+  add_new_category (state, category) {
+    state.categories.push(category)
   }
 }
 
@@ -51,6 +63,17 @@ export const actions = {
       .then(response => {
         // To check!
         commit('add_new_psalm', psalm)
+        return response
+      })
+      .catch(error => {
+        return error
+      })
+  },
+  //
+  addNewCategory ({ commit }, category) {
+    return fetchPsalms.postPsalmCategory(category)
+      .then(response => {
+        commit('add_new_category', category)
         return response
       })
       .catch(error => {
@@ -88,6 +111,18 @@ export const actions = {
         commit('set_psalms_total', response.data.length)
       })
   },
+  //,
+  fetchCategories ({ commit }) {
+    var x
+    const arrayOfCategories = []
+    return fetchPsalms.getPsalmsCategories()
+      .then(response => {
+        for (x in response.data) {
+          arrayOfCategories.push(response.data[x].category)
+        }
+        commit('set_categories', arrayOfCategories)
+      })
+  },
   //
   deletePsalm ({ commit }, index) {
     // Find position of Psalm in array by index
@@ -96,6 +131,15 @@ export const actions = {
 
     return fetchPsalms.deletePsalm(index).then(response => {
       commit('delete_psalm', toDelete)
+      return response
+    })
+  },
+  //
+  deleteCategory ({ commit }, category) {
+    const toDelete = state.categories.lastIndexOf(category)
+
+    return fetchPsalms.deletePsalmCategory(category).then(response => {
+      commit('delete_category', toDelete)
       return response
     })
   },
@@ -126,5 +170,8 @@ export const getters = {
   },
   getNewPsalmIndex: state => {
     return state.newPsalmIndex
+  },
+  getCategories: state => {
+    return state.categories
   }
 }

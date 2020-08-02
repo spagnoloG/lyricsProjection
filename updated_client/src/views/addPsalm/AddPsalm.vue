@@ -223,9 +223,11 @@ export default {
   },
   created () {
     this.$store.dispatch('psalm/fetchPsalms')
+    this.$store.dispatch('psalm/fetchCategories')
   },
   beforeDestroy () {
     this.$store.dispatch('psalm/fetchPsalms')
+    this.$store.dispatch('psalm/fetchCategories')
   }
 }
 </script>

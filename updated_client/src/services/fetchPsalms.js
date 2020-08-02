@@ -17,11 +17,17 @@ export default {
   getPsalmsIndexes () {
     return apiClient.get('/psalmsit')
   },
+  getPsalmsCategories () {
+    return apiClient.get('/psalmsc')
+  },
   getPsalm (index) {
     return apiClient.get('/psalms/' + index)
   },
   deletePsalm (index) {
     return apiClient.delete('/psalms/' + index)
+  },
+  deletePsalmCategory (category) {
+    return apiClient.delete('/psalmsc/' + category)
   },
   updatePsalm (psalm) {
     return apiClient.patch('/psalms/' + psalm.index, {
@@ -32,5 +38,8 @@ export default {
   },
   postPsalm (psalm) {
     return apiClient.post('/psalms/', psalm)
+  },
+  postPsalmCategory (category) {
+    return apiClient.post('/psalmsc', category)
   }
 }

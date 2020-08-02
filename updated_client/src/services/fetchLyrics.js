@@ -17,6 +17,9 @@ export default {
   getLyricsIndexes () {
     return apiClient.get('/lyricsit')
   },
+  getLyricsCategories() {
+    return apiClient.get('/lyricsc')
+  },
   getLyric (index) {
     return apiClient.get('/lyrics/' + index)
   },
