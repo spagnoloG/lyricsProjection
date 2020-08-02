@@ -28,13 +28,13 @@ router.get('/:psalmIndex', async(req, res) => {
 
 // Submit Psalm
 router.post('/', async(req,res) => {
+  console.log(req.body.categories)
   const psalm = new Psalm({
       index: Number(req.body.index),
       title: String(req.body.title),
       content: String(req.body.content),
-      category: String(req.body.category)
+      categories: req.body.categories
   });
-  console.log(psalm);
   await psalm.validate();
   try {
       const storedPsalm = await psalm.save();

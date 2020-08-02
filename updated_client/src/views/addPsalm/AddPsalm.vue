@@ -44,7 +44,7 @@
         <v-container fluid>
           <v-row>
             <v-col>
-              <v-btn color="primary" @click="e1 = 2">Nadaljuj</v-btn>
+              <v-btn color="primary" @click="nextOne">Nadaljuj</v-btn>
             </v-col>
             <v-col align="end">
               <v-btn text :to="{ name: 'Home'}">Domov</v-btn>
@@ -67,10 +67,12 @@
                 <v-col cols="12" sm="6">
                   <v-select
                     v-on:keyup.enter="e1++"
-                    v-model="category"
+                    v-model="selected"
                     :items="categories"
                     :rules="[v => !!v || 'Item is required']"
                     label="Kategorija"
+                    outlined
+                    multiple
                     required
                   ></v-select>
                 </v-col>
@@ -80,10 +82,10 @@
           </v-form>
         </v-card>
 
-        <v-container>
+        <v-container fluid>
           <v-row>
             <v-col>
-              <v-btn color="primary" @click="e1 = 3">Nadaljuj</v-btn>
+              <v-btn color="primary" @click="nextTwo">Nadaljuj</v-btn>
               <v-btn text @click="--e1">Nazaj</v-btn>
             </v-col>
           </v-row>
@@ -185,7 +187,7 @@ export default {
       e1: 1,
       title: '',
       content: '',
-      category: null,
+      selected: null,
       categories: ['Božične', 'Adventne', 'Divje']
     }
   },
@@ -200,17 +202,22 @@ export default {
         return this.e1++
       }
     },
+    nextTwo () {
+      if (this.selected !== null) {
+        return this.e1++
+      }
+    },
     submitEntry () {
       // Form a document
       const document = {
         index: this.index,
         title: this.title,
-        category: this.category,
+        categories: this.selected,
         content: this.content.toUpperCase()
       }
       // Post to database
       this.$store.dispatch('psalm/addNewPsalm', document)
-      this.$store.dispatch('appState/showSnackbar', 'Uspešno dodan Psalm (' + this.index + ')')
+      this.$store.dispatch('appState/showSnackbar', 'Uspešno dodan Psalm, števlika: ' + this.index)
       this.$router.push({ name: 'Home' })
     }
   },

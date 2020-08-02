@@ -9,7 +9,7 @@ export const state = {
     index: 0,
     title: '',
     content: '',
-    category: ''
+    categories: []
   },
   newPsalmIndex: 0
 }
@@ -28,7 +28,7 @@ export const mutations = {
     state.currentPsalm.index = currentPsalm.index
     state.currentPsalm.title = currentPsalm.title
     state.currentPsalm.content = currentPsalm.content
-    state.currentPsalm.category = currentPsalm.category
+    state.currentPsalm.categories = currentPsalm.categories
   },
   set_new_psalm_index (state, newPsalmIndex) {
     state.newPsalmIndex = newPsalmIndex
