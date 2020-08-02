@@ -71,7 +71,10 @@ export const actions = {
   },
   //
   addNewCategory ({ commit }, category) {
-    return fetchPsalms.postPsalmCategory(category)
+    const document = {
+      category: category
+    }
+    return fetchPsalms.postPsalmCategory(document)
       .then(response => {
         commit('add_new_category', category)
         return response

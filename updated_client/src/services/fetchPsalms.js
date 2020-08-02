@@ -40,6 +40,6 @@ export default {
     return apiClient.post('/psalms/', psalm)
   },
   postPsalmCategory (category) {
-    return apiClient.post('/psalmsc', category)
+    return apiClient.post('/psalmsc/', category)
   }
 }
