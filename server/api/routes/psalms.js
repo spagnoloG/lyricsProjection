@@ -28,7 +28,6 @@ router.get('/:psalmIndex', async(req, res) => {
 
 // Submit Psalm
 router.post('/', async(req,res) => {
-  console.log(req.body.categories)
   const psalm = new Psalm({
       index: Number(req.body.index),
       title: String(req.body.title),
