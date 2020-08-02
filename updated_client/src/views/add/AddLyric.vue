@@ -14,7 +14,32 @@
 
     <v-stepper-items>
       <v-stepper-content step="1">
-        <v-card class="mb-12" color="grey lighten-1" height="200px"></v-card>
+        <v-card class="mb-12" color="grey lighten-1" height="200px">
+          <v-form>
+            <v-container>
+              <v-row>
+                <v-col align="center">
+                  <h2 class="font-weight-regular">Vnesi naslov pesmi</h2>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col></v-col>
+                <v-col cols="12" sm="6">
+                  <form v-on:submit.prevent>
+                    <v-text-field
+                      v-on:keyup.enter="nextOne"
+                      v-model="title"
+                      label="Naslov pesmi"
+                      outlined
+                      required
+                    ></v-text-field>
+                  </form>
+                </v-col>
+                <v-col></v-col>
+              </v-row>
+            </v-container>
+          </v-form>
+        </v-card>
 
         <v-container fluid>
           <v-row>
@@ -29,28 +54,141 @@
       </v-stepper-content>
 
       <v-stepper-content step="2">
-        <v-card class="mb-12" color="grey lighten-1" height="200px"></v-card>
+        <v-card class="mb-12" color="grey lighten-1" height="200px">
+          <v-form v-on:submit.prevent>
+            <v-container>
+              <v-row>
+                <v-col align="center">
+                  <h2 class="font-weight-regular">Izberi kategorijo</h2>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col></v-col>
+                <v-col cols="12" sm="6">
+                  <v-select
+                    v-on:keyup.enter="e1++"
+                    :items="categories"
+                    :rules="[v => !!v || 'Item is required']"
+                    label="Kategorija"
+                    required
+                  ></v-select>
+                </v-col>
+                <v-col></v-col>
+              </v-row>
+            </v-container>
+          </v-form>
+        </v-card>
 
-        <v-btn color="primary" @click="e1 = 3">Nadaljuj</v-btn>
-
-        <v-btn text @click="--e1">Nazaj</v-btn>
+        <v-container>
+          <v-row>
+            <v-col>
+              <v-btn color="primary" @click="e1 = 3">Nadaljuj</v-btn>
+              <v-btn text @click="--e1">Nazaj</v-btn>
+            </v-col>
+          </v-row>
+        </v-container>
       </v-stepper-content>
 
       <v-stepper-content step="3">
-        <v-card class="mb-12" color="grey lighten-1" height="200px"></v-card>
+        <v-card class="mb-12" color="grey lighten-1">
+          <v-container>
+            <v-row>
+              <v-col align="center">
+                <h2 class="font-weight-regular">Vnesi besedilo pesmi</h2>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col></v-col>
+              <v-col  cols="12" lg="6" align="center" justify="center">
+                <!-- Menu -->
+                <editor-menu-bar :editor="editor" v-slot="{ commands, isActive }">
+                  <div class="menubar">
+                    <v-btn
+                    :class="{ 'is-active': isActive.bold() }"
+                    @click="commands.bold"
+                    color="#950740"
+                    small
+                    dark
+                    fab
+                    >
+                    <v-icon>mdi-format-bold</v-icon>
+                    </v-btn>
 
-        <v-btn color="primary" @click="e1 = 1">Nadaljuj</v-btn>
+                    <v-btn
+                    :class="{ 'is-active': isActive.italic() }"
+                    @click="commands.italic"
+                    color="#950740"
+                    class="ma-1 white--text"
+                    fab
+                    small
+                    dark
+                    >
+                    <v-icon>mdi-format-italic</v-icon>
+                    </v-btn>
+                  </div>
+                </editor-menu-bar>
+                <br>
+                <!-- Editor -->
+                <editor-content class="editor-content" :editor="editor" />
+              </v-col>
+              <v-col></v-col>
+            </v-row>
+          </v-container>
+        </v-card>
 
-        <v-btn text @click="--e1">Nazaj</v-btn>
+        <v-container fluid>
+          <v-row>
+            <v-col>
+              <v-btn text @click="--e1">Nazaj</v-btn>
+            </v-col>
+            <v-col align="end">
+              <v-btn color="primary" stext :to="{ name: 'Home'}">Shrani</v-btn>
+            </v-col>
+          </v-row>
+        </v-container>
       </v-stepper-content>
     </v-stepper-items>
   </v-stepper>
 </template>
 <script>
+import { Editor, EditorContent, EditorMenuBar } from 'tiptap'
+
+import {
+  Bold,
+  Italic
+} from 'tiptap-extensions'
+
 export default {
+  components: {
+    EditorContent,
+    EditorMenuBar
+  },
   data () {
     return {
-      e1: 1
+      editor: new Editor({
+        extensions: [
+          new Bold(),
+          new Italic()
+        ],
+        content: `
+          <p>
+            OJLA
+          </p>
+        `,
+        onUpdate: ({ getHTML }) => {
+          // this.form.content = String(getHTML())
+        }
+      }),
+      e1: 1,
+      title: '',
+      categories: ['Božične', 'Adventne', 'Divje']
+    }
+  },
+  methods: {
+    nextOne () {
+      if (this.title !== '') {
+        return this.e1++
+      }
     }
   }
 }
