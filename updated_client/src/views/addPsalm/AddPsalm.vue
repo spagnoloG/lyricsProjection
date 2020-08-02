@@ -202,6 +202,7 @@ export default {
       }
       // Post to database
       this.$store.dispatch('psalm/addNewPsalm', document)
+      this.$store.dispatch('appState/showSnackbar', 'Ena dva tri')
       this.$router.push({ name: 'Home' })
     }
   }
