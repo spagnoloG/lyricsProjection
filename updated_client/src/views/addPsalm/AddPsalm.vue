@@ -67,6 +67,7 @@
                 <v-col cols="12" sm="6">
                   <v-select
                     v-on:keyup.enter="e1++"
+                    v-model="category"
                     :items="categories"
                     :rules="[v => !!v || 'Item is required']"
                     label="Kategorija"
@@ -153,6 +154,7 @@
 
 <script>
 import { Editor, EditorContent, EditorMenuBar } from 'tiptap'
+import { mapGetters } from 'vuex'
 
 import {
   Bold,
@@ -183,8 +185,14 @@ export default {
       e1: 1,
       title: '',
       content: '',
+      category: null,
       categories: ['Božične', 'Adventne', 'Divje']
     }
+  },
+  computed: {
+    ...mapGetters({
+      index: 'psalm/getNewPsalmIndex'
+    })
   },
   methods: {
     nextOne () {
@@ -195,16 +203,22 @@ export default {
     submitEntry () {
       // Form a document
       const document = {
-        index: 1,
+        index: this.index,
         title: this.title,
-        category: 'Test',
+        category: this.category,
         content: this.content.toUpperCase()
       }
       // Post to database
       this.$store.dispatch('psalm/addNewPsalm', document)
-      this.$store.dispatch('appState/showSnackbar', 'Ena dva tri')
+      this.$store.dispatch('appState/showSnackbar', 'Uspešno dodan Psalm (' + this.index + ')')
       this.$router.push({ name: 'Home' })
     }
+  },
+  created () {
+    this.$store.dispatch('psalm/fetchPsalms')
+  },
+  beforeDestroy () {
+    this.$store.dispatch('psalm/fetchPsalms')
   }
 }
 </script>

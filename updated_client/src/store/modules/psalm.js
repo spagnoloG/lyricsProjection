@@ -72,7 +72,7 @@ export const actions = {
   },
   //
   fetchPsalms ({ commit }) {
-    return fetchPsalms.getPsalmsIndexes
+    return fetchPsalms.getPsalmsIndexes()
       .then(response => {
         commit('set_psalms', response.data)
 
@@ -123,5 +123,8 @@ export const getters = {
   },
   getAllPsalms: state => {
     return state.psalms
+  },
+  getNewPsalmIndex: state => {
+    return state.newPsalmIndex
   }
 }

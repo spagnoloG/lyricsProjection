@@ -15,7 +15,7 @@ export default {
     return apiClient.get('/psalms')
   },
   getPsalmsIndexes () {
-    return apiClient.get('/pslamsit')
+    return apiClient.get('/psalmsit')
   },
   getPsalm (index) {
     return apiClient.get('/psalms/' + index)
