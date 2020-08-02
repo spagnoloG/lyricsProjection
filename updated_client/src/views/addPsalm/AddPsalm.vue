@@ -19,7 +19,7 @@
             <v-container>
               <v-row>
                 <v-col align="center">
-                  <h2 class="font-weight-regular">Vnesi naslov Psalma</h2>
+                  <h2 class="font-weight-regular black--text">Vnesi naslov Psalma</h2>
                 </v-col>
               </v-row>
               <v-row>
@@ -30,6 +30,8 @@
                       v-on:keyup.enter="nextOne"
                       v-model="title"
                       label="Naslov Psalma"
+                      class="black--text"
+                      light
                       outlined
                       required
                     ></v-text-field>
@@ -59,7 +61,7 @@
             <v-container>
               <v-row>
                 <v-col align="center">
-                  <h2 class="font-weight-regular">Izberi kategorijo</h2>
+                  <h2 class="font-weight-regular black--text">Izberi kategorijo</h2>
                 </v-col>
               </v-row>
               <v-row>
@@ -71,6 +73,7 @@
                     :items="categories"
                     :rules="[v => !!v || 'Item is required']"
                     label="Kategorija"
+                    light
                     outlined
                     multiple
                     required
@@ -97,7 +100,7 @@
           <v-container>
             <v-row>
               <v-col align="center">
-                <h2 class="font-weight-regular">Vnesi besedilo Psalma</h2>
+                <h2 class="font-weight-regular black--text">Vnesi besedilo Psalma</h2>
               </v-col>
             </v-row>
             <v-row>
@@ -187,13 +190,13 @@ export default {
       e1: 1,
       title: '',
       content: '',
-      selected: null,
-      categories: ['Božične', 'Adventne', 'Divje']
+      selected: null
     }
   },
   computed: {
     ...mapGetters({
-      index: 'psalm/getNewPsalmIndex'
+      index: 'psalm/getNewPsalmIndex',
+      categories: 'psalm/getCategories'
     })
   },
   methods: {

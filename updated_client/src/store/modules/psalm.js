@@ -49,7 +49,7 @@ export const mutations = {
   },
   delete_category (state, selector) {
     if (selector !== -1) {
-      state.psalms.splice(selector, 1)
+      state.categories.splice(selector, 1)
     }
   },
   add_new_category (state, category) {
