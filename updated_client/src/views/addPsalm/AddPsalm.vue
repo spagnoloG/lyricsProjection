@@ -22,11 +22,13 @@
                 <v-col
                 cols="12"
                 sm="6">
+                <form v-on:submit.prevent>
                   <v-text-field
                     v-model="title"
                     label="Naslov Psalma"
                     required>
                   </v-text-field>
+                </form>
                 </v-col>
                 <v-col></v-col>
               </v-row>
