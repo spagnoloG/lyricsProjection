@@ -34,12 +34,12 @@ export const mutations = {
     state.newPsalmIndex = newPsalmIndex
   },
   delete_psalm (state, selector) {
-    if (selector != -1) {
+    if (selector !== -1) {
       state.psalms.splice(selector, 1)
     }
   },
   update_psalm (state, { psalm, toUpdate }) {
-    if (toUpdate != -1) {
+    if (toUpdate !== -1) {
       state.psalms.splice(toUpdate, 1, psalm)
     }
   }
@@ -47,7 +47,7 @@ export const mutations = {
 
 export const actions = {
   addNewPsalm ({ commit }, psalm) {
-    return fetchPsalms.postLyric(psalm)
+    return fetchPsalms.postPsalm(psalm)
       .then(response => {
         // To check!
         commit('add_new_psalm', psalm)
@@ -84,17 +84,17 @@ export const actions = {
           commit('set_new_psalm_index', response.data[helper].index + 1)
         }
 
-        // Set total lyrics count
+        // Set total Psalm count
         commit('set_psalms_total', response.data.length)
       })
   },
   //
   deletePsalm ({ commit }, index) {
-    // Find position of lyric in array by index
+    // Find position of Psalm in array by index
     const foundPsalm = state.psalms.find(psalm => psalm.index === index)
     const toDelete = state.psalms.indexOf(foundPsalm)
 
-    return fetchLyrics.deleteLyric(index).then(response => {
+    return fetchPsalms.deletePsalm(index).then(response => {
       commit('delete_psalm', toDelete)
       return response
     })
@@ -105,7 +105,7 @@ export const actions = {
     const foundPsalm = state.psalms.find(psalm => psalm.index === index)
     const toUpdate = state.psalms.indexOf(foundPsalm)
 
-    return fetchLyrics.updateLyric(psalm).then(response => {
+    return fetchPsalms.updatePsalm(psalm).then(response => {
       commit('update_psalm', {
         psalm,
         toUpdate

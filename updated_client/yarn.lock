@@ -1686,6 +1686,13 @@ aws4@^1.8.0:
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.10.0.tgz#a17b3a8ea811060e74d47d306122400ad4497ae2"
   integrity sha512-3YDiu347mtVtjpyV3u5kVqQLP242c06zwDOgpeRnybmXlYYsLbtTrUBUm8i8srONt+FWobl5aibnU1030PeeuA==
 
+axios@^0.19.2:
+  version "0.19.2"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.2.tgz#3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27"
+  integrity sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==
+  dependencies:
+    follow-redirects "1.5.10"
+
 babel-eslint@^10.1.0:
   version "10.1.0"
   resolved "https://registry.yarnpkg.com/babel-eslint/-/babel-eslint-10.1.0.tgz#6968e568a910b78fb3779cdd8b6ac2f479943232"
@@ -2842,6 +2849,13 @@ debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.9:
   dependencies:
     ms "2.0.0"
 
+debug@=3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-3.1.0.tgz#5bb5a0672628b64149566ba16819e61518c67261"
+  integrity sha512-OX8XqP7/1a9cqkxYw2yXss15f26NKWBpDXQd0/uK/KPqdQhxbPa994hnzjcE2VqQpDslf55723cKPUOGSmMY3g==
+  dependencies:
+    ms "2.0.0"
+
 debug@^3.1.1, debug@^3.2.5:
   version "3.2.6"
   resolved "https://registry.yarnpkg.com/debug/-/debug-3.2.6.tgz#e83d17de16d8a7efb7717edbe5fb10135eee629b"
@@ -3883,6 +3897,13 @@ flush-write-stream@^1.0.0:
   dependencies:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
+
+follow-redirects@1.5.10:
+  version "1.5.10"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.5.10.tgz#7b7a9f9aea2fdff36786a94ff643ed07f4ff5e2a"
+  integrity sha512-0V5l4Cizzvqt5D44aTXbFZz+FtyXV1vrDN6qrelxtfYQKW0KO0W2T/hkE8xvGa/540LkZlkaUjO4ailYTFtHVQ==
+  dependencies:
+    debug "=3.1.0"
 
 follow-redirects@^1.0.0:
   version "1.12.1"
@@ -6224,11 +6245,6 @@ pnp-webpack-plugin@^1.6.4:
   dependencies:
     ts-pnp "^1.1.6"
 
-popper.js@^1.16.1:
-  version "1.16.1"
-  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.1.tgz#2a223cb3dc7b6213d740e40372be40de43e65b1b"
-  integrity sha512-Wb4p1J4zyFTbM+u6WuO4XstYx4Ky9Cewe4DWrel7B0w6VVICvPwdOpotjzcf6eD8TsckVnIMNONQyPIUFOUbCQ==
-
 portfinder@^1.0.26:
   version "1.0.28"
   resolved "https://registry.yarnpkg.com/portfinder/-/portfinder-1.0.28.tgz#67c4622852bd5374dd1dd900f779f53462fac778"
@@ -8027,7 +8043,7 @@ tiptap-commands@^1.14.3:
     prosemirror-utils "^0.9.6"
     tiptap-utils "^1.10.3"
 
-tiptap-extensions@^1.14.0:
+tiptap-extensions@^1.31.3:
   version "1.31.3"
   resolved "https://registry.yarnpkg.com/tiptap-extensions/-/tiptap-extensions-1.31.3.tgz#bebaaee69e87f6f85f5d0ab17f84bc48a1f6c767"
   integrity sha512-brS9ptnFxqJuE9MpwUP0LucptvhPcIhDkWNMftnWplbHOml5xEL6zR40FYkmmCq+ZJRh6+kS5HI9HYRp3StXMw==
@@ -8054,16 +8070,7 @@ tiptap-utils@^1.10.3:
     prosemirror-tables "^1.1.0"
     prosemirror-utils "^0.9.6"
 
-tiptap-vuetify@^2.24.0:
-  version "2.24.0"
-  resolved "https://registry.yarnpkg.com/tiptap-vuetify/-/tiptap-vuetify-2.24.0.tgz#0bfff0d5ffd13f1dfb5c42c2e70fe17b2812913b"
-  integrity sha512-9GDXYr/wux8i2vVCOpigmDZDaBfjqO9OCxctWlH6zwNKr4enN0jfIySd6CDHN7E5eY7Vn61etkfQ4sRVGvH80g==
-  dependencies:
-    popper.js "^1.16.1"
-    tiptap "^1.16.2"
-    tiptap-extensions "^1.14.0"
-
-tiptap@^1.16.2, tiptap@^1.29.3:
+tiptap@^1.29.3:
   version "1.29.3"
   resolved "https://registry.yarnpkg.com/tiptap/-/tiptap-1.29.3.tgz#690dee9bcfc38d1f8d1c484de8d4d0314ceae996"
   integrity sha512-1dngx+UsySlnfGHu8vDQpcrXcROzMMsFPGJrxSsf0/79dUgIdIIW01ZM8j0cIPKm+7BdXguhMRCxyN8u3NvgWA==

@@ -142,7 +142,7 @@
               <v-btn text @click="--e1">Nazaj</v-btn>
             </v-col>
             <v-col align="end">
-              <v-btn color="primary" stext :to="{ name: 'Home'}">Shrani</v-btn>
+              <v-btn color="primary" text @click="submitEntry">Shrani</v-btn>
             </v-col>
           </v-row>
         </v-container>
@@ -177,11 +177,12 @@ export default {
           </p>
         `,
         onUpdate: ({ getHTML }) => {
-          // this.form.content = String(getHTML())
+          this.content = String(getHTML())
         }
       }),
       e1: 1,
       title: '',
+      content: '',
       categories: ['Božične', 'Adventne', 'Divje']
     }
   },
@@ -190,6 +191,18 @@ export default {
       if (this.title !== '') {
         return this.e1++
       }
+    },
+    submitEntry () {
+      // Form a document
+      const document = {
+        index: 1,
+        title: this.title,
+        category: 'Test',
+        content: this.content.toUpperCase()
+      }
+      // Post to database
+      this.$store.dispatch('psalm/addNewPsalm', document)
+      this.$router.push({ name: 'Home' })
     }
   }
 }

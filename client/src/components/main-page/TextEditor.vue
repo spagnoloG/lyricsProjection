@@ -171,7 +171,7 @@ export default {
       // Form a document
       let document = {
         title: this.form.title,
-        content: this.form.content.toUpperCase(),
+        content: this.content.toUpperCase(),
         index: this.newLyricIndex
       };
       // Post to db
