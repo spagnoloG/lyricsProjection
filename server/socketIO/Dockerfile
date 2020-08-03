@@ -1,15 +1,11 @@
-FROM mhart/alpine-node:10
-
-RUN apk add --update \
-	nodejs-npm
+FROM node:14
 
 WORKDIR app
 
-COPY package*.json ./
+COPY . ./socket
 
+RUN cd ./socket
 RUN npm install
-
-COPY . .
 
 EXPOSE 30000
 

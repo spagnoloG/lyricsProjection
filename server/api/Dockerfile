@@ -1,15 +1,10 @@
-FROM mhart/alpine-node:10
-
-RUN apk add --update \
-	nodejs-npm
+FROM node:14
 
 WORKDIR app
 
-COPY package*.json ./
+COPY . ./
 
 RUN npm install
-
-COPY . .
 
 EXPOSE 9000
 
