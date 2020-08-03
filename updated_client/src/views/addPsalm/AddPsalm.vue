@@ -49,7 +49,9 @@
               <v-btn color="primary" @click="nextOne">Nadaljuj</v-btn>
             </v-col>
             <v-col align="end">
-              <v-btn text :to="{ name: 'Home'}">Domov</v-btn>
+              <v-btn
+              text
+              :to="{ name: 'Home'}">Domov</v-btn>
             </v-col>
           </v-row>
         </v-container>

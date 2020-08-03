@@ -5,6 +5,7 @@ export const namespaced = true
 export const state = {
   psalms: [], // index, title and category
   categories: [],
+  ditinctCategories: [],
   psalmsTotal: 0,
   currentPsalm: {
     index: 0,
