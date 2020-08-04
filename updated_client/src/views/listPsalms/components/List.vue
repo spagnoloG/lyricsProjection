@@ -12,17 +12,20 @@
       </v-btn>
     </v-card-title>
 
+    <v-divider></v-divider>
+
     <v-card-text>
       <v-text-field
       v-model="search"
       label="Išči"
+      @click="page = 1"
       ></v-text-field>
     </v-card-text>
 
     <v-divider></v-divider>
 
     <!-- List Psalms -->
-    <div v-for="psalm in filteredPsalms" :key="psalm.index">
+    <div v-for="psalm in paginatedPsalms" :key="psalm.index">
       <v-list-item>
           <v-list-item-avatar>
             <v-avatar
@@ -51,7 +54,17 @@
           </v-list-item-action>
         </v-list-item>
     </div>
+    <v-divider></v-divider>
+    <br>
+    <v-pagination
+      v-model="page"
+      :length="totalPages"
+      :per-page=10
+    ></v-pagination>
+    <br>
+    <v-divider></v-divider>
   </v-card>
+
 </template>
 
 <script>
@@ -60,14 +73,26 @@ import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      search: ''
+      search: '',
+      perPage: 5,
+      page: 1,
+      totalVisible: 10
     }
   },
   computed: {
+    allPsalms () {
+      return Object.keys(this.filteredPsalms).map(pid => this.filteredPsalms[pid])
+    },
     filteredPsalms () {
       return this.psalms.filter((psalm) => {
         return psalm.title.toUpperCase().match(this.search.toUpperCase())
       })
+    },
+    paginatedPsalms () {
+      return this.allPsalms.slice((this.page - 1) * this.perPage, this.page * this.perPage)
+    },
+    totalPages () {
+      return Math.ceil(this.allPsalms.length / this.perPage)
     },
     ...mapGetters({
       psalms: 'psalm/getAllPsalms'
