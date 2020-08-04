@@ -18,6 +18,12 @@ export default new Vuetify({
       },
       dark: {
         primary: '#950740'
+      },
+      options: {
+        themeCache: {
+          get: key => localStorage.getItem(key),
+          set: (key, value) => localStorage.setItem(key, value)
+        }
       }
     }
   }

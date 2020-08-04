@@ -26,7 +26,7 @@ export default {
     },
     toggleDarkMode () {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark
-      this.$store.dispatch('appState/setGlobalTheme', !this.darkMode)
+      localStorage.setItem('dark_theme', this.$vuetify.theme.dark.toString())
     }
   }
 }
