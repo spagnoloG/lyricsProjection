@@ -20,24 +20,6 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item :to="{name: 'List'}">
-          <v-list-item-action >
-            <v-icon>mdi-playlist-music</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Seznam pesmi</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-list-item :to="{name: 'ListPsalms'}">
-          <v-list-item-action >
-            <v-icon>mdi-format-list-text</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Seznam psalmov</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
         <v-list-item :to="{name: 'Add'}">
           <v-list-item-action >
             <v-icon>mdi-music</v-icon>
@@ -47,12 +29,30 @@
           </v-list-item-content>
         </v-list-item>
 
+        <v-list-item :to="{name: 'List'}">
+          <v-list-item-action >
+            <v-icon>mdi-playlist-music</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Seznam pesmi</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
         <v-list-item :to="{name: 'AddPsalm'}">
           <v-list-item-action >
             <v-icon>mdi-script-text</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>Dodaj nov Psalm</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item :to="{name: 'ListPsalms'}">
+          <v-list-item-action >
+            <v-icon>mdi-format-list-text</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Seznam psalmov</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 

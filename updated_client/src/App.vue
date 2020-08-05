@@ -12,13 +12,19 @@
       </v-container>
     </v-main>
 
-    <v-footer>
+    <div>
       <v-snackbar v-model="snackbar.show">
         {{ snackbar.content }}
         <template v-slot:action="{ attrs }">
           <v-btn color="pink" text v-bind="attrs" @click="hideSnackbar">Zapri</v-btn>
         </template>
       </v-snackbar>
+    </div>
+
+    <v-footer>
+      <div>Župnija Šempeter pri Gorici</div>
+      <v-spacer></v-spacer>
+      <div> {{ new Date().getFullYear() }}</div>
     </v-footer>
   </v-app>
 </template>
