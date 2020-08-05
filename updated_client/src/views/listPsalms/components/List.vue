@@ -1,9 +1,26 @@
 <template>
 <div>
+     <!-- Show delete dialog -->
+  <div>
+    <v-overlay :value="deleteDialog">
+      <h1>Si prepričan/a</h1>
+      <br>
+      <v-btn
+      @click="deleteDialog = false"
+      color="primary"
+      class="mx-3"
+      >Prekliči</v-btn>
+      <v-btn
+      color="primary"
+      class="mx-3"
+      >Da</v-btn>
+    </v-overlay>
+  </div>
+
   <!-- Show popup message -->
     <div>
       <v-row justify="center">
-    <v-dialog v-model="showPopUp" persistent max-width="350">
+    <v-dialog v-model="showPopUp" persistent max-width="360">
       <v-card>
         <v-container>
           <v-row>
@@ -17,28 +34,20 @@
               {{ selectedPsalm.index }}
             </v-avatar>
             </v-col>
-            <v-col align="center">
-              <v-card-title class="headline">
+            <v-col cols="8" align="center">
+              <h3 class="headline">
                 {{ selectedPsalm.title }}
-              </v-card-title>
+              </h3>
+            </v-col>
+            <v-col cols="1" align="center">
+              <v-icon
+              color="primary"
+              @click="showDeleteDialog"
+              >mdi-delete</v-icon>
             </v-col>
           </v-row>
           <v-row justify="center"
           align="center">
-            <v-col cols="6" align="center">
-              <v-btn
-              small
-              outlined
-              color="primary"><v-icon>mdi-cast</v-icon> Projektor</v-btn>
-            </v-col>
-            <v-col cols="6" align="center">
-              <v-btn
-              small
-              outlined
-              color="primary"><v-icon>mdi-image-multiple</v-icon> Oglej</v-btn>
-            </v-col>
-          </v-row>
-          <v-row>
             <v-col cols="6" align="center">
               <v-btn
               small
@@ -49,7 +58,15 @@
               <v-btn
               small
               outlined
-              color="primary"><v-icon>mdi-delete</v-icon> Izbriši</v-btn>
+              color="primary"><v-icon>mdi-image-multiple</v-icon> Oglej</v-btn>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12" align="center">
+              <v-btn
+              small
+              outlined
+              color="primary"><v-icon>mdi-cast</v-icon> Projeciraj</v-btn>
             </v-col>
           </v-row>
         </v-container>
@@ -148,6 +165,7 @@ export default {
       page: 1,
       totalVisible: 6,
       showPopUp: false,
+      deleteDialog: false,
       selectedPsalm: Object
     }
   },
@@ -177,6 +195,10 @@ export default {
     selectPsalm (psalm) {
       this.selectedPsalm = psalm
       this.showPopUp = true
+    },
+    showDeleteDialog () {
+      this.showPopUp = false
+      this.deleteDialog = true
     }
   }
 }

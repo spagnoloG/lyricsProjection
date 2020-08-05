@@ -52,7 +52,7 @@
             <v-icon>mdi-format-list-text</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Seznam psalmov</v-list-item-title>
+            <v-list-item-title>Seznam Psalmov</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 

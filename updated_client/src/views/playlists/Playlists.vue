@@ -65,3 +65,4 @@ export default {
   })
 }
 </script>
+// https://vuetifyjs.com/en/components/slide-groups/
