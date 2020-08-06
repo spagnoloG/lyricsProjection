@@ -177,5 +177,8 @@ export const getters = {
   },
   getCategories: state => {
     return state.categories
+  },
+  getCurrentPsalm: state => {
+    return state.currentPsalm
   }
 }

@@ -73,7 +73,7 @@
                     v-on:keyup.enter="e1++"
                     v-model="selected"
                     :items="categories"
-                    :rules="[v => !!v || 'Item is required']"
+                    :rules="[v => !!v || 'Kategorija mora biti izbrana!']"
                     label="Kategorija"
                     light
                     outlined

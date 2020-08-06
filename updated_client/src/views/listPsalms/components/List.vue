@@ -3,7 +3,7 @@
      <!-- Show delete dialog -->
   <div>
     <v-overlay :value="deleteDialog">
-      <h1>Si prepričan/a</h1>
+      <h1>Si prepričan/a?</h1>
       <br>
       <v-btn
       @click="deleteDialog = false"
@@ -11,9 +11,10 @@
       class="mx-3"
       >Prekliči</v-btn>
       <v-btn
+      @click="deletePsalm"
       color="primary"
       class="mx-3"
-      >Da</v-btn>
+      >Da <v-icon>mdi-delete</v-icon> </v-btn>
     </v-overlay>
   </div>
 
@@ -50,6 +51,7 @@
           align="center">
             <v-col cols="6" align="center">
               <v-btn
+              :to="{ name: 'EditPsalm', params: { id: selectedPsalm.index }}"
               small
               outlined
               color="primary"><v-icon>mdi-lead-pencil</v-icon> Uredi</v-btn>
@@ -199,6 +201,11 @@ export default {
     showDeleteDialog () {
       this.showPopUp = false
       this.deleteDialog = true
+    },
+    deletePsalm () {
+      this.deleteDialog = false
+      this.$store.dispatch('psalm/deletePsalm', this.selectedPsalm.index)
+      this.$store.dispatch('appState/showSnackbar', 'Psalm uspešno izbrisan!')
     }
   }
 }

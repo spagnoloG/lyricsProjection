@@ -33,7 +33,7 @@ export default {
     return apiClient.patch('/psalms/' + psalm.index, {
       title: psalm.title,
       content: psalm.content,
-      category: psalm.category
+      categories: psalm.categories
     })
   },
   postPsalm (psalm) {

@@ -21,7 +21,7 @@
       </v-snackbar>
     </div>
 
-    <v-footer>
+    <v-footer dark>
       <div>Župnija Šempeter pri Gorici</div>
       <v-spacer></v-spacer>
       <div> {{ new Date().getFullYear() }}</div>
