@@ -3,7 +3,9 @@ import VueRouter from 'vue-router'
 import Home from '../views/home/Home.vue'
 import AddLyric from '../views/add/AddLyric.vue'
 import List from '../views/list/List.vue'
+import ListPsalms from '../views/listPsalms/ListPsalms.vue'
 import Playlists from '../views/playlists/Playlists.vue'
+import Project from '../views/project/Project.vue'
 
 Vue.use(VueRouter)
 
@@ -24,6 +26,11 @@ const routes = [
     component: List
   },
   {
+    path: '/list-psalms',
+    name: 'ListPsalms',
+    component: ListPsalms
+  },
+  {
     path: '/playlists',
     name: 'Playlists',
     component: Playlists
@@ -32,11 +39,6 @@ const routes = [
     path: '/add-psalm',
     name: 'AddPsalm',
     component: () => import('../views/addPsalm/AddPsalm.vue')
-  },
-  {
-    path: '/list-psalms',
-    name: 'ListPsalms',
-    component: () => import('../views/listPsalms/ListPsalms.vue')
   },
   {
     path: '/options',
@@ -57,6 +59,11 @@ const routes = [
     path: '/edit-psalm/:id',
     name: 'EditPsalm',
     component: () => import('../views/editPsalm/Edit.vue')
+  },
+  {
+    path: '/project/:id',
+    name: 'Project',
+    component: Project
   }
 ]
 
