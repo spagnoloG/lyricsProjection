@@ -35,12 +35,12 @@ export const mutations = {
     state.newLyricIndex = newLyricIndex
   },
   delete_lyric (state, selector) {
-    if (selector != -1) {
+    if (selector !== -1) {
       state.lyrics.splice(selector, 1)
     }
   },
   update_lyric (state, { lyric, toUpdate }) {
-    if (toUpdate != -1) {
+    if (toUpdate !== -1) {
       state.lyrics.splice(toUpdate, 1, lyric)
     }
   },
@@ -85,31 +85,31 @@ export const actions = {
   },
   //
   fetchLyric ({ commit, getters }, index) {
-      return fetchLyrics.getLyric(index).then(response => {
-        const data = response.data[0]
-        if (typeof data === 'undefined') {
-          // catch error -> TO DO
-        } else {
-          commit('set_lyric', data)
-        }
-        return data
-      })
+    return fetchLyrics.getLyric(index).then(response => {
+      const data = response.data[0]
+      if (typeof data === 'undefined') {
+        // catch error -> TO DO
+      } else {
+        commit('set_lyric', data)
+      }
+      return data
+    })
   },
   // dispatch add -> zraven commita
   fetchLyrics ({ commit }) {
     return fetchLyrics.getPsalmsIndexes()
       .then(response => {
-      commit('set_lyrics', response.data)
-      // Set new lyric index
-      const helper = response.data.length - 1
-      if (helper === -1) {
-        commit('set_new_lyric_index', 1)
-      } else {
-        commit('set_new_lyric_index', response.data[helper].index + 1)
-      }
-      // set total lyrics count
-      commit('set_lyrics_total', response.data.length)
-    })
+        commit('set_lyrics', response.data)
+        // Set new lyric index
+        const helper = response.data.length - 1
+        if (helper === -1) {
+          commit('set_new_lyric_index', 1)
+        } else {
+          commit('set_new_lyric_index', response.data[helper].index + 1)
+        }
+        // set total lyrics count
+        commit('set_lyrics_total', response.data.length)
+      })
   },
   //
   fetchCategories ({ commit }) {
@@ -135,7 +135,7 @@ export const actions = {
     })
   },
   //
-  deleteCategory({ commit }, category) {
+  deleteCategory ({ commit }, category) {
     const toDelete = state.categories.lastIndexOf(category)
 
     return fetchLyrics.deleteLyricCategory(category).then(response => {

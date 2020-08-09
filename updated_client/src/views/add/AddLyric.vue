@@ -197,7 +197,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      index: 'lyric/getNewPsalmIndex',
+      index: 'lyric/getNewLyricIndex',
       categories: 'lyric/getCategories'
     })
   },
@@ -224,17 +224,17 @@ export default {
         content: this.content.toUpperCase()
       }
       // Post to database
-      this.$store.dispatch('lyric/addNewPsalm', document)
+      this.$store.dispatch('lyric/addNewLyric', document)
       this.$store.dispatch('appState/showSnackbar', 'Uspešno dodana pesem, števlika: ' + this.index)
       this.$router.push({ name: 'Home' })
     }
   },
   created () {
-    this.$store.dispatch('lyric/fetchPsalms')
+    this.$store.dispatch('lyric/fetchLyrics')
     this.$store.dispatch('lyric/fetchCategories')
   },
   beforeDestroy () {
-    this.$store.dispatch('lyric/fetchPsalms')
+    this.$store.dispatch('lyric/fetchLyrics')
     this.$store.dispatch('lyric/fetchCategories')
   }
 }
