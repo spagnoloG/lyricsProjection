@@ -182,7 +182,7 @@ export default {
         ],
         content: `
           <p>
-            OJLA
+            Vnesi besedilo...
           </p>
         `,
         onUpdate: ({ getHTML }) => {
@@ -213,6 +213,9 @@ export default {
       }
     },
     submitEntry () {
+      if (this.content === '') {
+        return alert('Vnesi besedilo !')
+      }
       // Form a document
       const document = {
         index: this.index,

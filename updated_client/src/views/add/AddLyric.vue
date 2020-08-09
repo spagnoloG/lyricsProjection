@@ -19,7 +19,7 @@
             <v-container>
               <v-row>
                 <v-col align="center">
-                  <h2 class="font-weight-regular">Vnesi naslov pesmi</h2>
+                  <h2 class="font-weight-regular black--text">Vnesi naslov pesmi</h2>
                 </v-col>
               </v-row>
               <v-row>
@@ -30,6 +30,8 @@
                       v-on:keyup.enter="nextOne"
                       v-model="title"
                       label="Naslov pesmi"
+                      class="black--text"
+                      light
                       outlined
                       required
                     ></v-text-field>
@@ -44,10 +46,12 @@
         <v-container fluid>
           <v-row>
             <v-col>
-              <v-btn color="primary" @click="e1 = 2">Nadaljuj</v-btn>
+              <v-btn color="primary" @click="nextOne">Nadaljuj</v-btn>
             </v-col>
             <v-col align="end">
-              <v-btn text :to="{ name: 'Home'}">Domov</v-btn>
+              <v-btn
+              text
+              :to="{ name: 'Home'}">Domov</v-btn>
             </v-col>
           </v-row>
         </v-container>
@@ -59,7 +63,7 @@
             <v-container>
               <v-row>
                 <v-col align="center">
-                  <h2 class="font-weight-regular">Izberi kategorijo</h2>
+                  <h2 class="font-weight-regular black--text">Izberi kategorijo</h2>
                 </v-col>
               </v-row>
               <v-row>
@@ -67,9 +71,13 @@
                 <v-col cols="12" sm="6">
                   <v-select
                     v-on:keyup.enter="e1++"
+                    v-model="selected"
                     :items="categories"
-                    :rules="[v => !!v || 'Item is required']"
+                    :rules="[v => !!v || 'Kategorija mora biti izbrana!']"
                     label="Kategorija"
+                    light
+                    outlined
+                    multiple
                     required
                   ></v-select>
                 </v-col>
@@ -79,10 +87,10 @@
           </v-form>
         </v-card>
 
-        <v-container>
+        <v-container fluid>
           <v-row>
             <v-col>
-              <v-btn color="primary" @click="e1 = 3">Nadaljuj</v-btn>
+              <v-btn color="primary" @click="nextTwo">Nadaljuj</v-btn>
               <v-btn text @click="--e1">Nazaj</v-btn>
             </v-col>
           </v-row>
@@ -94,7 +102,7 @@
           <v-container>
             <v-row>
               <v-col align="center">
-                <h2 class="font-weight-regular">Vnesi besedilo pesmi</h2>
+                <h2 class="font-weight-regular black--text">Vnesi besedilo pesmi</h2>
               </v-col>
             </v-row>
             <v-row>
@@ -142,7 +150,7 @@
               <v-btn text @click="--e1">Nazaj</v-btn>
             </v-col>
             <v-col align="end">
-              <v-btn color="primary" stext :to="{ name: 'Home'}">Shrani</v-btn>
+              <v-btn color="primary" text @click="submitEntry">Shrani</v-btn>
             </v-col>
           </v-row>
         </v-container>
@@ -150,8 +158,10 @@
     </v-stepper-items>
   </v-stepper>
 </template>
+
 <script>
 import { Editor, EditorContent, EditorMenuBar } from 'tiptap'
+import { mapGetters } from 'vuex'
 
 import {
   Bold,
@@ -172,24 +182,60 @@ export default {
         ],
         content: `
           <p>
-            OJLA
+            Vnesi besedilo...
           </p>
         `,
         onUpdate: ({ getHTML }) => {
-          // this.form.content = String(getHTML())
+          this.content = String(getHTML())
         }
       }),
       e1: 1,
       title: '',
-      categories: ['Božične', 'Adventne', 'Divje']
+      content: '',
+      selected: null
     }
+  },
+  computed: {
+    ...mapGetters({
+      index: 'lyric/getNewPsalmIndex',
+      categories: 'lyric/getCategories'
+    })
   },
   methods: {
     nextOne () {
       if (this.title !== '') {
         return this.e1++
       }
+    },
+    nextTwo () {
+      if (this.selected !== null) {
+        return this.e1++
+      }
+    },
+    submitEntry () {
+      if (this.content === '') {
+        return alert('Vnesi besedilo !')
+      }
+      // Form a document
+      const document = {
+        index: this.index,
+        title: this.title,
+        categories: this.selected,
+        content: this.content.toUpperCase()
+      }
+      // Post to database
+      this.$store.dispatch('lyric/addNewPsalm', document)
+      this.$store.dispatch('appState/showSnackbar', 'Uspešno dodana pesem, števlika: ' + this.index)
+      this.$router.push({ name: 'Home' })
     }
+  },
+  created () {
+    this.$store.dispatch('lyric/fetchPsalms')
+    this.$store.dispatch('lyric/fetchCategories')
+  },
+  beforeDestroy () {
+    this.$store.dispatch('lyric/fetchPsalms')
+    this.$store.dispatch('lyric/fetchCategories')
   }
 }
 </script>
