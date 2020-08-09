@@ -21,24 +21,24 @@
       </v-snackbar>
     </div>
 
-    <v-footer dark>
-      <div>Župnija Šempeter pri Gorici</div>
-      <v-spacer></v-spacer>
-      <div> {{ new Date().getFullYear() }}</div>
-    </v-footer>
+    <footer-component>
+    </footer-component>
   </v-app>
 </template>
 
 <script>
 import Navbar from './globalComponents/Navbar.vue'
 import NavigationDrawer from './globalComponents/NavigationDrawer.vue'
+import Footer from './globalComponents/Footer.vue'
+
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'App',
   components: {
     Navbar,
-    NavigationDrawer
+    NavigationDrawer,
+    'footer-component': Footer
   },
   computed: {
     route () {
