@@ -7,7 +7,7 @@ const router  = express.Router();
 router.get('/', async(req, res) => {
   try {
     const lyrics = await Lyric.find()
-      .select('index title');
+      .select('index title categories');
       res.json(lyrics);
   } catch (err) {
       res.json({ message: err.message });

@@ -67,7 +67,7 @@ router.patch('/:lyricIndex', async(req, res) => {
   const props = req.body
 
   try {
-    const updatedLyric = await Psalm.updateOne(
+    const updatedLyric = await Lyric.updateOne(
       {index: lyricIndex},
       props
     )
