@@ -14,9 +14,9 @@
           <!-- Show Psalm -->
         <div v-if="type === 'psalm'">
           <div v-if="psalm">
-            <h1>{{ title }}</h1>
+            <h1>{{ psalmTitle }}</h1>
             <p>
-              <span v-html="content"></span>
+              <span v-html="psalmContent"></span>
             </p>
           </div>
           <!-- Show no Psalm or loading -->
@@ -27,9 +27,9 @@
         <!-- Show Psalm -->
         <div v-if="type === 'lyric'">
           <div v-if="lyric">
-            <h1>{{ title }}</h1>
+            <h1>{{ lyricTitle }}</h1>
             <p>
-              <span v-html="content"></span>
+              <span v-html="lyricContent"></span>
             </p>
           </div>
           <!-- Show no Psalm or loading -->
@@ -61,11 +61,17 @@ export default {
     type () {
       return this.$route.query.type
     },
-    title () {
+    psalmTitle () {
       return this.psalm ? this.psalm.title : null
     },
-    content () {
+    psalmContent () {
       return this.psalm ? this.psalm.content : null
+    },
+    lyricTitle () {
+      return this.lyric ? this.lyric.title : null
+    },
+    lyricContent () {
+      return this.lyric ? this.lyric.content : null
     },
     ...mapGetters({
       psalm: 'psalm/getCurrentPsalm',
@@ -117,7 +123,7 @@ export default {
     if (this.type === 'psalm') {
       this.$store.dispatch('psalm/fetchPsalm', this.userInput)
     } else if (this.type === 'lyric') {
-      this.$store.dispatch('psalm/fetchLyric', this.userInput)
+      this.$store.dispatch('lyric/fetchLyric', this.userInput)
     }
     next()
   }

@@ -1,10 +1,24 @@
 <template>
-  <h1>Tukaj se nahaja seznam pesmi</h1>
+  <div>
+    <list></list>
+  </div>
 </template>
 
 <script>
-export default {
+import List from './components/List.vue'
 
+export default {
+  components: {
+    List
+  },
+  data () {
+    return {
+      items: []
+    }
+  },
+  created () {
+    this.$store.dispatch('lyric/fetchLyrics')
+  }
 }
 </script>
 
