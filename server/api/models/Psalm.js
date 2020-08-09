@@ -17,6 +17,7 @@ const PsalmSchema = mongoose.Schema({
       type: Array,
       required: false
     }
-})
+},
+{collection: 'psalms'});
 
 module.exports = mongoose.model('psalms', PsalmSchema);

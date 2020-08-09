@@ -9,6 +9,7 @@ router.get('/', async(req, res) => {
         res.json(lyrics);
     } catch (err) {
         res.json({ message: err.message });
+        console.log(err.message);
     }
 });
 
@@ -23,16 +24,17 @@ router.get('/:lyricIndex', async(req, res) => {
 
     } catch (err) {
         res.json({ message: err.message });
+        console.log(err.message);
     }
 });
 
 // Submit lyric:)
 router.post('/', async(req,res) => {
-    console.log(req.body);
     const lyric = new Lyric({
         index: Number(req.body.index),
         title: String(req.body.title),
-        content: String(req.body.content)
+        content: String(req.body.content),
+        categories: req.body.categories
     });
     await lyric.validate();
     try {
@@ -40,6 +42,7 @@ router.post('/', async(req,res) => {
         res.json(storedLyric);
     } catch (err) {
         res.json({ message: err.message });
+        console.log(err.message);
     }
 });
 
@@ -54,28 +57,25 @@ router.delete('/:lyricIndex', async(req, res) => {
 
     } catch (err) {
         res.json({ message: err.message });
+        console.log(err.message);
     }
 });
 
 // Update specific lyric
 router.patch('/:lyricIndex', async(req, res) => {
-    let lyricIndex = {
-        index: Number(req.params.lyricIndex)
-    }
-    let updatedData = {
-        title: req.body.title,
-        content: req.body.content
-    }
-    try {
-        const updatedLyric = await Lyric.updateOne(
-            lyricIndex, { $set: updatedData });
-        res.json(updatedLyric);
-        
-    } catch(err) {
-        res.json({ message: err.message });
-    }
+  const lyricIndex = req.params.lyricIndex;
+  const props = req.body
 
+  try {
+    const updatedLyric = await Psalm.updateOne(
+      {index: lyricIndex},
+      props
+    )
+    res.json(updatedLyric);
+  } catch(err) {
+    res.json({ message: err.message });
+    console.log(err.message);
+  }
 });
-
 
 module.exports = router;

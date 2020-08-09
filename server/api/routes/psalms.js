@@ -9,6 +9,7 @@ router.get('/', async(req, res) => {
       res.json(psalms);
   } catch (err) {
       res.json({ message: err.message });
+      console.log(err.message);
   }
 });
 
@@ -23,6 +24,7 @@ router.get('/:psalmIndex', async(req, res) => {
 
   } catch (err) {
       res.json({ message: err.message });
+      console.log(err.message);
   }
 });
 
@@ -40,6 +42,7 @@ router.post('/', async(req,res) => {
       res.json(storedPsalm);
   } catch (err) {
       res.json({ message: err.message });
+      console.log(err.message);
   }
 });
 
@@ -54,6 +57,7 @@ router.post('/', async(req,res) => {
 
     } catch (err) {
         res.json({ message: err.message });
+        console.log(err.message);
     }
 });
 
@@ -70,6 +74,7 @@ router.patch('/:psalmIndex', async(req, res) => {
     res.json(updatedPsalm);
   } catch(err) {
     res.json({ message: err.message });
+    console.log(err.message);
   }
 });
 

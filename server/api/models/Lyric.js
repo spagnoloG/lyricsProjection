@@ -13,8 +13,11 @@ const LyricSchema = mongoose.Schema( {
     content: {
         type: String,
         required: true
+    },
+    categories: {
+        type: Array,
+        required: false
     }
-
 },
 {collection: 'lyrics'});
 

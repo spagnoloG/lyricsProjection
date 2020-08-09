@@ -84,7 +84,7 @@ export const actions = {
       })
   },
   //
-  fetchLyric ({ commit, getters }, index) {
+  fetchLyric ({ commit }, index) {
     return fetchLyrics.getLyric(index).then(response => {
       const data = response.data[0]
       if (typeof data === 'undefined') {
