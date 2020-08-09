@@ -58,7 +58,7 @@
             </v-col>
             <v-col cols="6" align="center">
               <v-btn
-              :to="{ name: 'Project', params: { id: selectedPsalm.index } }"
+              :to="{ name: 'Project', params: { id: selectedPsalm.index }, query: { type: 'psalm' } }"
               small
               outlined
               color="primary"><v-icon>mdi-image-multiple</v-icon> Oglej</v-btn>

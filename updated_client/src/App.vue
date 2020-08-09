@@ -1,8 +1,8 @@
 <template>
   <v-app>
-    <navigation-drawer></navigation-drawer>
->
-    <navbar></navbar>
+    <navigation-drawer v-if="$router.currentRoute.name !== 'Project'"></navigation-drawer>
+
+    <navbar v-if="$router.currentRoute.name !== 'Project'"></navbar>
 
     <v-main>
       <v-container fluid>
@@ -41,6 +41,9 @@ export default {
     NavigationDrawer
   },
   computed: {
+    route () {
+      return this.$router.currentRoute.name
+    },
     ...mapGetters({
       snackbar: 'appState/getSnackbar'
     })

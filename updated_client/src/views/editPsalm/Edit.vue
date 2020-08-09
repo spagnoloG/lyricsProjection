@@ -37,13 +37,16 @@
             <v-col align="end">
               <v-btn
               text
-              :to="{ name: 'Home'}">Domov</v-btn>
+              :to="{ name: 'Home'}"><v-icon>mdi-home</v-icon> Domov</v-btn>
             </v-col>
           </v-row>
         </v-container>
     </v-stepper-content>
 
-    <v-stepper-step :complete="step > 2" step="2">Spremeni / dodaj kategorijo</v-stepper-step>
+    <v-stepper-step :complete="step > 2" step="2">
+      Spremeni / dodaj kategorijo
+      <small>Preskoči ta korak, če ne želiš spreminjati kategorije</small>
+      </v-stepper-step>
 
     <v-stepper-content step="2">
       <v-card color="grey lighten-1" class="mb-12" height="100px">
@@ -66,8 +69,8 @@
           </v-row>
         </v-container>
       </v-card>
+      <v-btn text @click="step--"><v-icon>mdi-arrow-up-bold</v-icon></v-btn>
       <v-btn color="primary" @click="step++">Nadaljuj</v-btn>
-      <v-btn text @click="step--">Nazaj</v-btn>
     </v-stepper-content>
 
     <v-stepper-step :complete="step > 3" step="3">Uredi besedilo Psalma</v-stepper-step>
@@ -122,10 +125,10 @@
       <v-container fluid>
           <v-row>
             <v-col>
-              <v-btn text @click="step--">Nazaj</v-btn>
+              <v-btn text @click="step--"><v-icon>mdi-arrow-up-bold</v-icon></v-btn>
             </v-col>
             <v-col align="end">
-              <v-btn color="primary" text @click="updateEntry">Posodobi</v-btn>
+              <v-btn color="primary" text @click="updateEntry">Posodobi <v-icon>mdi-update</v-icon></v-btn>
             </v-col>
           </v-row>
       </v-container>

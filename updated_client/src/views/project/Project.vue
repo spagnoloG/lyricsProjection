@@ -3,24 +3,39 @@
     <v-row align="center">
       <v-col align="center">
         <!-- Show search box -->
-        <div v-if="gotoShown">
-          <input v-model="gotoInput" v-focus class="search-box" type="number" />
+        <div v-if="showInputField">
+          <input v-model="userInput" v-focus class="search-box" type="number" />
           <hr />
         </div>
       </v-col>
     </v-row>
     <v-row align="center">
       <v-col align="center">
-        <!-- Show lyric -->
-        <div v-if="psalm">
-          <h1>{{ title }}</h1>
-          <p>
-            <span v-html="content"></span>
-          </p>
+          <!-- Show Psalm -->
+        <div v-if="type === 'psalm'">
+          <div v-if="psalm">
+            <h1>{{ title }}</h1>
+            <p>
+              <span v-html="content"></span>
+            </p>
+          </div>
+          <!-- Show no Psalm or loading -->
+          <div v-else>
+            <h2 style="max-width: 95vw;">Ne obstaja</h2>
+          </div>
         </div>
-        <!-- Show no lyric or loading -->
-        <div v-else>
-          <h2 style="max-width: 95vw;">Niente</h2>
+        <!-- Show Psalm -->
+        <div v-if="type === 'lyric'">
+          <div v-if="lyric">
+            <h1>{{ title }}</h1>
+            <p>
+              <span v-html="content"></span>
+            </p>
+          </div>
+          <!-- Show no Psalm or loading -->
+          <div v-else>
+            <h2 style="max-width: 95vw;">Ne obstaja</h2>
+          </div>
         </div>
     </v-col>
   </v-row>
@@ -34,14 +49,17 @@ export default {
   name: 'Project',
   data () {
     return {
-      gotoShown: false,
-      gotoInput: '',
+      showInputField: false,
+      userInput: '',
       gotoTimeout: null
     }
   },
   computed: {
     id () {
       return Number(this.$route.params.id)
+    },
+    type () {
+      return this.$route.query.type
     },
     title () {
       return this.psalm ? this.psalm.title : null
@@ -50,7 +68,8 @@ export default {
       return this.psalm ? this.psalm.content : null
     },
     ...mapGetters({
-      psalm: 'psalm/getCurrentPsalm'
+      psalm: 'psalm/getCurrentPsalm',
+      lyric: 'lyric/getCurrentLyric'
     })
   },
   methods: {
@@ -58,13 +77,17 @@ export default {
       const cmd = String.fromCharCode(e.keyCode).toLowerCase()
       if (!isNaN(cmd)) {
         clearTimeout(this.gotoTimeout)
-        this.gotoShown = true
+        this.showInputField = true
         this.gotoTimeout = setTimeout(() => {
-          this.gotoShown = false
-          if (this.gotoInput !== '') {
-            this.$router.push({ name: 'Project', params: { id: this.gotoInput } })
+          this.showInputField = false
+          if (this.userInput !== '') {
+            if (this.type === 'psalm') {
+              this.$router.push({ name: 'Project', params: { id: this.userInput }, query: { type: 'psalm' } })
+            } else if (this.type === 'lyric') {
+              this.$router.push({ name: 'Project', params: { id: this.userInput }, query: { type: 'lyric' } })
+            }
           }
-          this.gotoInput = ''
+          this.userInput = ''
         }, 1000)
       }
     }
@@ -84,10 +107,18 @@ export default {
     window.removeEventListener('keypress', this.doCommand)
   },
   mounted () {
-    this.$store.dispatch('psalm/fetchPsalm', this.id)
+    if (this.type === 'psalm') {
+      this.$store.dispatch('psalm/fetchPsalm', this.id)
+    } else if (this.type === 'lyric') {
+      this.$store.dispatch('lyric/fetchLyric', this.id)
+    }
   },
   beforeRouteUpdate (to, from, next) {
-    this.$store.dispatch('psalm/fetchPsalm', this.gotoInput)
+    if (this.type === 'psalm') {
+      this.$store.dispatch('psalm/fetchPsalm', this.userInput)
+    } else if (this.type === 'lyric') {
+      this.$store.dispatch('psalm/fetchLyric', this.userInput)
+    }
     next()
   }
 }
