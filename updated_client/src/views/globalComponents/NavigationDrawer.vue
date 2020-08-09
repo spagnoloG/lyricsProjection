@@ -20,7 +20,7 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item :to="{name: 'Add'}">
+        <v-list-item :to="{name: 'AddLyric'}">
           <v-list-item-action >
             <v-icon>mdi-music</v-icon>
           </v-list-item-action>
@@ -29,7 +29,7 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item :to="{name: 'List'}">
+        <v-list-item :to="{name: 'ListLyrics'}">
           <v-list-item-action >
             <v-icon>mdi-playlist-music</v-icon>
           </v-list-item-action>
