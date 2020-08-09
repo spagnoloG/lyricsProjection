@@ -65,6 +65,15 @@
           </v-list-item-content>
         </v-list-item>
 
+        <v-list-item :to="{name: 'Remote'}">
+          <v-list-item-action >
+            <v-icon>mdi-remote</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Upravljaj</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
         <v-list-item :to="{name: 'About'}">
           <v-list-item-action >
             <v-icon>mdi-information</v-icon>

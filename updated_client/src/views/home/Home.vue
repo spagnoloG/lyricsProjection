@@ -1,6 +1,6 @@
 <template>
-  <div class="home">
-    <h1>Dobrodošel na domači strani</h1>
+  <div>
+    <v-img :src="require(`@/assets/CerkevMain.jpg`)"  aspect-ratio="1.7"></v-img>
   </div>
 </template>
 
@@ -9,3 +9,4 @@ export default {
   name: 'Home'
 }
 </script>
+// https://vuetifyjs.com/en/components/parallax/

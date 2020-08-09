@@ -36,6 +36,11 @@ const routes = [
     component: Playlists
   },
   {
+    path: '/project/:id',
+    name: 'Project',
+    component: Project
+  },
+  {
     path: '/add-psalm',
     name: 'AddPsalm',
     component: () => import('../views/addPsalm/AddPsalm.vue')
@@ -61,9 +66,9 @@ const routes = [
     component: () => import('../views/editPsalm/Edit.vue')
   },
   {
-    path: '/project/:id',
-    name: 'Project',
-    component: Project
+    path: '/remote',
+    name: 'Remote',
+    component: () => import('../views/remote/Remote.vue')
   }
 ]
 
