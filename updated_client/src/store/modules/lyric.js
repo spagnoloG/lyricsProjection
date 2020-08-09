@@ -97,7 +97,7 @@ export const actions = {
   },
   // dispatch add -> zraven commita
   fetchLyrics ({ commit }) {
-    return fetchLyrics.getPsalmsIndexes()
+    return fetchLyrics.getLyricsIndexes()
       .then(response => {
         commit('set_lyrics', response.data)
         // Set new lyric index

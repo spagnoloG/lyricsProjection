@@ -1,7 +1,15 @@
 <template>
   <div>
-    <add-psalm-category></add-psalm-category>
-    <add-lyric-category></add-lyric-category>
+    <v-container fluid>
+      <v-row>
+        <v-col cols=12 md=6>
+          <add-psalm-category></add-psalm-category>
+        </v-col>
+        <v-col>
+          <add-lyric-category></add-lyric-category>
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
