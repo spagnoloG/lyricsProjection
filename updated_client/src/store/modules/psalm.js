@@ -5,7 +5,6 @@ export const namespaced = true
 export const state = {
   psalms: [], // index, title and category
   categories: [],
-  ditinctCategories: [],
   psalmsTotal: 0,
   currentPsalm: {
     index: 0,
@@ -102,7 +101,6 @@ export const actions = {
     return fetchPsalms.getPsalmsIndexes()
       .then(response => {
         commit('set_psalms', response.data)
-
         // Set new Psalm index
         const helper = response.data.length - 1
         if (helper === -1) {
@@ -110,12 +108,11 @@ export const actions = {
         } else {
           commit('set_new_psalm_index', response.data[helper].index + 1)
         }
-
-        // Set total Psalm count
+        // Set total Psalms count
         commit('set_psalms_total', response.data.length)
       })
   },
-  //,
+  //
   fetchCategories ({ commit }) {
     var x
     const arrayOfCategories = []
