@@ -30,8 +30,8 @@
 </template>
 
 <script>
-import Navbar from './views/globalComponents/Navbar.vue'
-import NavigationDrawer from './views/globalComponents/NavigationDrawer.vue'
+import Navbar from './globalComponents/Navbar.vue'
+import NavigationDrawer from './globalComponents/NavigationDrawer.vue'
 import { mapGetters } from 'vuex'
 
 export default {
