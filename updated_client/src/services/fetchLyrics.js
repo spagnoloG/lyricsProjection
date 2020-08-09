@@ -17,7 +17,7 @@ export default {
   getLyricsIndexes () {
     return apiClient.get('/lyricsit')
   },
-  getLyricsCategories() {
+  getLyricsCategories () {
     return apiClient.get('/lyricsc')
   },
   getLyric (index) {
@@ -26,13 +26,20 @@ export default {
   deleteLyric (index) {
     return apiClient.delete('/lyrics/' + index)
   },
+  deleteLyricCategory (category) {
+    return apiClient.delete('/lyricsc/', category)
+  },
   updateLyric (lyric) {
     return apiClient.patch('/lyrics/' + lyric.index, {
       title: lyric.title,
-      content: lyric.content
+      content: lyric.content,
+      categories: lyric.categories
     })
   },
   postLyric (lyric) {
     return apiClient.post('/lyrics/', lyric)
+  },
+  postLyricCategory (category) {
+    return apiClient.post('/lyricsc/', category)
   }
 }

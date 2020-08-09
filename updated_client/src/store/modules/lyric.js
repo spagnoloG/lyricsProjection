@@ -3,7 +3,7 @@ import fetchLyrics from '../../services/fetchLyrics'
 export const namespaced = true
 
 export const state = {
-  lyrics: [],
+  lyrics: [], // index, title and category
   lyricsTotal: 0,
   currentLyric: {
     title: '',
