@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-img :src="require(`@/assets/CerkevMain.jpg`)"  aspect-ratio="1.7"></v-img>
+    <v-parallax :src="require(`@/assets/CerkevMain.jpg`)"  aspect-ratio="1.7"></v-parallax>
   </div>
 </template>
 

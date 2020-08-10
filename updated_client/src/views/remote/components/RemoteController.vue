@@ -1,20 +1,26 @@
 <template>
   <v-container fluid>
+    <v-alert v-if="alert" type="error">
+      {{ errorMessage}}
+    </v-alert>
     <v-row>
 
       <!-- Dial -->
       <v-col cols=12 md=6>
         <v-row >
-          <v-col align="center" cols="10">
-            <div class="grey darken-3 text-center">
-              <h1 class="white--text">{{ userInput }}</h1>
-            </div>
+          <v-col cols="2"></v-col>
+          <v-col align="center" cols="8">
+            <v-text-field
+            v-model="userInput"
+            label="Vtipkaj številko"
+            solo
+            readonly
+            ></v-text-field>
           </v-col>
-          <v-col align="end">
-            <v-btn
+          <v-col align="center" justify="end" cols="2">
+            <v-icon
             @click="deleteKeyPress"
-            dark
-            ><v-icon>mdi-arrow-left</v-icon></v-btn>
+            >mdi-arrow-left</v-icon>
           </v-col>
         </v-row>
         <v-row>
@@ -108,10 +114,34 @@
       </v-col>
 
       <!-- Actions -->
-      <v-col cols=12 sm=6>
+      <v-col cols=12 md=6 >
+        <v-row >
+          <v-col>
+            <v-select
+            :items="options"
+            v-model="selected"
+            label="Izberi vrsto projeciranja"
+            dense
+            solo
+            ></v-select>
+          </v-col>
+        </v-row>
         <v-row>
           <v-col align="center">
-            <v-btn>Normalna projekcija</v-btn>
+            <v-btn
+            @click="onProject"
+            depressed
+            large
+            color="success"
+            >Projeciraj  <v-icon>mdi-cast</v-icon></v-btn>
+          </v-col>
+          <v-col align="center">
+            <v-btn
+            @click="onClassicProject"
+            depressed
+            large
+            color="primary"
+            >Klasična projekcija</v-btn>
           </v-col>
         </v-row>
       </v-col>
@@ -123,7 +153,11 @@
 export default {
   data () {
     return {
-      userInput: ''
+      userInput: '',
+      options: ['lyrics', 'psalms', 'playlists'],
+      selected: '',
+      alert: false,
+      errorMessage: ''
     }
   },
   methods: {
@@ -132,6 +166,23 @@ export default {
     },
     deleteKeyPress () {
       this.userInput = this.userInput.slice(0, -1)
+    },
+    onProject () {
+      this.checkForUserErrors()
+    },
+    onClassicProject () {
+      this.$router.push({ name: 'Project', params: { id: '1' }, query: { type: 'lyric' } })
+    },
+    checkForUserErrors () {
+      if (this.selected === '') {
+        this.errorMessage = 'Izberi vrsto projeciranja!'
+        this.alert = true
+      } else if (this.userInput === '') {
+        this.errorMessage = 'Vnesi številko!'
+        this.alert = true
+      } else {
+        this.alert = false
+      }
     }
   }
 }
