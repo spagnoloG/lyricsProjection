@@ -15,7 +15,7 @@
             <v-col cols="12" sm="6">
               <form v-on:submit.prevent>
                 <v-text-field
-                  v-on:keyup.enter="nextOne"
+                  v-on:keyup.enter="step ++"
                   v-model="currentPsalm.title"
                   label="Naslov Psalma"
                   class="black--text"
