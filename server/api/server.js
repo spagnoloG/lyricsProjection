@@ -40,7 +40,7 @@ app.use('/psalmsc', require('./routes/psalmsC'));
 
 
 // Connect to database
-mongoose.connect("mongodb://192.168.122.94:27017/projectionDb",
+mongoose.connect("mongodb://192.168.122.92:27017/projectionDb",
     { useNewUrlParser: true, useUnifiedTopology: true}, () =>
     console.log('Connected to database')
 );

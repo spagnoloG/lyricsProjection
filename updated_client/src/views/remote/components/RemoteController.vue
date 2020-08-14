@@ -156,7 +156,7 @@ export default {
   data () {
     return {
       userInput: '',
-      options: ['lyrics', 'psalms', 'playlists'],
+      options: ['lyric', 'psalm', 'playlists'],
       selected: '',
       alert: false,
       errorMessage: ''
@@ -173,7 +173,7 @@ export default {
       this.checkForUserErrors()
       const document = {
         index: this.userInput,
-        selected: this.selected
+        type: this.selected
       }
       this.socket.emit('onSocketProject', document)
     },

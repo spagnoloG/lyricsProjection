@@ -13,8 +13,9 @@ Socketio.on("connection", socket => {
 
     socket.on("onSocketProject", data => {
         console.log(data);
-        Socketio.emit("leaveClassicProjection", data)
+        Socketio.emit("onIndexnType", data)
     }); 
+
 });
 
 Http.listen(3000, () => {

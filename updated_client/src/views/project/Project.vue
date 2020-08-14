@@ -43,6 +43,7 @@
 </template>
 
 <script>
+import io from 'socket.io-client'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -102,11 +103,13 @@ export default {
     // Setup window listener
     window.addEventListener('keypress', this.doCommand)
     // Socket.io
-    // this.socket = io("http://" + window.location.hostname + ":3000")
+    this.socket = io('http://' + window.location.hostname + ':3000')
     //  Listen to Socket.io messages
-    // this.socket.on("remoteIndex", data => {
-    //   this.$router.push({ path: "/project/" + data})
-    // })
+    this.socket.on('onIndexnType', data => {
+      this.$router.push({ name: 'Project', params: { id: data.index }, query: { type: data.type } })
+      // Temporary fix
+      location.reload()
+    })
   },
   destroyed () {
     // Kill window listener in current component
