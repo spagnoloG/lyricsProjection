@@ -150,6 +150,8 @@
 </template>
 
 <script>
+import io from 'socket.io-client'
+
 export default {
   data () {
     return {
@@ -169,6 +171,11 @@ export default {
     },
     onProject () {
       this.checkForUserErrors()
+      const document = {
+        index: this.userInput,
+        selected: this.selected
+      }
+      this.socket.emit('onSocketProject', document)
     },
     onClassicProject () {
       this.$router.push({ name: 'Project', params: { id: '1' }, query: { type: 'lyric' } })
@@ -184,6 +191,10 @@ export default {
         this.alert = false
       }
     }
+  },
+  created () {
+    // Connect to socket.io
+    this.socket = io('http://' + window.location.hostname + ':3000')
   }
 }
 </script>

@@ -10,6 +10,11 @@ Socketio.on("connection", socket => {
         lyricIndex = data
         Socketio.emit("remoteIndex", lyricIndex);
     });
+
+    socket.on("onSocketProject", data => {
+        console.log(data);
+        Socketio.emit("leaveClassicProjection", data)
+    }); 
 });
 
 Http.listen(3000, () => {
