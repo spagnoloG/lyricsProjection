@@ -6,7 +6,7 @@ import morgan from 'morgan';
 import mongoose from 'mongoose';
 
 // Defining port
-const port = process.env.PORT || 9000;
+const port = process.env.PORT || 4200;
 
 // Defining app
 const app = express();

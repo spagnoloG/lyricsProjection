@@ -1,11 +1,11 @@
 FROM node:14
 
-WORKDIR app
+WORKDIR client
 
 COPY . ./
 
 RUN npm install
 
-EXPOSE 3000
+EXPOSE 8080
 
 CMD ["npm", "run", "serve"]

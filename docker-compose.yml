@@ -1,16 +1,16 @@
 version: '3'
 services:
-  # vue-client:
-  #   image: ./client
-  #   command: npm run serve
-  #   ports:
-  #     - "8080:8080"
+  vue-client:
+     image: client
+     command: npm run serve
+     ports:
+       - "80:8080"
 
   node-server:
     image: api
     restart: always
     ports:
-      - "9000:9000"
+      - "4200:4200"
     # links:
     #   - mongo
   socket-io-server:
