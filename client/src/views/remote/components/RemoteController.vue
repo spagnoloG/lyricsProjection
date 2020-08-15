@@ -135,14 +135,6 @@
             color="success"
             >Projeciraj  <v-icon>mdi-cast</v-icon></v-btn>
           </v-col>
-          <v-col align="center">
-            <v-btn
-            @click="onClassicProject"
-            depressed
-            large
-            color="primary"
-            >Klasična projekcija</v-btn>
-          </v-col>
         </v-row>
       </v-col>
     </v-row>
@@ -176,9 +168,6 @@ export default {
         type: this.selected
       }
       this.socket.emit('onSocketProject', document)
-    },
-    onClassicProject () {
-      this.$router.push({ name: 'Project', params: { id: '1' }, query: { type: 'lyric' } })
     },
     checkForUserErrors () {
       if (this.selected === '') {

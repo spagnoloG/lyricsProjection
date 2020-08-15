@@ -2,7 +2,7 @@
   <v-card max-width="400" class="mx-auto">
     <v-app-bar dark color="pink">
 
-      <v-toolbar-title>My Playlist</v-toolbar-title>
+      <v-toolbar-title>Moj seznam predvajanj</v-toolbar-title>
 
       <v-spacer></v-spacer>
 
@@ -15,9 +15,9 @@
       <v-row dense>
         <v-col cols="12">
           <v-card color="#385F73" dark>
-            <v-card-title class="headline">Unlimited music now</v-card-title>
+            <v-card-title class="headline">V produkciji...</v-card-title>
 
-            <v-card-subtitle>Listen to your favorite artists and albums whenever and wherever, online and offline.</v-card-subtitle>
+            <v-card-subtitle>Na to funkcijo bo potrebno počakati še nekaj časa</v-card-subtitle>
 
             <v-card-actions>
               <v-btn text>Listen Now</v-btn>
