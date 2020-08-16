@@ -61,7 +61,11 @@
               </v-row>
               <v-row>
                 <v-col cols="12" align="center">
-                  <v-btn small outlined color="primary">
+                  <v-btn
+                  @click="onProject"
+                  small
+                  outlined
+                  color="primary">
                     <v-icon>mdi-cast</v-icon>Projeciraj
                   </v-btn>
                 </v-col>
@@ -122,6 +126,7 @@
 </template>
 
 <script>
+import io from 'socket.io-client'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -171,7 +176,18 @@ export default {
       this.deleteDialog = false
       this.$store.dispatch('lyric/deleteLyric', this.selectedLyric.index)
       this.$store.dispatch('appState/showSnackbar', 'Pesem uspešno izbrisana!')
+    },
+    onProject () {
+      const document = {
+        index: this.selectedLyric.index,
+        type: 'lyric'
+      }
+      this.socket.emit('onSocketProject', document)
     }
+  },
+  created () {
+    // Connect to socket.io
+    this.socket = io('http://' + window.location.hostname + ':3000')
   }
 }
 </script>

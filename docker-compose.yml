@@ -2,9 +2,9 @@ version: '3'
 services:
   vue-client:
      image: client
-     command: npm run serve
+     command: serve -s dist
      ports:
-       - "80:8080"
+       - "80:5000"
 
   node-server:
     image: api
