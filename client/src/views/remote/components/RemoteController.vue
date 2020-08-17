@@ -148,7 +148,7 @@ export default {
   data () {
     return {
       userInput: '',
-      options: ['lyric', 'psalm', 'playlists'],
+      options: ['lyric', 'playlists'],
       selected: '',
       alert: false,
       errorMessage: ''

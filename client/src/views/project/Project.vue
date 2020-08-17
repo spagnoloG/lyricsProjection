@@ -11,28 +11,15 @@
     </v-row>
     <v-row align="center">
       <v-col align="center">
-          <!-- Show Psalm -->
-        <div v-if="type === 'psalm'">
-          <div v-if="psalm">
-            <h1>{{ psalmTitle }}</h1>
-            <p>
-              <span v-html="psalmContent"></span>
-            </p>
-          </div>
-          <!-- Show no Psalm or loading -->
-          <div v-else>
-            <h2 style="max-width: 95vw;">Ne obstaja</h2>
-          </div>
-        </div>
-        <!-- Show Psalm -->
-        <div v-if="type === 'lyric'">
+        <!-- Lyric title and content -->
+        <div>
           <div v-if="lyric">
             <h1>{{ lyricTitle }}</h1>
             <p>
               <span v-html="lyricContent"></span>
             </p>
           </div>
-          <!-- Show no Psalm or loading -->
+          <!-- Show no Lyric or loading -->
           <div v-else>
             <h2 style="max-width: 95vw;">Ne obstaja</h2>
           </div>
@@ -62,12 +49,6 @@ export default {
     type () {
       return this.$route.query.type
     },
-    psalmTitle () {
-      return this.psalm ? this.psalm.title : null
-    },
-    psalmContent () {
-      return this.psalm ? this.psalm.content : null
-    },
     lyricTitle () {
       return this.lyric ? this.lyric.title : null
     },
@@ -75,7 +56,6 @@ export default {
       return this.lyric ? this.lyric.content : null
     },
     ...mapGetters({
-      psalm: 'psalm/getCurrentPsalm',
       lyric: 'lyric/getCurrentLyric'
     })
   },
@@ -88,11 +68,7 @@ export default {
         this.gotoTimeout = setTimeout(() => {
           this.showInputField = false
           if (this.userInput !== '') {
-            if (this.type === 'psalm') {
-              this.$router.push({ name: 'Project', params: { id: this.userInput }, query: { type: 'psalm' } })
-            } else if (this.type === 'lyric') {
-              this.$router.push({ name: 'Project', params: { id: this.userInput }, query: { type: 'lyric' } })
-            }
+            this.$router.push({ name: 'Project', params: { id: this.userInput }, query: { type: 'lyric' } })
           }
           this.userInput = ''
         }, 1000)
@@ -116,18 +92,10 @@ export default {
     window.removeEventListener('keypress', this.doCommand)
   },
   mounted () {
-    if (this.type === 'psalm') {
-      this.$store.dispatch('psalm/fetchPsalm', this.id)
-    } else if (this.type === 'lyric') {
-      this.$store.dispatch('lyric/fetchLyric', this.id)
-    }
+    this.$store.dispatch('lyric/fetchLyric', this.id)
   },
   beforeRouteUpdate (to, from, next) {
-    if (this.type === 'psalm') {
-      this.$store.dispatch('psalm/fetchPsalm', this.userInput)
-    } else if (this.type === 'lyric') {
-      this.$store.dispatch('lyric/fetchLyric', this.userInput)
-    }
+    this.$store.dispatch('lyric/fetchLyric', this.userInput)
     next()
   }
 }

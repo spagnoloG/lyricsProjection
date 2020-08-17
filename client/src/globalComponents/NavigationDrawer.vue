@@ -38,24 +38,6 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item :to="{name: 'AddPsalm'}">
-          <v-list-item-action >
-            <v-icon>mdi-script-text</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Dodaj nov Psalm</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-list-item :to="{name: 'ListPsalms'}">
-          <v-list-item-action >
-            <v-icon>mdi-format-list-text</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Seznam Psalmov</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
         <v-list-item :to="{name: 'Options'}">
           <v-list-item-action >
             <v-icon>mdi-cog</v-icon>

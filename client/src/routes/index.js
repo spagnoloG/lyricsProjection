@@ -3,7 +3,6 @@ import VueRouter from 'vue-router'
 import Home from '../views/home/Home.vue'
 import AddLyric from '../views/addLyric/AddLyric.vue'
 import ListLyrics from '../views/listLyrics/ListLyrics.vue'
-import ListPsalms from '../views/listPsalms/ListPsalms.vue'
 import Playlists from '../views/playlists/Playlists.vue'
 import Project from '../views/project/Project.vue'
 
@@ -30,11 +29,6 @@ const routes = [
     component: ListLyrics
   },
   {
-    path: '/list-psalms',
-    name: 'ListPsalms',
-    component: ListPsalms
-  },
-  {
     path: '/playlists',
     name: 'Playlists',
     component: Playlists
@@ -43,11 +37,6 @@ const routes = [
     path: '/project/:id',
     name: 'Project',
     component: Project
-  },
-  {
-    path: '/add-psalm',
-    name: 'AddPsalm',
-    component: () => import('../views/addPsalm/AddPsalm.vue')
   },
   {
     path: '/options',
@@ -63,11 +52,6 @@ const routes = [
     path: '/edit-lyric/:id',
     name: 'EditLyric',
     component: () => import('../views/editLyric/Edit.vue')
-  },
-  {
-    path: '/edit-psalm/:id',
-    name: 'EditPsalm',
-    component: () => import('../views/editPsalm/Edit.vue')
   },
   {
     path: '/remote',
