@@ -18,7 +18,7 @@ export default {
     AddLyricCategory
   },
   created () {
-    this.$store.dispatch('psalm/fetchCategories')
+    this.$store.dispatch('lyric/fetchCategories')
   }
 }
 </script>
