@@ -36,4 +36,3 @@ export default {
   name: 'Home'
 }
 </script>
-// https://vuetifyjs.com/en/components/parallax/
