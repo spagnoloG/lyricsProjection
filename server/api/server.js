@@ -30,7 +30,7 @@ app.use('/lyricsit', require('./routes/lyricsit'));
 // Lyric categories
 app.use('/lyricsc', require('./routes/lyricsC'));
 // Playlists
-//app.use('/playlists', require('./routes/playlists'));
+app.use('/playlists', require('./routes/playlists'));
 
 
 // Connect to database
