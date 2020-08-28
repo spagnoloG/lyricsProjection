@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/home/Home.vue'
 import AddLyric from '../views/addLyric/AddLyric.vue'
 import ListLyrics from '../views/listLyrics/ListLyrics.vue'
-import Playlists from '../views/playlists/Playlists.vue'
+import ListPlaylists from '../views/playlists/ListPlaylists.vue'
 import Project from '../views/project/Project.vue'
 
 Vue.use(VueRouter)
@@ -29,9 +29,9 @@ const routes = [
     component: ListLyrics
   },
   {
-    path: '/playlists',
-    name: 'Playlists',
-    component: Playlists
+    path: '/list-playlists',
+    name: 'ListPlaylists',
+    component: ListPlaylists
   },
   {
     path: '/project/:id',
@@ -54,9 +54,22 @@ const routes = [
     component: () => import('../views/editLyric/Edit.vue')
   },
   {
+    path: '/edit-playlist/:id',
+    name: 'EditPlaylist',
+    component: () => import('../views/playlists/components/EditPlaylist.vue')
+  },
+  {
     path: '/remote',
     name: 'Remote',
     component: () => import('../views/remote/Remote.vue')
+  },
+  {
+    path: '/404',
+    component: () => import('../views/notFound/NotFound.vue')
+  },
+  {
+    path: '*',
+    redirect: '/404'
   }
 ]
 

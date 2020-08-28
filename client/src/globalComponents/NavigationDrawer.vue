@@ -11,7 +11,7 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item :to="{name: 'Playlists'}">
+        <v-list-item :to="{name: 'ListPlaylists'}">
           <v-list-item-action >
             <v-icon>mdi-presentation-play</v-icon>
           </v-list-item-action>

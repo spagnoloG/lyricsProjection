@@ -11,11 +11,6 @@ export default {
   components: {
     List
   },
-  data () {
-    return {
-      items: []
-    }
-  },
   created () {
     this.$store.dispatch('lyric/fetchLyrics')
   }
