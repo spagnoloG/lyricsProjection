@@ -34,7 +34,7 @@ app.use('/playlists', require('./routes/playlists'));
 
 
 // Connect to database
-mongoose.connect("mongodb://192.168.122.92:27017/projectionDb",
+mongoose.connect("mongodb://localhost:27017/projectionDb",
     { useNewUrlParser: true, useUnifiedTopology: true}, () =>
     console.log('Connected to database')
 );

@@ -1,67 +1,75 @@
 <template>
-  <v-card max-width="400" class="mx-auto">
-    <v-app-bar dark color="pink">
+  <div class="main">
+    <div class="heading" align="center">
+      <h1>Seznami predvajanj</h1>
+    </div>
+    <div class="pseudo-carousel">
+      <v-sheet
+    class="mx-auto"
+    elevation="8"
+    max-width="800"
+  >
+    <v-slide-group
+      v-model="model"
+      class="pa-4"
+      show-arrows
+    >
+      <v-slide-item
+        v-for="n in 15"
+        :key="n"
+        v-slot:default="{ active, toggle }"
+      >
+        <v-card
+          :color="active ? 'primary' : 'grey lighten-1'"
+          class="ma-4"
+          height="200"
+          width="200"
+          @click="toggle"
+        >
+          <v-row
+            class="fill-height"
+            align="center"
+            justify="center"
+          >
+            <v-scale-transition>
+              <v-icon
+                v-if="active"
+                color="white"
+                size="48"
+                v-text="'mdi-close-circle-outline'"
+              ></v-icon>
+            </v-scale-transition>
+          </v-row>
+        </v-card>
+      </v-slide-item>
+    </v-slide-group>
 
-      <v-toolbar-title>Moj seznam predvajanj</v-toolbar-title>
+    <v-expand-transition>
+      <v-sheet
+        v-if="model != null"
+        color="grey lighten-4"
+        height="200"
+        tile
+      >
+        <v-row
+          class="fill-height"
+          align="center"
+          justify="center"
+        >
+          <h3 class="title">Selected {{ model }}</h3>
+        </v-row>
+      </v-sheet>
+    </v-expand-transition>
+  </v-sheet>
+    </div>
+  </div>
 
-      <v-spacer></v-spacer>
-
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-    </v-app-bar>
-
-    <v-container>
-      <v-row dense>
-        <v-col cols="12">
-          <v-card color="#385F73" dark>
-            <v-card-title class="headline">V produkciji...</v-card-title>
-
-            <v-card-subtitle>Na to funkcijo bo potrebno počakati še nekaj časa</v-card-subtitle>
-
-            <v-card-actions>
-              <v-btn text>Listen Now</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-col>
-
-        <v-col v-for="(item, i) in items" :key="i" cols="12">
-          <v-card :color="item.color" dark>
-            <div class="d-flex flex-no-wrap justify-space-between">
-              <div>
-                <v-card-title class="headline" v-text="item.title"></v-card-title>
-
-                <v-card-subtitle v-text="item.artist"></v-card-subtitle>
-              </div>
-
-              <v-avatar class="ma-3" size="125" tile>
-                <v-img :src="item.src"></v-img>
-              </v-avatar>
-            </div>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-card>
 </template>
 
 <script>
 export default {
   data: () => ({
-    items: [
-      {
-        color: '#1F7087',
-        src: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-        title: 'Supermodel',
-        artist: 'Foster the People'
-      },
-      {
-        color: '#952175',
-        src: 'https://cdn.vuetifyjs.com/images/cards/halcyon.png',
-        title: 'Halcyon Days',
-        artist: 'Ellie Goulding'
-      }
-    ]
+    model: null
   })
 }
 </script>

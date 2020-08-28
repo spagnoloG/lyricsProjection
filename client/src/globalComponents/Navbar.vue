@@ -1,5 +1,5 @@
 <template>
-    <v-app-bar app clipped-left class="primary">
+    <v-app-bar app clipped-left  dark class="primary">
       <v-app-bar-nav-icon @click.stop="switchDrawer"></v-app-bar-nav-icon>
       <v-toolbar-title>Cerkvena projekcija</v-toolbar-title>
       <v-spacer></v-spacer>

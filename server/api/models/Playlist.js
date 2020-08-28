@@ -9,6 +9,10 @@ const playlistSchema = mongoose.Schema({
     playlistName: {
         type: String,
         required: true
+    },
+    playlistDescription: {
+        type: String,
+        required: true
     }
 })
 

@@ -5,8 +5,10 @@ exports.playlists_new_playlist = (req, res, next) => {
     const playlist = new Playlist({
         _id: mongoose.Types.ObjectId(),
         indexes: req.body.indexes,
-        playlistName: req.body.playlistName
+        playlistName: req.body.playlistName,
+        playlistDescription: req.body.playlistDescription ? req.body.playlistDescription : null
     });
+
     playlist.save()
         .then(result => {
             res.status(201).json({
@@ -27,7 +29,7 @@ exports.playlists_new_playlist = (req, res, next) => {
 
 exports.playlists_get_all_playlists = (req, res, next) => {
     Playlist.find()
-        .select('_id indexes playlistName')
+        .select('_id indexes playlistName playlistDescription')
         .then(docs => {
             const response = {
                 count: docs.length,
@@ -35,7 +37,8 @@ exports.playlists_get_all_playlists = (req, res, next) => {
                     return {
                         _id: doc._id,
                         indexes: doc.indexes,
-                        playlistName: doc.playlistName
+                        playlistName: doc.playlistName,
+                        playlistDescription: doc.playlistDescription
                     }
                 })
             };
@@ -51,7 +54,7 @@ exports.playlists_get_all_playlists = (req, res, next) => {
 exports.playlists_get_specific_playlist = (req, res, next) => {
     const id = req.params.playlistId;
     Playlist.findById(id)
-        .select('_id indexes playlistName')
+        .select('_id indexes playlistName playlistDescription')
         .then(doc =>{
             if(doc) {
                 res.status(200).json({
