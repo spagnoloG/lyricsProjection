@@ -17,10 +17,11 @@ export default {
   getPlaylist (playlistId) {
     return apiClient.get('/playlists/' + playlistId)
   },
-  deletePlaylist (playistId) {
+  deletePlaylist (playlistId) {
     return apiClient.delete('/playlists/' + playlistId)
   },
   updatePlaylist (playlist) {
+    console.log(playlist)
     return apiClient.patch('/playlists/' + playlist._id, {
       indexes: playlist.indexes,
       playlistName: playlist.playlistName,
@@ -28,6 +29,12 @@ export default {
     })
   },
   postPlaylist (playlist) {
-    return apiClient.post('/playlists/', playlist)
+    const playlistToPost = {
+      indexes: playlist.indexes,
+      playlistName: playlist.playlistName,
+      playlistDescription: playlist.playlistDescription
+    }
+    console.log(playlistToPost)
+    return apiClient.post('/playlists', playlistToPost)
   }
 }

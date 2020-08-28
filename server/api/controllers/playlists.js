@@ -33,7 +33,7 @@ exports.playlists_get_all_playlists = (req, res, next) => {
         .then(docs => {
             const response = {
                 count: docs.length,
-                products: docs.map(doc => {
+                playlists: docs.map(doc => {
                     return {
                         _id: doc._id,
                         indexes: doc.indexes,
