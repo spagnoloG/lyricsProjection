@@ -7,6 +7,20 @@
 
       <!-- Dial -->
       <v-col cols=12 md=6>
+        <v-row v-if="isActive">
+          <v-col align="center">
+            <v-chip
+            class="ma-2"
+            color="green"
+            text-color="white">
+            <v-avatar
+              left
+              class="green darken-4"
+            >{{ currentLyric.index }}</v-avatar>
+            {{ currentLyric.title }}
+          </v-chip>
+          </v-col>
+        </v-row>
         <v-row >
           <v-col cols="2"></v-col>
           <v-col align="center" cols="8">
@@ -17,10 +31,10 @@
             readonly
             ></v-text-field>
           </v-col>
-          <v-col align="center" justify="end" cols="2">
-            <v-icon
-            @click="deleteKeyPress"
-            >mdi-arrow-left</v-icon>
+          <v-col cols="2">
+            <v-btn @click="deleteKeyPress" icon>
+              <v-icon>mdi-arrow-left</v-icon>
+            </v-btn>
           </v-col>
         </v-row>
         <v-row>
@@ -115,17 +129,6 @@
 
       <!-- Actions -->
       <v-col cols=12 md=6 >
-        <v-row >
-          <v-col>
-            <v-select
-            :items="options"
-            v-model="selected"
-            label="Izberi vrsto projeciranja"
-            dense
-            solo
-            ></v-select>
-          </v-col>
-        </v-row>
         <v-row>
           <v-col align="center">
             <v-btn
@@ -148,10 +151,11 @@ export default {
   data () {
     return {
       userInput: '',
-      options: ['lyric', 'playlists'],
-      selected: '',
+      selected: 'lyric',
       alert: false,
-      errorMessage: ''
+      errorMessage: '',
+      currentLyric: [],
+      isActive: false
     }
   },
   methods: {
@@ -179,11 +183,16 @@ export default {
       } else {
         this.alert = false
       }
+    },
+    showActiveLyric () {
+      // implement socket.io!!!!
     }
   },
   created () {
     // Connect to socket.io
     this.socket = io('http://' + window.location.hostname + ':3000')
+    this.$store.dispatch('playlist/fetchPlaylists')
+    this.$store.dispatch('lyric/fetchLyrics')
   }
 }
 </script>
