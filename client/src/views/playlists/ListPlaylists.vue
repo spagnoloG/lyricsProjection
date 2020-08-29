@@ -161,7 +161,7 @@ export default {
       this.deleteDialog = true
     },
     deletePlaylist () {
-      this.$store.dispatch('playlist/deletePlaylist', this.selectPlaylist._id)
+      this.$store.dispatch('playlist/deletePlaylist', this.selectedPlaylist._id)
     },
     onProject () {}
   },

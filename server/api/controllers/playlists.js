@@ -58,7 +58,7 @@ exports.playlists_get_specific_playlist = (req, res, next) => {
         .then(doc =>{
             if(doc) {
                 res.status(200).json({
-                    transaction: doc
+                    playlist: doc
                 })
             } else {
                 res.status(404).json({ message: 'No valid entry found for provided id!'})

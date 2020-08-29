@@ -7,7 +7,7 @@ export const state = {
   currentPlaylist: {
     _id: 0,
     indexes: [],
-    playlistTitle: '',
+    playlistName: '',
     playlistDescription: ''
   },
   totalPlaylists: 0
@@ -20,7 +20,7 @@ export const mutations = {
   set_playlist (state, playlist) {
     state.currentPlaylist._id = playlist._id
     state.currentPlaylist.indexes = playlist.indexes
-    state.currentPlaylist.playlistTitle = playlist.playlistTitle
+    state.currentPlaylist.playlistName = playlist.playlistName
     state.currentPlaylist.playlistDescription = playlist.playlistDescription
   },
   set_playlists (state, playlists) {
@@ -33,13 +33,12 @@ export const mutations = {
     state.playlists.splice(toDelete, 1)
   },
   update_playlist (state, { toUpdate, playlist }) {
-    state.lyrics.splice(toUpdate, 1, playlist)
+    state.playlists.splice(toUpdate, 1, playlist)
   }
 }
 
 export const actions = {
   addNewPlaylist ({ commit }, playlist) {
-    console.log(playlist)
     return playlistsApi.postPlaylist(playlist)
       .then(response => {
         commit('add_new_playlist', playlist)
@@ -52,7 +51,7 @@ export const actions = {
   //
   fetchPlaylist ({ commit }, playlistId) {
     return playlistsApi.getPlaylist(playlistId).then(response => {
-      const data = response.data[0]
+      const data = response.data.playlist
       if (typeof data === 'undefined') {
         // Catch err
       } else {
@@ -80,7 +79,7 @@ export const actions = {
     }
 
     return playlistsApi.deletePlaylist(playlistId).then(response => {
-      // commit('delete_playlist', toDelete)
+      commit('delete_playlist', toDelete)
       return response
     })
   },

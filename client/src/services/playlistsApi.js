@@ -21,7 +21,6 @@ export default {
     return apiClient.delete('/playlists/' + playlistId)
   },
   updatePlaylist (playlist) {
-    console.log(playlist)
     return apiClient.patch('/playlists/' + playlist._id, {
       indexes: playlist.indexes,
       playlistName: playlist.playlistName,
@@ -34,7 +33,6 @@ export default {
       playlistName: playlist.playlistName,
       playlistDescription: playlist.playlistDescription
     }
-    console.log(playlistToPost)
     return apiClient.post('/playlists', playlistToPost)
   }
 }
