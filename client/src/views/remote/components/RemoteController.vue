@@ -168,10 +168,10 @@ export default {
     onProject () {
       this.checkForUserErrors()
       const document = {
-        index: this.userInput,
-        type: this.selected
+        currentLyric: this.userInput,
+        currentPlaylist: -1
       }
-      this.socket.emit('onSocketProject', document)
+      this.$store.dispatch('socket/sendRemoteMessage', document)
     },
     checkForUserErrors () {
       if (this.selected === '') {
