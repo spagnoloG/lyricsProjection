@@ -162,6 +162,7 @@ export default {
     },
     deletePlaylist () {
       this.$store.dispatch('playlist/deletePlaylist', this.selectedPlaylist._id)
+      this.deleteDialog = false
     },
     onProject () {}
   },

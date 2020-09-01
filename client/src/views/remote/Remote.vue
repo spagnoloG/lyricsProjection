@@ -2,10 +2,10 @@
  <v-container>
     <v-tabs centered>
       <v-tabs-slider/>
-      <v-tab><v-icon x-large>mdi-dialpad</v-icon></v-tab>
+      <v-tab v-if="isPlaylist === null"><v-icon x-large>mdi-dialpad</v-icon></v-tab>
       <v-tab><v-icon x-large>mdi-play-box-outline</v-icon></v-tab>
 
-      <v-tab-item>
+      <v-tab-item v-if="isPlaylist === null">
         <remote-controller></remote-controller>
       </v-tab-item>
       <v-tab-item>
@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import RemoteController from './components/RemoteController.vue'
 import SlideController from './components/SlideController'
 
@@ -23,6 +25,16 @@ export default {
   components: {
     RemoteController,
     SlideController
+  },
+  computed: {
+    ...mapGetters({
+      isPlaylist: 'socket/getCurrentPlaylist'
+    })
+  },
+  created () {
+    this.$store.dispatch('playlist/fetchPlaylists')
+    this.$store.dispatch('lyric/fetchLyrics')
+    this.$store.dispatch('socket/getCurrentState')
   }
 }
 </script>

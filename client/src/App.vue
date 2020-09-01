@@ -1,8 +1,8 @@
 <template>
   <v-app>
-    <navigation-drawer v-if="$router.currentRoute.name !== 'Project'"></navigation-drawer>
+    <navigation-drawer v-if="$router.currentRoute.name !== 'Display'"></navigation-drawer>
 
-    <navbar v-if="$router.currentRoute.name !== 'Project'"></navbar>
+    <navbar v-if="$router.currentRoute.name !== 'Display'"></navbar>
 
     <v-main>
       <v-container fluid>
@@ -21,7 +21,7 @@
       </v-snackbar>
     </div>
 
-    <footer-component>
+    <footer-component v-if="$router.currentRoute.name !== 'Display'">
     </footer-component>
   </v-app>
 </template>

@@ -7,17 +7,17 @@
 
       <!-- Dial -->
       <v-col cols=12 md=6>
-        <v-row v-if="isActive">
+        <v-row v-if="currentIndex !== -1">
           <v-col align="center">
             <v-chip
             class="ma-2"
             color="green"
             text-color="white">
+            Na zaslonu:
             <v-avatar
-              left
+              right
               class="green darken-4"
-            >{{ currentLyric.index }}</v-avatar>
-            {{ currentLyric.title }}
+            >{{ currentIndex }}</v-avatar>
           </v-chip>
           </v-col>
         </v-row>
@@ -118,11 +118,27 @@
         <v-row>
           <v-col align="center">
             <v-btn
+            @click="scroll('up')"
+            class="mx-2"
+            fab
+            large
+            color="primary"><v-icon>mdi-arrow-up-bold</v-icon></v-btn>
+          </v-col>
+          <v-col align="center">
+            <v-btn
             @click="keyPress('0')"
             class="mx-2"
             fab
             large
             color="primary">0</v-btn>
+          </v-col>
+          <v-col align="center">
+            <v-btn
+            @click="scroll('down')"
+            class="mx-2"
+            fab
+            large
+            color="primary"><v-icon>mdi-arrow-down-bold</v-icon></v-btn>
           </v-col>
         </v-row>
       </v-col>
@@ -145,7 +161,7 @@
 </template>
 
 <script>
-import io from 'socket.io-client'
+import { mapGetters } from 'vuex'
 
 export default {
   data () {
@@ -158,6 +174,11 @@ export default {
       isActive: false
     }
   },
+  computed: {
+    ...mapGetters({
+      currentIndex: 'socket/getCurrentLyric'
+    })
+  },
   methods: {
     keyPress (pressedKey) {
       this.userInput = this.userInput + pressedKey
@@ -169,7 +190,7 @@ export default {
       this.checkForUserErrors()
       const document = {
         currentLyric: this.userInput,
-        currentPlaylist: -1
+        currentPlaylist: null
       }
       this.$store.dispatch('socket/sendRemoteMessage', document)
     },
@@ -184,15 +205,9 @@ export default {
         this.alert = false
       }
     },
-    showActiveLyric () {
-      // implement socket.io!!!!
+    scroll (direction) {
+      this.$store.dispatch('socket/sendScrollMessage', direction)
     }
-  },
-  created () {
-    // Connect to socket.io
-    this.socket = io('http://' + window.location.hostname + ':3000')
-    this.$store.dispatch('playlist/fetchPlaylists')
-    this.$store.dispatch('lyric/fetchLyrics')
   }
 }
 </script>

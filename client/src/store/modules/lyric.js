@@ -12,7 +12,8 @@ export const state = {
     content: '',
     categories: []
   },
-  newLyricIndex: 0
+  newLyricIndex: 0,
+  notFound: false
 }
 
 export const mutations = {
@@ -54,6 +55,9 @@ export const mutations = {
   },
   add_new_category (state, category) {
     state.categories.push(category)
+  },
+  set_not_found_variable (state, found) {
+    state.notFound = found
   }
 }
 
@@ -88,9 +92,10 @@ export const actions = {
     return fetchLyrics.getLyric(index).then(response => {
       const data = response.data[0]
       if (typeof data === 'undefined') {
-        // catch error -> TO DO
+        commit('set_not_found_variable', true)
       } else {
         commit('set_lyric', data)
+        commit('set_not_found_variable', false)
       }
       return data
     })
@@ -175,5 +180,8 @@ export const getters = {
   },
   getCurrentLyric: state => {
     return state.currentLyric
+  },
+  getNotFoundValue: state => {
+    return state.notFound
   }
 }

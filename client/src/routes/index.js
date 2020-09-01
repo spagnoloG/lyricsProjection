@@ -59,6 +59,11 @@ const routes = [
     component: () => import('../views/playlists/components/EditPlaylist.vue')
   },
   {
+    path: '/display',
+    name: 'Display',
+    component: () => import('../views/display/Display.vue')
+  },
+  {
     path: '/remote',
     name: 'Remote',
     component: () => import('../views/remote/Remote.vue')

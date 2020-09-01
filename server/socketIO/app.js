@@ -5,16 +5,19 @@ const Socketio = require('socket.io')(Http);
 
 var state = {
     currentLyric: -1,
-    currentPlaylist: -1
+    currentPlaylist: null
 }
 
 Socketio.on('connection', socket => {
     socket.on('remoteMessage', data => {
         state = data
         Socketio.emit('onChangedState', state)
-        console.log(state)
+    })
+    socket.on('remoteScroll', data => {
+        Socketio.emit('onScroll', data)
     })
     socket.on('getCurrentState', () => {
+        console.log(state)
         Socketio.emit('onChangedState', state)
     })
 });

@@ -22,6 +22,7 @@
                  <h5>Dodaj pesem v seznam</h5>
                </v-card-title>
 
+                <!-- List lyrics -->
                <v-card-text>
                  <v-card class="mx-auto" max-width="600">
 
@@ -36,7 +37,6 @@
 
                   <v-divider></v-divider>
 
-                  <!-- List lyrics -->
                   <div v-for="lyric in paginatedLyrics" :key="lyric.index">
                     <v-list-item>
                       <v-list-item-avatar>
@@ -102,13 +102,18 @@
        <v-list>
          <draggable v-model="playlist">
            <v-list-item v-for="lyric in playlist" :key="lyric.position" >
+            <v-list-item-avatar>
+              <v-avatar color="indigo" size="56" class="white--text">{{ lyric.lyricIndex }}</v-avatar>
+            </v-list-item-avatar>
 
              <v-list-item-content>
                <v-list-item-title v-text="lyric.lyricTitle"></v-list-item-title>
              </v-list-item-content>
 
              <v-list-item-avatar>
-               <v-icon @click="removeFromPlaylist(lyric)">mdi-minus-circle</v-icon>
+               <v-btn @click="removeFromPlaylist(lyric)" icon>
+                 <v-icon>mdi-minus-circle</v-icon>
+               </v-btn>
              </v-list-item-avatar>
            </v-list-item>
          </draggable>
@@ -174,7 +179,7 @@ export default {
     },
     filteredLyrics () {
       return this.lyrics.filter((lyric) => {
-        return lyric.title.toUpperCase().match(this.search.toUpperCase())
+        return lyric.title.toUpperCase().match(this.search.toUpperCase()) && this.selectedIndexes.indexOf(lyric.index) === -1
       })
     },
     paginatedLyrics () {
@@ -206,7 +211,8 @@ export default {
       }
     },
     removeFromPlaylist (lyric) {
-      this.playlist.splice(lyric.position, 1)
+      const position = this.selectedIndexes.indexOf(lyric.lyricIndex)
+      this.playlist.splice(position, 1)
     },
     savePlaylist () {
       this.selectedIndexes = []
@@ -238,6 +244,9 @@ export default {
         lyricTitle: lyric.title,
         lyricIndex: lyric.index
       }
+      if (this.id === 'new') {
+        this.selectedIndexes.push(lyric.index)
+      }
       this.playlist.push(obj)
       this.dialog = false
     }
@@ -254,6 +263,7 @@ export default {
     if (this.id === 'new') {
       this.selectedIndexes = []
       this.playlistName = 'Nov seznam'
+      this.sheet = true
     } else {
       setTimeout(() => {
         this.generateObject()

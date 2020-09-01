@@ -23,7 +23,7 @@
             <v-btn
             :to="{name: 'Remote'}"
             color="#59A96A"
-            large>Projeciraj <v-icon>mdi-cast</v-icon></v-btn>
+            large>Upravljaj <v-icon>mdi-remote</v-icon></v-btn>
           </v-col>
         </v-row>
       </v-container>
