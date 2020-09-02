@@ -4,8 +4,8 @@ WORKDIR api
 
 COPY . ./
 
-RUN npm install
+RUN yarn
 
 EXPOSE 4200
 
-CMD ["npm", "run", "serve"]
+CMD ["yarn", "serve"]

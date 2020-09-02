@@ -4,8 +4,8 @@ WORKDIR socket
 
 COPY . ./
 
-RUN npm install
+RUN yarn
 
 EXPOSE 3000
 
-CMD ["npm", "run", "serve"]
+CMD ["yarn", "serve"]

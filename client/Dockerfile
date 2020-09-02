@@ -4,11 +4,11 @@ WORKDIR client
 
 COPY . ./
 
-RUN npm install
+RUN yarn
 
-RUN npm run build
+RUN yarn build
 
-RUN npm install -g serve 
+RUN yarn global add serve 
 
 EXPOSE 8080
 
