@@ -13,6 +13,7 @@ export default {
   },
   created () {
     this.$store.dispatch('lyric/fetchLyrics')
+    this.$store.dispatch('lyric/fetchCategories')
   }
 }
 </script>

@@ -61,7 +61,7 @@
 
     <!-- List categories -->
   <div>
-  <v-card class="mx-auto" max-width="400">
+  <v-card class="mx-auto">
     <v-card-title class="white--text secondary">
       Kategorije pesmi
       <v-spacer></v-spacer>

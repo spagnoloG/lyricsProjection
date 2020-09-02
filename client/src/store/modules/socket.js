@@ -4,7 +4,8 @@ export const state = {
   currentLyric: -1,
   currentPlaylist: null,
   scrollPage: 0,
-  position: 0
+  position: 0,
+  refreshPage: false
 }
 
 export const mutations = {
@@ -19,6 +20,9 @@ export const mutations = {
     } else {
       state.scrollPage--
     }
+  },
+  refresh_display (state, setter) {
+    state.refreshPage = setter
   }
 }
 
@@ -31,6 +35,12 @@ export const actions = {
   },
   socket_onScroll ({ commit }, message) {
     commit('set_scroll_page', message)
+  },
+  socket_onRefresh ({ commit }) {
+    commit('refresh_display', true)
+    setTimeout(() => {
+      commit('refresh_display', false)
+    }, 200)
   },
   sendRemoteMessage ({ commit }, document) {
     this._vm.$socket.client.emit('remoteMessage', document)
@@ -47,6 +57,9 @@ export const actions = {
   },
   getCurrentState () {
     this._vm.$socket.client.emit('getCurrentState')
+  },
+  sendRefreshDisplay () {
+    this._vm.$socket.client.emit('refreshDisplay')
   }
 }
 
@@ -59,5 +72,8 @@ export const getters = {
   },
   getScrollDirection: state => {
     return state.scrollPage
+  },
+  getRefreshPageStatus: state => {
+    return state.refreshPage
   }
 }

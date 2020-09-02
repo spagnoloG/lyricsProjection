@@ -36,7 +36,8 @@ export default {
       currentLyricIndex: 'socket/getCurrentLyric',
       currentLyric: 'lyric/getCurrentLyric',
       notFound: 'lyric/getNotFoundValue',
-      scrollPage: 'socket/getScrollDirection'
+      scrollPage: 'socket/getScrollDirection',
+      refresh: 'socket/getRefreshPageStatus'
     })
   },
   watch: {
@@ -48,6 +49,11 @@ export default {
         this.scrollWindow('up')
       } else {
         this.scrollWindow('down')
+      }
+    },
+    refresh: function (newStatus, oldStatus) {
+      if (newStatus === true) {
+        location.reload()
       }
     }
   },

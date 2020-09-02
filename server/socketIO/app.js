@@ -20,6 +20,10 @@ Socketio.on('connection', socket => {
         console.log(state)
         Socketio.emit('onChangedState', state)
     })
+    socket.on('refreshDisplay', () => {
+        console.log("Refreshing display...")
+        Socketio.emit('onRefresh')
+    })
 });
 
 Http.listen(3000, () => {

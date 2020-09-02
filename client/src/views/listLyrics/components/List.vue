@@ -80,53 +80,82 @@
       </v-row>
     </div>
 
-    <!-- Card header -->
-    <v-card class="mx-auto" max-width="600">
-      <v-card-title class="white--text secondary">
-        Seznam pesmi
-        <v-spacer></v-spacer>
-        <v-btn @click="goToAddLyric" color="primary" class="text--primary" fab small>
-          <v-icon>mdi-plus</v-icon>
-        </v-btn>
-      </v-card-title>
+    <v-container fluid>
+      <v-row>
+        <v-col cols="12" sm="8">
+           <!-- Card header -->
+          <v-card class="mx-auto">
+            <v-card-title class="white--text secondary">
+              Seznam pesmi
+              <v-spacer></v-spacer>
+              <v-btn @click="goToAddLyric" color="primary" class="text--primary" fab small>
+                <v-icon>mdi-plus</v-icon>
+              </v-btn>
+            </v-card-title>
 
-      <v-divider></v-divider>
+            <v-divider></v-divider>
 
-      <v-card-text>
-        <v-text-field v-model="search" label="Išči" @click="page = 1"></v-text-field>
-      </v-card-text>
+            <v-card-text>
+              <v-text-field v-model="search" label="Išči" @click="page = 1" append-icon="mdi-magnify"></v-text-field>
+            </v-card-text>
 
-      <v-divider></v-divider>
+            <v-divider></v-divider>
 
-      <!-- List lyrics -->
-      <div v-for="lyric in paginatedLyrics" :key="lyric.index">
-        <v-list-item>
-          <v-list-item-avatar>
-            <v-avatar color="secondary" size="56" class="white--text">{{ lyric.index }}</v-avatar>
-          </v-list-item-avatar>
+            <!-- List lyrics -->
+            <div v-for="lyric in paginatedLyrics" :key="lyric.index">
+              <v-list-item>
+                <v-list-item-avatar>
+                  <v-avatar color="secondary" size="56" class="white--text">{{ lyric.index }}</v-avatar>
+                </v-list-item-avatar>
 
-          <v-list-item-content>
-            <v-list-item-title>{{ lyric.title }}</v-list-item-title>
-          </v-list-item-content>
+                <v-list-item-content>
+                  <v-list-item-title>{{ lyric.title }}</v-list-item-title>
+                </v-list-item-content>
 
-          <v-list-item-action>
-            <v-btn depressed small @click="selectLyric(lyric)">
-              <v-icon color="secondary">mdi-dots-horizontal</v-icon>
-            </v-btn>
-          </v-list-item-action>
-        </v-list-item>
-      </div>
-      <v-divider></v-divider>
-      <br />
-      <v-pagination v-model="page" :length="totalPages" :total-visible="totalVisible" circle></v-pagination>
-      <br />
-      <v-divider></v-divider>
-    </v-card>
+                <v-list-item-action>
+                  <v-btn depressed small @click="selectLyric(lyric)">
+                    <v-icon color="secondary">mdi-dots-horizontal</v-icon>
+                  </v-btn>
+                </v-list-item-action>
+              </v-list-item>
+            </div>
+            <v-divider></v-divider>
+            <br/>
+            <v-pagination v-model="page" :length="totalPages" :total-visible="totalVisible" circle></v-pagination>
+            <br/>
+            <v-divider></v-divider>
+          </v-card>
+        </v-col>
+        <v-col cols="12" sm="4">
+          <v-card class="mx-auto">
+            <v-card-title class="white--text secondary">
+              Izberi kategorijo
+            </v-card-title>
+            <v-divider></v-divider>
+            <v-card-text></v-card-text>
+            <v-container>
+              <v-row>
+                <v-col>
+                  <v-select
+                  v-model="selectedCategories"
+                  :items="availableCategories"
+                  label="Izberi"
+                  multiple
+                  chips
+                  hint="možne kategorije"
+                  persistent-hint
+                  ></v-select>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
 <script>
-import io from 'socket.io-client'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -138,26 +167,25 @@ export default {
       totalVisible: 6,
       showPopUp: false,
       deleteDialog: false,
-      selectedLyric: Object
+      selectedLyric: Object,
+      selectedCategories: []
     }
   },
   computed: {
-    allLyrics () {
-      return Object.keys(this.filteredLyrics).map(pid => this.filteredLyrics[pid])
-    },
     filteredLyrics () {
       return this.lyrics.filter((lyric) => {
-        return lyric.title.toUpperCase().match(this.search.toUpperCase())
+        return (lyric.title.toUpperCase().match(this.search.toUpperCase()) || lyric.index === Number(this.search)) && this.selectedCategories.every(i => lyric.categories.includes(i))
       })
     },
     paginatedLyrics () {
-      return this.allLyrics.slice((this.page - 1) * this.perPage, this.page * this.perPage)
+      return this.filteredLyrics.slice((this.page - 1) * this.perPage, this.page * this.perPage)
     },
     totalPages () {
-      return Math.ceil(this.allLyrics.length / this.perPage)
+      return Math.ceil(this.filteredLyrics.length / this.perPage)
     },
     ...mapGetters({
-      lyrics: 'lyric/getAllLyrics'
+      lyrics: 'lyric/getAllLyrics',
+      availableCategories: 'lyric/getCategories'
     })
   },
   methods: {
@@ -179,15 +207,12 @@ export default {
     },
     onProject () {
       const document = {
-        index: this.selectedLyric.index,
-        type: 'lyric'
+        currentLyric: this.selectedLyric.index,
+        currentPlaylist: null
       }
-      this.socket.emit('onSocketProject', document)
+      this.$store.dispatch('socket/sendRemoteMessage', document)
+      this.showPopUp = false
     }
-  },
-  created () {
-    // Connect to socket.io
-    this.socket = io('http://' + window.location.hostname + ':3000')
   }
 }
 </script>
