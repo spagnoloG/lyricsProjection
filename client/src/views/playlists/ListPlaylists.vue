@@ -14,7 +14,7 @@
         <v-divider></v-divider>
 
         <v-card-text>
-          <v-text-field v-model="search" label="Išči" @click="page = 1"></v-text-field>
+          <v-text-field v-model="search" label="Išči" @click="page = 1" append-icon="mdi-magnify"></v-text-field>
         </v-card-text>
 
         <v-divider></v-divider>

@@ -21,14 +21,22 @@
     <v-divider ></v-divider>
 
     <v-card-text>
-      <v-chip @click="refreshDisplay" class="mr-2">
-        <v-icon left>mdi-refresh</v-icon>
-        Osveži prikazovalnik
-      </v-chip>
-      <v-chip @click="stopProjection" class="mr-2">
-        <v-icon left>mdi-close-circle</v-icon>
-        Ustavi projekcijo
-      </v-chip>
+      <v-container fluid>
+        <v-row>
+          <v-col align="center">
+            <v-chip @click="refreshDisplay" class="mr-2">
+              <v-icon left>mdi-refresh</v-icon>
+              Osveži prikazovalnik
+            </v-chip>
+          </v-col>
+          <v-col align="center">
+            <v-chip @click="stopProjection" class="mr-2">
+              <v-icon left>mdi-close-circle</v-icon>
+              Ustavi projekcijo
+            </v-chip>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-card-text>
   </v-card>
 </template>

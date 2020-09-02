@@ -5,6 +5,8 @@
         :lazy-src="require(`@/assets/homePage-lazy.jpg`)"
         max-height="550">
       </v-img>
+      <br>
+      <v-divider></v-divider>
       <v-container fluid>
         <v-row>
           <v-col align="center" cols=12 sm=6>
