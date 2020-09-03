@@ -121,6 +121,7 @@
             @click="scroll('up')"
             class="mx-2"
             fab
+            elevation="20"
             large
             color="primary"><v-icon>mdi-arrow-up-bold</v-icon></v-btn>
           </v-col>
@@ -137,6 +138,7 @@
             @click="scroll('down')"
             class="mx-2"
             fab
+            elevation="20"
             large
             color="primary"><v-icon>mdi-arrow-down-bold</v-icon></v-btn>
           </v-col>
@@ -145,8 +147,8 @@
 
       <!-- Actions -->
       <v-col cols=12 md=6 >
-        <v-row>
-          <v-col align="center">
+        <v-row  class="fill-height">
+          <v-col align="center" justify="center">
             <v-btn
             @click="onProject"
             depressed

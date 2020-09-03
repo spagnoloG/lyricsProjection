@@ -7,12 +7,12 @@
       <v-container fluid>
       <v-row>
         <v-col>
-          <p class="display-1 mb-2">Možnosti prikazovalnika...</p>
+          <p class="display-1 mb-2 text-h3">Možnosti prikazovalnika...</p>
         </v-col>
       </v-row>
       <v-row>
         <v-col>
-          <p class="title font-weight-regular grey--text">{{ currentDate }}</p>
+          <p class="title font-weight-regular grey--text text-h4">{{ currentDay }}, {{ currentTime }}</p>
         </v-col>
       </v-row>
     </v-container>
@@ -45,14 +45,45 @@
 export default {
   data () {
     return {
-      currentDate: ''
+      currentDate: '',
+      currentDay: '',
+      currentTime: ''
     }
   },
   methods: {
     updateCurrentDate () {
+      const dateVariable = new Date()
+      this.currentTime = dateVariable.getHours() + ':' + dateVariable.getMinutes() + ':' + dateVariable.getSeconds()
       setInterval(() => {
-        this.currentDate = new Date()
+        const dateVariable = new Date()
+        this.currentTime = dateVariable.getHours() + ':' + dateVariable.getMinutes() + ':' + dateVariable.getSeconds()
       }, 1000)
+    },
+    setDay () {
+      const dateVariable = new Date().getUTCDay()
+      switch (dateVariable) {
+        case 0:
+          this.currentDay = 'Nedelja'
+          break
+        case 1:
+          this.currentDay = 'Ponedeljek'
+          break
+        case 2:
+          this.currentDay = 'Torek'
+          break
+        case 3:
+          this.currentDay = 'Sreda'
+          break
+        case 4:
+          this.currentDay = 'Četrtek'
+          break
+        case 5:
+          this.currentDay = 'Petek'
+          break
+        case 6:
+          this.currentDay = 'Sobota'
+          break
+      }
     },
     refreshDisplay () {
       this.$store.dispatch('socket/sendRefreshDisplay')
@@ -63,6 +94,7 @@ export default {
   },
   mounted () {
     this.updateCurrentDate()
+    this.setDay()
   }
 }
 </script>

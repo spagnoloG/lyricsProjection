@@ -21,37 +21,21 @@
           <v-col></v-col>
         </v-row>
         <v-row>
-          <v-col></v-col>
-          <v-col align="center">
+          <v-col class="fill-height" align="center" justify="center">
             <v-btn
             @click="startProjectingPlaylist"
             depressed
             color="success"
             >Projeciraj  <v-icon>mdi-cast</v-icon></v-btn>
           </v-col>
-          <v-col></v-col>
         </v-row>
       </v-container>
     </div>
     <div class="playlist-player" v-if="step === 1">
       <v-container fluid>
         <v-row>
-          <v-col align="center">
-            <v-btn
-            @click="scroll('up')"
-            class="mx-2"
-            fab
-            color="primary"><v-icon>mdi-arrow-up-bold</v-icon></v-btn>
-          </v-col>
-          <v-col align ="center">
+          <v-col class="fill-height" align="center" justify="center">
             <h1>{{ selectedPlaylist.playlistName }}</h1>
-          </v-col>
-          <v-col align="center">
-            <v-btn
-            @click="scroll('down')"
-            class="mx-2"
-            fab
-            color="primary"><v-icon>mdi-arrow-down-bold</v-icon></v-btn>
           </v-col>
         </v-row>
         <v-row>
@@ -108,8 +92,22 @@
           <v-col></v-col>
         </v-row>
         <v-row>
-          <v-col class="fill-height" align="center" justify="center">
+          <v-col align="center" cols="12" sm="4">
+            <v-btn
+            @click="scroll('up')"
+            class="mx-2"
+            fab
+            color="primary"><v-icon>mdi-arrow-up-bold</v-icon></v-btn>
+          </v-col>
+          <v-col class="fill-height" align="center" justify="center" cols="12" sm="4">
              <v-btn @click="stopProjection" text large color="error">Zaključi</v-btn>
+          </v-col>
+          <v-col align="center" cols="12" sm="4">
+            <v-btn
+            @click="scroll('down')"
+            class="mx-2"
+            fab
+            color="primary"><v-icon>mdi-arrow-down-bold</v-icon></v-btn>
           </v-col>
         </v-row>
       </v-container>
