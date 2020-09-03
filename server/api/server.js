@@ -32,9 +32,8 @@ app.use('/lyricsc', require('./routes/lyricsC'));
 // Playlists
 app.use('/playlists', require('./routes/playlists'));
 
-
-// Connect to database
-mongoose.connect("mongodb://172.18.0.2:27017/projectionDb",
+// Connect to database after 15s
+mongoose.connect("mongodb://localhost:27017/projectionDb",
     { useNewUrlParser: true, useUnifiedTopology: true}, () =>
     console.log('Connected to database')
 );

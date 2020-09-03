@@ -11,8 +11,7 @@ services:
     restart: always
     ports:
       - "4200:4200"
-    # links:
-    #   - mongo
+
   socket-io-server:
     image: socket
     restart: always
