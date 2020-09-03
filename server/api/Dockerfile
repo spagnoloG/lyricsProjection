@@ -1,11 +1,14 @@
 FROM node:14
 
-WORKDIR api
+RUN mkdir -p /usr/src/api
 
-COPY . ./
-
+WORKDIR /usr/src/api
+ADD . /usr/src/api
 RUN yarn
 
+ENV NODE_ENV=production
+
+# Port to expose
 EXPOSE 4200
 
 CMD ["yarn", "serve"]

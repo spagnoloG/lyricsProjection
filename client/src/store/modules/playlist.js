@@ -74,7 +74,6 @@ export const actions = {
     const foundPlaylist = state.playlists.find(playlist => playlist._id === playlistId)
     const toDelete = state.playlists.indexOf(foundPlaylist)
     if (toDelete === -1) {
-      console.log('Did not found any matching playlist to delete!')
       return // catch err
     }
 
@@ -90,7 +89,6 @@ export const actions = {
     const foundPlaylist = state.playlists.find(playlist => playlist._id === playlistId)
     const toUpdate = state.playlists.indexOf(foundPlaylist)
     if (toUpdate === -1) {
-      console.log('Did not found any matching playlist to update!')
       return // catch err
     }
 

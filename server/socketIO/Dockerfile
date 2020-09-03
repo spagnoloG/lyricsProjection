@@ -1,10 +1,13 @@
 FROM node:14
 
-WORKDIR socket
+RUN mkdir -p /usr/src/client
 
-COPY . ./
+WORKDIR /usr/src/client
+ADD . /usr/src/client
 
 RUN yarn
+
+ENV NODE_ENV=production
 
 EXPOSE 3000
 

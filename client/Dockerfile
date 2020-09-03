@@ -1,15 +1,21 @@
 FROM node:14
 
-WORKDIR client
+RUN mkdir -p /usr/src/client
 
-COPY . ./
-
+WORKDIR /usr/src/client
+ADD . /usr/src/client
 RUN yarn
+RUN yarn global add serve
+
+ENV NODE_ENV=production
 
 RUN yarn build
 
-RUN yarn global add serve 
+# Remove unused directories
+RUN rm -rf ./src
+RUN rm -rf ./build
 
-EXPOSE 8080
+# Port to expose
+EXPOSE 5000
 
 CMD ["serve", "-s", "dist"]

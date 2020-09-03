@@ -223,7 +223,6 @@ export default {
         categories: this.selected,
         content: this.content.toUpperCase()
       }
-      console.log(document)
       // Post to database
       this.$store.dispatch('lyric/addNewLyric', document)
       this.$store.dispatch('appState/showSnackbar', 'Uspešno dodana pesem, števlika: ' + this.index)
