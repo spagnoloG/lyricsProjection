@@ -27,7 +27,7 @@ export default {
     return apiClient.delete('/lyrics/' + index)
   },
   deleteLyricCategory (category) {
-    return apiClient.delete('/lyricsc/', category)
+    return apiClient.delete('/lyricsc/' + category)
   },
   updateLyric (lyric) {
     return apiClient.patch('/lyrics/' + lyric.index, {

@@ -164,8 +164,8 @@ export default {
             besedilo..
           </p>
         `,
-        onUpdate: ({ getHTML }) => {
-          this.currentLyric.content = String(getHTML())
+        onUpdate: ({ getJSON }) => {
+          this.currentLyric.content = String(getJSON())
         }
       }),
       step: 1,

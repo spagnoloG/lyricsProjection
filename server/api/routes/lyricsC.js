@@ -29,6 +29,7 @@ router.post('/', async(req,res) => {
 
 // Delete specific category
   router.delete('/:recievedCategory', async(req, res) => {
+    console.log(req.params.recievedCategory)
     try {
         const category = await LyricC.deleteOne({category: req.params.recievedCategory});
         res.json(category);

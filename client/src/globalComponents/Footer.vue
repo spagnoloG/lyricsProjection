@@ -1,5 +1,8 @@
 <template>
   <v-footer dark>
+      <v-btn :to="{ name: 'About'}"  icon>
+        <v-icon>mdi-information</v-icon>
+      </v-btn>
       <div>Župnija Šempeter pri Gorici</div>
       <v-spacer></v-spacer>
       <div> {{ new Date().getFullYear() }}</div>

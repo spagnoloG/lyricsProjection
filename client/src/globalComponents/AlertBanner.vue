@@ -25,15 +25,14 @@
       </template>
     </v-banner>
     <!-- Ethernet connection failure -->
-    <v-banner v-if="alert.type === 'ethernet' && alert.show === true">
+    <v-banner v-if="isOffline">
       <v-avatar slot="icon" color="blue" size="50">
         <v-icon icon="mdi-wifi-strength-1-alert" color="white">
           mdi-wifi-strength-1-alert
         </v-icon>
       </v-avatar>
-      {{ alert.message }}
+       Ni internetne povezave! Poglej v nastavitve brezžičnega omrežja.
       <template v-slot:actions>
-        <v-btn text color="primary" @click="closeAlert">Zapri</v-btn>
       </template>
     </v-banner>
   </div>

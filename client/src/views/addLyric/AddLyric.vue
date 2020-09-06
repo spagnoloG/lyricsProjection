@@ -34,6 +34,7 @@
                       light
                       outlined
                       required
+                      autofocus
                     ></v-text-field>
                   </form>
                 </v-col>
@@ -137,7 +138,7 @@
                 </editor-menu-bar>
                 <br>
                 <!-- Editor -->
-                <editor-content class="editor-content" :editor="editor" />
+                <editor-content class="editor-content" :editor="editor" focus />
               </v-col>
               <v-col></v-col>
             </v-row>
@@ -185,13 +186,13 @@ export default {
             Vnesi besedilo...
           </p>
         `,
-        onUpdate: ({ getHTML }) => {
-          this.content = String(getHTML())
+        onUpdate: ({ getJSON }) => {
+          this.content = getJSON()
         }
       }),
       e1: 1,
       title: '',
-      content: '',
+      content: {},
       selected: null
     }
   },
@@ -221,7 +222,7 @@ export default {
         index: this.index,
         title: this.title,
         categories: this.selected,
-        content: this.content.toUpperCase()
+        content: this.content
       }
       // Post to database
       this.$store.dispatch('lyric/addNewLyric', document)

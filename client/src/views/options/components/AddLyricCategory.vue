@@ -15,6 +15,7 @@
             class="black--text"
             outlined
             required
+            autofocus
           ></v-text-field>
         </form>
         </v-container>

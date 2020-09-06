@@ -168,6 +168,12 @@ export const actions = {
           type: 'success'
         }
         dispatch('appState/showAlert', alert, { root: true })
+      } else {
+        const alert = {
+          message: 'Napaka pri brisanju pesmi!',
+          type: 'error'
+        }
+        dispatch('appState/showAlert', alert, { root: true })
       }
       return response
     })
@@ -175,6 +181,14 @@ export const actions = {
   //
   deleteCategory ({ commit, dispatch }, category) {
     const toDelete = state.categories.lastIndexOf(category)
+    console.log(category)
+    if (toDelete === -1) {
+      const alert = {
+        message: 'Napaka pri brisanju kategorije!',
+        type: 'error'
+      }
+      dispatch('appState/showAlert', alert, { root: true })
+    }
 
     return lyricsApi.deleteLyricCategory(category).then(response => {
       commit('delete_category', toDelete)
@@ -182,6 +196,12 @@ export const actions = {
         const alert = {
           message: 'Kategorija uspešno izbrisana',
           type: 'success'
+        }
+        dispatch('appState/showAlert', alert, { root: true })
+      } else {
+        const alert = {
+          message: 'Napaka pri brisanju kategorije iz baze!',
+          type: 'error'
         }
         dispatch('appState/showAlert', alert, { root: true })
       }

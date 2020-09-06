@@ -33,7 +33,7 @@ router.post('/', async(req,res) => {
     const lyric = new Lyric({
         index: Number(req.body.index),
         title: String(req.body.title),
-        content: String(req.body.content),
+        content: req.body.content,
         categories: req.body.categories
     });
     await lyric.validate();

@@ -16,7 +16,7 @@
           <div v-if="lyric">
             <h1>{{ lyricTitle }}</h1>
             <p>
-              <span v-html="lyricContent"></span>
+              {{ lyricContent }}
             </p>
           </div>
           <!-- Show no Lyric or loading -->
