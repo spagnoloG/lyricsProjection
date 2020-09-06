@@ -184,7 +184,6 @@ export default {
   methods: {
     updateEntry () {
       this.$store.dispatch('lyric/updateLyric', this.currentLyric)
-      this.$store.dispatch('appState/showSnackbar', 'Pesem uspešno posodbljena!')
       this.$router.push({ name: 'ListLyrics' })
     }
   },

@@ -1,4 +1,4 @@
-import fetchLyrics from '../../services/fetchLyrics'
+import lyricsApi from '../../services/lyricsApi'
 
 export const namespaced = true
 
@@ -62,34 +62,53 @@ export const mutations = {
 }
 
 export const actions = {
-  addNewLyric ({ commit }, lyric) {
-    return fetchLyrics.postLyric(lyric)
+  addNewLyric ({ commit, dispatch }, lyric) {
+    return lyricsApi.postLyric(lyric)
       .then(response => {
         commit('add_new_lyric', lyric)
-        // Add response check
+        const alert = {
+          message: 'Uspešno dodana pesem številka ' + lyric.index,
+          type: 'success'
+        }
+        dispatch('appState/showAlert', alert, { root: true })
         return response
       })
       .catch(error => {
+        const alert = {
+          message: 'Napaka pri shranjevanju nove pesmi!' + lyric.index,
+          type: 'error'
+        }
+        dispatch('appState/showAlert', alert, { root: true })
         return error
       })
   },
   //
-  addNewCategory ({ commit }, category) {
+  addNewCategory ({ commit, dispatch }, category) {
     const document = {
       category: category
     }
-    return fetchLyrics.postLyricCategory(document)
+    return lyricsApi.postLyricCategory(document)
       .then(response => {
         commit('add_new_category', category)
+        const alert = {
+          message: 'Uspešno dodana nova kategorija',
+          type: 'success'
+        }
+        dispatch('appState/showAlert', alert, { root: true })
         return response
       })
       .catch(error => {
+        const alert = {
+          message: 'Napaka pri shranjevanju nove kategorije!',
+          type: 'error'
+        }
+        dispatch('appState/showAlert', alert, { root: true })
         return error
       })
   },
   //
   fetchLyric ({ commit }, index) {
-    return fetchLyrics.getLyric(index).then(response => {
+    return lyricsApi.getLyric(index).then(response => {
       const data = response.data[0]
       if (typeof data === 'undefined') {
         commit('set_not_found_variable', true)
@@ -102,7 +121,7 @@ export const actions = {
   },
   // dispatch add -> zraven commita
   fetchLyrics ({ commit }) {
-    return fetchLyrics.getLyricsIndexes()
+    return lyricsApi.getLyricsIndexes()
       .then(response => {
         commit('set_lyrics', response.data)
         // Set new lyric index
@@ -120,7 +139,7 @@ export const actions = {
   fetchCategories ({ commit }) {
     var x
     const arrayOfCategories = []
-    return fetchLyrics.getLyricsCategories()
+    return lyricsApi.getLyricsCategories()
       .then(response => {
         for (x in response.data) {
           arrayOfCategories.push(response.data[x].category)
@@ -129,37 +148,71 @@ export const actions = {
       })
   },
   //
-  deleteLyric ({ commit }, index) {
+  deleteLyric ({ commit, dispatch }, index) {
     // Find position of lyric in array by index
     const foundLyric = state.lyrics.find(lyric => lyric.index === index)
     const toDelete = state.lyrics.indexOf(foundLyric)
+    if (toDelete === -1) {
+      const alert = {
+        message: 'Napaka pri brisanju pesmi!',
+        type: 'error'
+      }
+      dispatch('appState/showAlert', alert, { root: true })
+    }
 
-    return fetchLyrics.deleteLyric(index).then(response => {
+    return lyricsApi.deleteLyric(index).then(response => {
       commit('delete_lyric', toDelete)
+      if (response.status === 200) {
+        const alert = {
+          message: 'Pesem uspešno izbrisana',
+          type: 'success'
+        }
+        dispatch('appState/showAlert', alert, { root: true })
+      }
       return response
     })
   },
   //
-  deleteCategory ({ commit }, category) {
+  deleteCategory ({ commit, dispatch }, category) {
     const toDelete = state.categories.lastIndexOf(category)
 
-    return fetchLyrics.deleteLyricCategory(category).then(response => {
+    return lyricsApi.deleteLyricCategory(category).then(response => {
       commit('delete_category', toDelete)
+      if (response.status === 200) {
+        const alert = {
+          message: 'Kategorija uspešno izbrisana',
+          type: 'success'
+        }
+        dispatch('appState/showAlert', alert, { root: true })
+      }
       return response
     })
   },
   //
-  updateLyric ({ commit }, lyric) {
+  updateLyric ({ commit, dispatch }, lyric) {
     const index = lyric.index
     const foundLyric = state.lyrics.find(lyric => lyric.index === index)
     const toUpdate = state.lyrics.indexOf(foundLyric)
+    if (toUpdate === -1) {
+      const alert = {
+        message: 'Napaka med posodabljanjem pesmi!',
+        type: 'error'
+      }
+      dispatch('appState/showAlert', alert, { root: true })
+    }
 
-    return fetchLyrics.updateLyric(lyric).then(response => {
+    return lyricsApi.updateLyric(lyric).then(response => {
       commit('update_lyric', {
         lyric,
         toUpdate
       })
-      // Add a isSuccsesful check to response
+      if (response.status === 200) {
+        const alert = {
+          message: 'Pesem uspešno posodobljena',
+          type: 'success'
+        }
+        dispatch('appState/showAlert', alert, { root: true })
+      }
       return response
     })
   }

@@ -203,7 +203,6 @@ export default {
     deleteLyric () {
       this.deleteDialog = false
       this.$store.dispatch('lyric/deleteLyric', this.selectedLyric.index)
-      this.$store.dispatch('appState/showSnackbar', 'Pesem uspešno izbrisana!')
     },
     onProject () {
       const document = {

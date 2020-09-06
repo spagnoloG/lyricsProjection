@@ -9,4 +9,4 @@ RUN yarn
 # Port to expose
 EXPOSE 4200
 
-CMD ["yarn","serve"]
+CMD ["yarn", "dev"]

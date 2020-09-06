@@ -225,7 +225,6 @@ export default {
       }
       // Post to database
       this.$store.dispatch('lyric/addNewLyric', document)
-      this.$store.dispatch('appState/showSnackbar', 'Uspešno dodana pesem, števlika: ' + this.index)
       this.$router.push({ name: 'Home' })
     }
   },

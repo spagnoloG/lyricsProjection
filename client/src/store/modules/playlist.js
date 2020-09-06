@@ -38,13 +38,23 @@ export const mutations = {
 }
 
 export const actions = {
-  addNewPlaylist ({ commit }, playlist) {
+  addNewPlaylist ({ commit, dispatch }, playlist) {
     return playlistsApi.postPlaylist(playlist)
       .then(response => {
         commit('add_new_playlist', playlist)
+        const alert = {
+          message: 'Uspešno dodan nov seznam predvajanj',
+          type: 'success'
+        }
+        dispatch('appState/showAlert', alert, { root: true })
         return response
       })
       .catch(error => {
+        const alert = {
+          message: 'Napaka pri shranjevanju seznama predvajanj!',
+          type: 'error'
+        }
+        dispatch('appState/showAlert', alert, { root: true })
         return error
       })
   },
@@ -69,27 +79,42 @@ export const actions = {
       })
   },
   //
-  deletePlaylist ({ commit }, playlistId) {
+  deletePlaylist ({ commit, dispatch }, playlistId) {
     // Find position of playlist in array by Id
     const foundPlaylist = state.playlists.find(playlist => playlist._id === playlistId)
     const toDelete = state.playlists.indexOf(foundPlaylist)
     if (toDelete === -1) {
-      return // catch err
+      const alert = {
+        message: 'Napaka pri brisanju seznama!',
+        type: 'error'
+      }
+      dispatch('appState/showAlert', alert, { root: true })
     }
 
     return playlistsApi.deletePlaylist(playlistId).then(response => {
       commit('delete_playlist', toDelete)
+      if (response.status === 200) {
+        const alert = {
+          message: 'Uspešno izbrisan seznam predvajanj',
+          type: 'success'
+        }
+        dispatch('appState/showAlert', alert, { root: true })
+      }
       return response
     })
   },
   //
-  updatePlaylist ({ commit }, playlist) {
+  updatePlaylist ({ commit, dispatch }, playlist) {
     // Find position of playlist in array by Id
     const playlistId = playlist._id
     const foundPlaylist = state.playlists.find(playlist => playlist._id === playlistId)
     const toUpdate = state.playlists.indexOf(foundPlaylist)
     if (toUpdate === -1) {
-      return // catch err
+      const alert = {
+        message: 'Napaka med posodabljanjem seznama!',
+        type: 'error'
+      }
+      dispatch('appState/showAlert', alert, { root: true })
     }
 
     return playlistsApi.updatePlaylist(playlist).then(response => {
@@ -97,6 +122,13 @@ export const actions = {
         toUpdate,
         playlist
       })
+      if (response.status === 200) {
+        const alert = {
+          message: 'Seznam uspešno posodobljen',
+          type: 'success'
+        }
+        dispatch('appState/showAlert', alert, { root: true })
+      }
       return response
     })
   }

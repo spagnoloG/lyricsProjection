@@ -2,9 +2,10 @@ export const namespaced = true
 
 export const state = {
   drawer: false,
-  snackbar: {
+  alert: {
     show: false,
-    content: ''
+    message: '',
+    type: ''
   }
 }
 
@@ -12,11 +13,11 @@ export const mutations = {
   set_drawer_state (state, drawer) {
     state.drawer = drawer
   },
-  show_snackbar (state, snackbar) {
-    state.snackbar = snackbar
+  show_alert (state, alert) {
+    state.alert = alert
   },
-  hide_snackbar (state, snackbar) {
-    state.snackbar.show = false
+  hide_alert (state, alert) {
+    state.alert.show = false
   }
 }
 
@@ -24,15 +25,21 @@ export const actions = {
   setDrawerState ({ commit }, drawer) {
     commit('set_drawer_state', drawer)
   },
-  showSnackbar ({ commit }, notification) {
-    const snackbar = {
+  showAlert ({ commit }, alertInfo) {
+    const alert = {
       show: true,
-      content: notification
+      message: alertInfo.message,
+      type: alertInfo.type
     }
-    commit('show_snackbar', snackbar)
+    commit('show_alert', alert)
+    if (alertInfo.type === 'error' || alertInfo.type === 'success') {
+      setTimeout(() => {
+        commit('hide_alert')
+      }, 3000)
+    }
   },
-  hideSnackbar ({ commit }) {
-    commit('hide_snackbar')
+  hideAlert ({ commit }) {
+    commit('hide_alert')
   }
 }
 
@@ -40,7 +47,7 @@ export const getters = {
   getDrawerState () {
     return state.drawer
   },
-  getSnackbar () {
-    return state.snackbar
+  getAlert () {
+    return state.alert
   }
 }
