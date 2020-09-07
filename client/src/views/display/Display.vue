@@ -1,6 +1,14 @@
 <template>
   <div class="main">
     <v-container fluid>
+      <v-row class="fill-height" align="center" justify="center">
+      <v-col cols="2">
+        <!-- Show search box -->
+        <div v-if="showInputField">
+          <v-text-field v-model="userInput" align="center" autofocus type="number"> </v-text-field>
+        </div>
+      </v-col>
+    </v-row>
       <v-row v-if="!notFound">
         <v-col align="center">
           <!-- Lyric title and content -->
@@ -15,7 +23,12 @@
       </v-row>
       <v-row v-if="notFound">
         <v-col align="center">
-          <h1>Pesem {{ currentLyricIndex}} ne obstaja..</h1>
+          <div v-if="currentLyricIndex === -1">
+            <h1>Vtipkaj številko pesmi...</h1>
+          </div>
+          <div v-else>
+            <h1>Pesem {{ currentLyricIndex}} ne obstaja!</h1>
+          </div>
         </v-col>
       </v-row>
     </v-container>
@@ -29,7 +42,9 @@ export default {
   name: 'Display',
   data () {
     return {
-      scroll: 0
+      scroll: 0,
+      showInputField: false,
+      userInput: ''
     }
   },
   computed: {
@@ -69,10 +84,30 @@ export default {
         this.scroll += 60
       }
       window.scroll(0, this.scroll)
+    },
+    doCommand (e) {
+      const cmd = String.fromCharCode(e.keyCode).toLowerCase()
+      if (!isNaN(cmd)) {
+        clearTimeout(this.gotoTimeout)
+        this.showInputField = true
+        this.gotoTimeout = setTimeout(() => {
+          this.showInputField = false
+          if (this.userInput !== '') {
+            const document = {
+              currentLyric: this.userInput,
+              currentPlaylist: null
+            }
+            this.$store.dispatch('socket/sendRemoteMessage', document)
+          }
+          this.userInput = ''
+        }, 1000)
+      }
     }
   },
   created () {
     this.$store.dispatch('socket/getCurrentState')
+    // Setup keyboard listener
+    window.addEventListener('keypress', this.doCommand)
   }
 }
 </script>

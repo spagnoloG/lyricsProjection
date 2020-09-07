@@ -13,15 +13,6 @@ const socket = io('http://' + window.location.hostname + ':3000')
 
 Vue.use(VueSocketIOExt, socket, { store })
 
-// Register a global custom directive called v-focus
-Vue.directive('focus', {
-  // When the bound element is inserted into the DOM...
-  inserted: (el) => {
-    // Focus the element
-    el.focus()
-  }
-})
-
 Vue.config.productionTip = false
 
 new Vue({

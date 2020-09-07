@@ -1,11 +1,10 @@
 <template>
   <v-container fluid>
-    <v-row align="center">
-      <v-col align="center">
+    <v-row class="fill-height" align="center" justify="center">
+      <v-col class="fill-height" align="center" justify="center" cols="2">
         <!-- Show search box -->
         <div v-if="showInputField">
-          <input v-model="userInput" v-focus class="search-box" type="number" />
-          <hr />
+          <v-text-field v-model="userInput" align="center" autofocus type="number"> </v-text-field>
         </div>
       </v-col>
     </v-row>
