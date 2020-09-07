@@ -186,8 +186,8 @@ export default {
             Vnesi besedilo...
           </p>
         `,
-        onUpdate: ({ getJSON }) => {
-          this.content = getJSON()
+        onUpdate: ({ getHTML }) => {
+          this.content = getHTML()
         }
       }),
       e1: 1,

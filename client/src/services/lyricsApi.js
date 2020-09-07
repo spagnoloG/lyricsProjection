@@ -32,7 +32,7 @@ export default {
   updateLyric (lyric) {
     return apiClient.patch('/lyrics/' + lyric.index, {
       title: lyric.title,
-      content: lyric.content,
+      content: String(lyric.content),
       categories: lyric.categories
     })
   },
