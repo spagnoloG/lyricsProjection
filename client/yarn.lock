@@ -8707,11 +8707,6 @@ vue-offline@^2.0.8:
   resolved "https://registry.yarnpkg.com/vue-offline/-/vue-offline-2.0.8.tgz#d3a01b3bc5e6bb46fb9fd914443064d837915300"
   integrity sha512-r9sU3HTnnaWEv6Wgl8RC/mrSRceSE6jIEkLNsNKR1uzCkVizvbG7X2EEU3uMcEsHqOfDLjl1TakUtlXb/xgUWg==
 
-vue-online@^1.1.9:
-  version "1.1.9"
-  resolved "https://registry.yarnpkg.com/vue-online/-/vue-online-1.1.9.tgz#0a3b0992881e47c3574f0ca3a7f99901ed109281"
-  integrity sha1-CjsJkogeR8NXTwyjp/mZAe0QkoE=
-
 vue-router@^3.2.0:
   version "3.4.3"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.4.3.tgz#fa93768616ee338aa174f160ac965167fa572ffa"
