@@ -23,5 +23,6 @@ sudo serve -s dist -l 80 &
 echo "Starting electron window..."
 cd ..
 cd electron-client
+yarn install
 yarn start &
 echo "Successfully completed installation and started app:)"
