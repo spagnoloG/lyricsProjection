@@ -1,5 +1,6 @@
 #!/bin/sh
 # Requirements: local mongodb, yarn and global serve package
+# Raspberry Pi autostart folder: .config/autostart
 echo "Starting lyrics projection app:)"
 cd ~/Documents/lyricsProjection
 cd server/socketIO
@@ -16,5 +17,5 @@ cd client
 sudo serve -s dist -l 80 &
 echo "Starting electron app..."
 cd ~/Documents/lyricsProjection/electron-client
-yarn start
+yarn start &
 echo "Successfully started projection app:)"

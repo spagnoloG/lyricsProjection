@@ -1,6 +1,6 @@
 #!/bin/sh
 # Requirements: local mongodb, yarn and global serve package
-echo "Welcome to lyrics projection app"
+echo "Welcome to lyrics projection app :)"
 cd client
 echo "Building client..."
 yarn install
@@ -19,7 +19,7 @@ cd ..
 cd ..
 echo "serving client..."
 cd client 
-serve -s dist &
+sudo serve -s dist -l 80 &
 echo "Starting electron window..."
 cd ..
 cd electron-client
