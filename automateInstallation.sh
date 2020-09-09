@@ -20,4 +20,8 @@ cd ..
 echo "serving client..."
 cd client 
 serve -s dist &
+echo "Starting electron window..."
+cd ..
+cd electron-client
+yarn start &
 echo "Successfully completed installation and started app:)"
