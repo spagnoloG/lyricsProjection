@@ -12,6 +12,9 @@ yarn serve &
 cd ..
 cd ..
 echo "serving client..."
-cd client 
-serve -s dist & 
+cd client
+sudo serve -s dist -l 80 &
+echo "Starting electron app..."
+cd ~/Documents/lyricsProjection/electron-client
+yarn start
 echo "Successfully started projection app:)"
