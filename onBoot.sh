@@ -1,6 +1,7 @@
 #!/bin/sh
 # Requirements: local mongodb, yarn and global serve package
 echo "Starting lyrics projection app:)"
+cd ~/Documents/lyricsProjection
 cd server/socketIO
 echo "Starting socket-io server..."
 yarn serve &
