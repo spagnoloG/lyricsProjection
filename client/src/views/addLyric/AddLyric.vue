@@ -170,6 +170,7 @@ import {
 } from 'tiptap-extensions'
 
 export default {
+  name: 'AddLyric',
   components: {
     EditorContent,
     EditorMenuBar

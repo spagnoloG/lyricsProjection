@@ -152,6 +152,7 @@ import { mapGetters } from 'vuex'
 import draggable from 'vuedraggable'
 
 export default {
+  name: 'EditPlaylist',
   components: {
     draggable
   },

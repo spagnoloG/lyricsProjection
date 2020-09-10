@@ -118,6 +118,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
+  name: 'ListPlaylists',
   data () {
     return {
       search: '',

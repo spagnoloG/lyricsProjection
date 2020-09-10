@@ -18,6 +18,7 @@ import AddLyricCategory from './components/AddLyricCategory.vue'
 import DisplayStatus from './components/DisplayStatus.vue'
 
 export default {
+  name: 'Options',
   components: {
     AddLyricCategory,
     DisplayStatus

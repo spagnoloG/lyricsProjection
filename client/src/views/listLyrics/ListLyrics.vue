@@ -8,6 +8,7 @@
 import List from './components/List.vue'
 
 export default {
+  name: 'ListLyrics',
   components: {
     List
   },

@@ -22,6 +22,7 @@ import RemoteController from './components/RemoteController.vue'
 import SlideController from './components/SlideController'
 
 export default {
+  name: 'Remote',
   components: {
     RemoteController,
     SlideController

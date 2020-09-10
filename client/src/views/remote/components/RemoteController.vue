@@ -166,6 +166,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
+  name: 'RemoteController',
   data () {
     return {
       userInput: '',

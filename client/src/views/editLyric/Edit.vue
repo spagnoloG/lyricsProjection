@@ -148,6 +148,7 @@ import {
 } from 'tiptap-extensions'
 
 export default {
+  name: 'Edit',
   components: {
     EditorContent,
     EditorMenuBar

@@ -119,6 +119,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
+  name: 'SlideController',
   data () {
     return {
       step: 0,

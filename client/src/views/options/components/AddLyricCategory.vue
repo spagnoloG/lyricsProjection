@@ -130,6 +130,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
+  name: 'AddLyricCategory',
   data () {
     return {
       addCategoryDialog: false,

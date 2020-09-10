@@ -159,6 +159,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
+  name: 'List',
   data () {
     return {
       search: '',

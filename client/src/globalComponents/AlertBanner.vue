@@ -41,6 +41,7 @@
 <script>
 import { mapGetters } from 'vuex'
 export default {
+  name: 'AlertBanner',
   computed: {
     ...mapGetters({
       alert: 'appState/getAlert'
