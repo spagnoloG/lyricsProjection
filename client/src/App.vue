@@ -1,8 +1,8 @@
 <template>
   <v-app>
-    <navigation-drawer v-if="$router.currentRoute.name !== 'Display'"></navigation-drawer>
+    <navigation-drawer v-if="$router.currentRoute.name !== 'Display' && $router.currentRoute.name !== 'Print'"></navigation-drawer>
 
-    <navbar v-if="$router.currentRoute.name !== 'Display'"></navbar>
+    <navbar v-if="$router.currentRoute.name !== 'Display' && $router.currentRoute.name !== 'Print'"></navbar>
 
     <v-main>
       <alert-banner></alert-banner>
@@ -13,7 +13,7 @@
       </v-container>
     </v-main>
 
-    <footer-component v-if="$router.currentRoute.name !== 'Display'">
+    <footer-component v-if="$router.currentRoute.name !== 'Display' && $router.currentRoute.name !== 'Print'">
     </footer-component>
   </v-app>
 </template>

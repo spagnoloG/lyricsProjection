@@ -69,6 +69,11 @@ const routes = [
     component: () => import('../views/remote/Remote.vue')
   },
   {
+    path: '/print',
+    name: 'Print',
+    component: () => import('../views/print/Print.vue')
+  },
+  {
     path: '/404',
     component: () => import('../views/notFound/NotFound.vue')
   },

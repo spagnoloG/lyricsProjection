@@ -132,7 +132,6 @@
               Izberi kategorijo
             </v-card-title>
             <v-divider></v-divider>
-            <v-card-text></v-card-text>
             <v-container>
               <v-row>
                 <v-col>
@@ -145,6 +144,20 @@
                   hint="možne kategorije"
                   persistent-hint
                   ></v-select>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-card>
+          <br>
+          <v-card class="mx-auto">
+            <v-card-title class="white--text secondary">
+              Natisni seznam pesmi
+            </v-card-title>
+            <v-divider></v-divider>
+            <v-container fluid>
+              <v-row class="fill-height">
+                <v-col align="center" justify="center">
+                  <v-btn :to=" { name: 'Print'}">Natisni</v-btn>
                 </v-col>
               </v-row>
             </v-container>
