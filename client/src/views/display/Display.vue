@@ -31,6 +31,11 @@
           </div>
         </v-col>
       </v-row>
+      <v-row v-if="!notFound && currentLyricIndex === -1">
+        <v-col align="center">
+          <h1>Vtipkaj številko pesmi...</h1>
+        </v-col>
+      </v-row>
     </v-container>
   </div>
 </template>
