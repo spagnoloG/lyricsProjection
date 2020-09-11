@@ -4,7 +4,7 @@
     <v-row>
       <v-col align="center">
         <h1>O aplikaciji</h1>
-        <p>Za župnijo Šempeter, by G.</p>
+        <p>Za župnijo Šempeter pri Gorici, by G.</p>
       </v-col>
     </v-row>
     <v-row>

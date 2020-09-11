@@ -68,7 +68,7 @@
       <v-spacer></v-spacer>
 
       <v-btn
-      color="primary"
+      color="tercinary"
       class="text--primary"
       @click="addCategoryDialog = true"
       fab small>

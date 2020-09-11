@@ -6,7 +6,7 @@
         <v-card-title class="white--text secondary">
           Seznami predvajanj
           <v-spacer></v-spacer>
-          <v-btn @click="newPlaylist" color="primary" class="text--primary" fab small>
+          <v-btn @click="newPlaylist" color="tercinary" class="text--primary" fab small>
             <v-icon>mdi-plus</v-icon>
           </v-btn>
         </v-card-title>

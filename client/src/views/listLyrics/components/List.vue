@@ -88,7 +88,7 @@
             <v-card-title class="white--text secondary">
               Seznam pesmi
               <v-spacer></v-spacer>
-              <v-btn @click="goToAddLyric" color="primary" class="text--primary" fab small>
+              <v-btn @click="goToAddLyric" color="tercinary" class="text--primary" fab small>
                 <v-icon>mdi-plus</v-icon>
               </v-btn>
             </v-card-title>
