@@ -14,6 +14,7 @@
         <v-divider></v-divider>
 
         <v-card-text>
+          Dodaj pesmi v nov seznam, ali posodobi obstoječega.
           <v-text-field v-model="search" label="Išči" @click="page = 1" append-icon="mdi-magnify"></v-text-field>
         </v-card-text>
 

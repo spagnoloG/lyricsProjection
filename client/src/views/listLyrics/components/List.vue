@@ -96,6 +96,7 @@
             <v-divider></v-divider>
 
             <v-card-text>
+              Išči, urejaj in projeciraj pesmi.
               <v-text-field v-model="search" label="Išči" @click="page = 1" append-icon="mdi-magnify"></v-text-field>
             </v-card-text>
 
@@ -152,6 +153,8 @@
           <v-card class="mx-auto">
             <v-card-title class="white--text secondary">
               Natisni seznam pesmi
+              <v-spacer></v-spacer>
+              <v-icon>mdi-printer</v-icon>
             </v-card-title>
             <v-divider></v-divider>
             <v-container fluid>

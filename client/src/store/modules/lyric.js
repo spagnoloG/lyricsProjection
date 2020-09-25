@@ -181,7 +181,6 @@ export const actions = {
   //
   deleteCategory ({ commit, dispatch }, category) {
     const toDelete = state.categories.lastIndexOf(category)
-    console.log(category)
     if (toDelete === -1) {
       const alert = {
         message: 'Napaka pri brisanju kategorije!',

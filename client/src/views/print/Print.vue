@@ -1,29 +1,35 @@
 <template>
   <div>
-    <v-container fluid>
-      <v-row  class="fill-height">
-        <v-col align="end">
-          <v-btn @click="print()" icon>
-            <v-icon>mdi-printer</v-icon>
-         </v-btn>
-        </v-col>
-      </v-row>
-      <v-row class="fill-height">
-        <v-col align="center" justify="center">
-          <table class="styled-table">
-            <thead>
-              <tr>
-                <th>Številka pesmi</th>
-                <th>Naslov pesmi</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="lyric in lyrics" :key="lyric.index">
-                <td>{{ lyric.index }}</td>
-                <td>{{ lyric.title }}</td>
-              </tr>
-            </tbody>
-          </table>
+    <v-container class="fill-height" fluid>
+      <v-row align="center" justify="center">
+        <v-col cols="8">
+          <v-card class="mx-auto">
+            <v-card-title class="white--text secondary">
+              Seznam pesmi župnije Šempeter pri Gorici
+              <v-spacer></v-spacer>
+              <v-btn @click="print()" icon>
+                <v-icon>mdi-printer</v-icon>
+              </v-btn>
+            </v-card-title>
+
+            <v-divider></v-divider>
+
+            <v-card-text>
+              Seznam pesmi, primeren za tiskanje
+            </v-card-text>
+             <div v-for="lyric in lyrics" :key="lyric.index">
+              <v-list-item>
+                <v-list-item-avatar>
+                  <v-avatar color="secondary" size="56" class="white--text">{{ lyric.index }}</v-avatar>
+                </v-list-item-avatar>
+
+                <v-list-item-content>
+                  <v-list-item-title>{{ lyric.title }}</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </div>
+            <v-divider></v-divider>
+          </v-card>
         </v-col>
       </v-row>
     </v-container>
@@ -35,15 +41,6 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'Print',
-  data () {
-    return {
-      headers: [
-        { text: 'Naslov pesmi', align: 'start', value: 'title' },
-        { text: 'Številka pesmi', align: 'start', value: 'index' }
-      ],
-      tests: 70
-    }
-  },
   computed: {
     ...mapGetters({
       lyrics: 'lyric/getAllLyrics'
@@ -61,40 +58,4 @@ export default {
 </script>
 
 <style scoped>
-.styled-table {
-    border-collapse: collapse;
-    margin: 25px 0;
-    font-size: 0.9em;
-    font-family: sans-serif;
-    min-width: 400px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-}
-
-.styled-table thead tr {
-    background-color: #009879;
-    color: #ffffff;
-    text-align: left;
-}
-
-.styled-table th,
-.styled-table td {
-    padding: 12px 15px;
-}
-
-.styled-table tbody tr {
-    border-bottom: 1px solid #dddddd;
-}
-
-.styled-table tbody tr:nth-of-type(even) {
-    background-color: #bdbdbd;
-}
-
-.styled-table tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
-}
-
-.styled-table tbody tr.active-row {
-    font-weight: bold;
-    color: #009879;
-}
 </style>
