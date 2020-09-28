@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <v-container fluid>
     <div class="list">
       <!-- Card header -->
       <v-card class="mx-auto" max-width="600">
@@ -112,7 +112,7 @@
         </v-btn>
       </v-overlay>
     </div>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -173,4 +173,3 @@ export default {
   }
 }
 </script>
-// https://vuetifyjs.com/en/components/slide-groups/

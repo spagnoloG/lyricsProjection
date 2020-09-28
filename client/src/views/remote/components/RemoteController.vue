@@ -190,22 +190,27 @@ export default {
       this.userInput = this.userInput.slice(0, -1)
     },
     onProject () {
-      this.checkForUserErrors()
-      const document = {
-        currentLyric: this.userInput,
-        currentPlaylist: null
+      if (this.checkForUserErrors()) {
+        const document = {
+          currentLyric: this.userInput,
+          currentPlaylist: null
+        }
+        this.$store.dispatch('socket/sendRemoteMessage', document)
+        this.userInput = ''
       }
-      this.$store.dispatch('socket/sendRemoteMessage', document)
     },
     checkForUserErrors () {
       if (this.selected === '') {
         this.errorMessage = 'Izberi vrsto projeciranja!'
         this.alert = true
+        return false
       } else if (this.userInput === '') {
         this.errorMessage = 'Vnesi številko!'
         this.alert = true
+        return false
       } else {
         this.alert = false
+        return true
       }
     },
     scroll (direction) {

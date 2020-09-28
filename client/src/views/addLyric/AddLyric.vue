@@ -1,5 +1,6 @@
 <template>
-  <v-stepper v-model="e1">
+  <v-container fluid>
+    <v-stepper v-model="e1">
     <v-stepper-header>
       <v-stepper-step :complete="e1 > 1" step="1">Vnesi naslov</v-stepper-step>
 
@@ -158,6 +159,7 @@
       </v-stepper-content>
     </v-stepper-items>
   </v-stepper>
+  </v-container>
 </template>
 
 <script>

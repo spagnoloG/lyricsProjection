@@ -6,11 +6,11 @@
 
     <v-main>
       <alert-banner></alert-banner>
-      <v-container fluid>
+
         <v-fade-transition mode="out-in">
           <router-view></router-view>
         </v-fade-transition>
-      </v-container>
+
     </v-main>
 
     <footer-component v-if="$router.currentRoute.name !== 'Display' && $router.currentRoute.name !== 'Print'">

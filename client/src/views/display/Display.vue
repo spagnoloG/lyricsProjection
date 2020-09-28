@@ -1,15 +1,17 @@
 <template>
   <div class="main">
-    <v-container fluid>
-      <v-row class="fill-height" align="center" justify="center">
-      <v-col cols="2">
+    <v-container class="fill-height">
+      <v-row align="center" justify="center" v-if="showInputField">
+        <v-col cols="2">
         <!-- Show search box -->
-        <div v-if="showInputField">
+        <div>
           <v-text-field v-model="userInput" align="center" autofocus type="number"> </v-text-field>
         </div>
       </v-col>
     </v-row>
       <v-row v-if="!notFound">
+        <v-col cols="2">
+        </v-col>
         <v-col align="center">
           <!-- Lyric title and content -->
           <div>
@@ -20,6 +22,7 @@
             </p>
           </div>
         </v-col>
+        <v-col cols="2"></v-col>
       </v-row>
       <v-row v-if="notFound">
         <v-col align="center">
@@ -110,6 +113,7 @@ export default {
     }
   },
   created () {
+    this.$vuetify.theme.dark = true
     this.$store.dispatch('socket/getCurrentState')
     // Setup keyboard listener
     window.addEventListener('keypress', this.doCommand)
