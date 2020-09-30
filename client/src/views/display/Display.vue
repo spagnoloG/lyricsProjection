@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="main nocursor">
     <v-container class="fill-height">
       <v-row align="center" justify="center" v-if="showInputField">
         <v-col cols="2">
@@ -120,3 +120,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.nocursor {
+  cursor: none;
+}
+</style>
