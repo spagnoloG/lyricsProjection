@@ -15,9 +15,9 @@
         <v-col align="center">
           <!-- Lyric title and content -->
           <div>
-            <h1>{{ currentLyric.title.toUpperCase() }}</h1>
+            <h1 class="text-h2">{{ currentLyric.title.toUpperCase() }}</h1>
             <br>
-            <p>
+            <p class="text-h5">
               <span v-html="currentLyric.content.toUpperCase()"></span>
             </p>
           </div>
