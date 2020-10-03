@@ -11,13 +11,14 @@ var state = {
 Socketio.on('connection', socket => {
     socket.on('remoteMessage', data => {
         state = data
+        logState()
         Socketio.emit('onChangedState', state)
     })
     socket.on('remoteScroll', data => {
         Socketio.emit('onScroll', data)
     })
     socket.on('getCurrentState', () => {
-        console.log(state)
+        logState()
         Socketio.emit('onChangedState', state)
     })
     socket.on('refreshDisplay', () => {
@@ -29,6 +30,13 @@ Socketio.on('connection', socket => {
 Http.listen(3000, () => {
     console.log('Listening at :3000...');
 });
+
+function logState(){
+    console.log('Current lyric: ' + state.currentLyric)
+    if(state.currentPlaylist) {
+        console.log('Current playlist: ' + state.currentPlaylist)
+    }
+} 
 
 
 
