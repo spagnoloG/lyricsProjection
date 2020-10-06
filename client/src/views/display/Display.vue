@@ -10,19 +10,19 @@
       </v-col>
     </v-row>
       <v-row v-if="!notFound">
-        <v-col cols="2">
+        <v-col cols="3">
         </v-col>
         <v-col align="center">
           <!-- Lyric title and content -->
           <div>
-            <h1 class="text-h2">{{ currentLyric.title.toUpperCase() }}</h1>
+            <h1 class="text-h3"><strong>{{ currentLyric.title.toUpperCase() }}</strong></h1>
             <br>
-            <p class="text-h5">
+            <p class="text-h4">
               <span v-html="currentLyric.content.toUpperCase()"></span>
             </p>
           </div>
         </v-col>
-        <v-col cols="2"></v-col>
+        <v-col cols="3"></v-col>
       </v-row>
       <v-row v-if="notFound">
         <v-col align="center">
