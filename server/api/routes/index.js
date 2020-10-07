@@ -10,7 +10,4 @@ router.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../views', 'index.html'));
 });
 
-
-// Use localhost:9000/api followed by the required path.
-
 module.exports = router;

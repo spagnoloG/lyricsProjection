@@ -31,6 +31,8 @@ app.use('/lyricsit', require('./routes/lyricsit'));
 app.use('/lyricsc', require('./routes/lyricsC'));
 // Playlists
 app.use('/playlists', require('./routes/playlists'));
+// Application state
+app.use('/state', require('./routes/appState'));
 
 // Connect to database after 15s
 mongoose.connect("mongodb://localhost:27017/projectionDb",
