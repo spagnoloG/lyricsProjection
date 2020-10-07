@@ -17,7 +17,7 @@ exports.playlists_new_playlist = (req, res, next) => {
                     type: 'GET',
                     url: req.get('host') + '/playlists/' + result._id
                 }
-            });   
+            });
         })
         .catch(err => {
             console.log(err);
@@ -55,22 +55,21 @@ exports.playlists_get_specific_playlist = (req, res, next) => {
     const id = req.params.playlistId;
     Playlist.findById(id)
         .select('_id indexes playlistName playlistDescription')
-        .then(doc =>{
-            if(doc) {
+        .then(doc => {
+            if (doc) {
                 res.status(200).json({
                     playlist: doc
                 })
             } else {
-                res.status(404).json({ message: 'No valid entry found for provided id!'})
+                res.status(404).json({ message: 'No valid entry found for provided id!' })
             }
         })
-        .catch(err =>{
+        .catch(err => {
             console.log(err);
             res.status(500).json({
                 error: err
             });
         });
-
 }
 
 exports.playlists_update_playlist = (req, res, next) => {
@@ -80,7 +79,7 @@ exports.playlists_update_playlist = (req, res, next) => {
     // if one change is given, one variable will change,
     // if two,three variable changes are given,
     //  two, three variables will be changed in db
-    Playlist.updateOne({_id: id}, props)
+    Playlist.updateOne({ _id: id }, props)
         .then(result => {
             res.status(200).json({
                 message: 'Playlist updated!',
@@ -100,11 +99,15 @@ exports.playlists_update_playlist = (req, res, next) => {
 
 exports.playlists_delete_playlist = (req, res, next) => {
     const id = req.params.playlistId;
-    Playlist.deleteOne({_id: id})
+    Playlist.deleteOne({ _id: id })
         .then(result => {
-            res.status(200).json({
-                message: "Playlist successfully deleted!"
-            });
+            if (result.n === 0) {
+                res.status(404).json({ message: 'No valid entry found for provided id' });
+            } else {
+                res.status(200).json({
+                    message: "Playlist successfully deleted!"
+                });
+            }
         })
         .catch(err => {
             console.log(err);

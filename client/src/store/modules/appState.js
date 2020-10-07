@@ -6,7 +6,12 @@ export const state = {
     show: false,
     message: '',
     type: ''
-  }
+  },
+  stateId: null,
+  marginLeft: null,
+  marginRight: null,
+  organisation: null,
+  appName: null
 }
 
 export const mutations = {
