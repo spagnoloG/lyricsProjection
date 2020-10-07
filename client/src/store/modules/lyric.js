@@ -101,7 +101,7 @@ export const actions = {
 
   fetchLyric ({ commit }, lyricId) {
     return lyricsApi.getLyric(lyricId).then(response => {
-      const data = response.data[0]
+      const data = response.data.lyric
       if (typeof data === 'undefined') {
         commit('set_not_found_variable', true)
       } else {
