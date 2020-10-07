@@ -20,17 +20,17 @@ export default {
   getLyricsCategories () {
     return apiClient.get('/lyricsc')
   },
-  getLyric (index) {
-    return apiClient.get('/lyrics/' + index)
+  getLyric (lyricId) {
+    return apiClient.get('/lyrics/' + lyricId)
   },
-  deleteLyric (index) {
-    return apiClient.delete('/lyrics/' + index)
+  deleteLyric (lyricId) {
+    return apiClient.delete('/lyrics/' + lyricId)
   },
   deleteLyricCategory (category) {
     return apiClient.delete('/lyricsc/' + category)
   },
   updateLyric (lyric) {
-    return apiClient.patch('/lyrics/' + lyric.index, {
+    return apiClient.patch('/lyrics/' + lyric._id, {
       title: lyric.title,
       content: String(lyric.content),
       categories: lyric.categories

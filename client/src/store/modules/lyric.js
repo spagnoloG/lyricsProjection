@@ -6,12 +6,7 @@ export const state = {
   lyrics: [], // index, title and category
   categories: [],
   lyricsTotal: 0,
-  currentLyric: {
-    index: 0,
-    title: '',
-    content: '',
-    categories: []
-  },
+  currentLyric: null,
   newLyricIndex: 0,
   notFound: false
 }
@@ -27,10 +22,7 @@ export const mutations = {
     state.lyricsTotal = lyricsTotal
   },
   set_lyric (state, currentLyric) {
-    state.currentLyric.title = currentLyric.title
-    state.currentLyric.content = currentLyric.content
-    state.currentLyric.index = currentLyric.index
-    state.currentLyric.categories = currentLyric.categories
+    state.currentLyric = currentLyric
   },
   set_new_lyric_index (state, newLyricIndex) {
     state.newLyricIndex = newLyricIndex
@@ -67,7 +59,7 @@ export const actions = {
       .then(response => {
         commit('add_new_lyric', lyric)
         const alert = {
-          message: 'Uspešno dodana pesem številka ' + lyric.index,
+          message: 'Uspešno dodana pesem',
           type: 'success'
         }
         dispatch('appState/showAlert', alert, { root: true })
@@ -75,14 +67,14 @@ export const actions = {
       })
       .catch(error => {
         const alert = {
-          message: 'Napaka pri shranjevanju nove pesmi!' + lyric.index,
+          message: 'Napaka pri shranjevanju nove pesmi!',
           type: 'error'
         }
         dispatch('appState/showAlert', alert, { root: true })
         return error
       })
   },
-  //
+
   addNewCategory ({ commit, dispatch }, category) {
     const document = {
       category: category
@@ -106,9 +98,9 @@ export const actions = {
         return error
       })
   },
-  //
-  fetchLyric ({ commit }, index) {
-    return lyricsApi.getLyric(index).then(response => {
+
+  fetchLyric ({ commit }, lyricId) {
+    return lyricsApi.getLyric(lyricId).then(response => {
       const data = response.data[0]
       if (typeof data === 'undefined') {
         commit('set_not_found_variable', true)
@@ -119,7 +111,7 @@ export const actions = {
       return data
     })
   },
-  // dispatch add -> zraven commita
+
   fetchLyrics ({ commit }) {
     return lyricsApi.getLyricsIndexes()
       .then(response => {
@@ -135,7 +127,7 @@ export const actions = {
         commit('set_lyrics_total', response.data.length)
       })
   },
-  //
+
   fetchCategories ({ commit }) {
     var x
     const arrayOfCategories = []
@@ -147,10 +139,10 @@ export const actions = {
         commit('set_categories', arrayOfCategories)
       })
   },
-  //
-  deleteLyric ({ commit, dispatch }, index) {
+
+  deleteLyric ({ commit, dispatch }, lyricId) {
     // Find position of lyric in array by index
-    const foundLyric = state.lyrics.find(lyric => lyric.index === index)
+    const foundLyric = state.lyrics.find(lyric => lyric._id === lyricId)
     const toDelete = state.lyrics.indexOf(foundLyric)
     if (toDelete === -1) {
       const alert = {
@@ -160,7 +152,7 @@ export const actions = {
       dispatch('appState/showAlert', alert, { root: true })
     }
 
-    return lyricsApi.deleteLyric(index).then(response => {
+    return lyricsApi.deleteLyric(lyricId).then(response => {
       commit('delete_lyric', toDelete)
       if (response.status === 200) {
         const alert = {
@@ -178,7 +170,7 @@ export const actions = {
       return response
     })
   },
-  //
+
   deleteCategory ({ commit, dispatch }, category) {
     const toDelete = state.categories.lastIndexOf(category)
     if (toDelete === -1) {
@@ -207,10 +199,10 @@ export const actions = {
       return response
     })
   },
-  //
+
   updateLyric ({ commit, dispatch }, lyric) {
-    const index = lyric.index
-    const foundLyric = state.lyrics.find(lyric => lyric.index === index)
+    const id = lyric._id
+    const foundLyric = state.lyrics.find(lyric => lyric._id === id)
     const toUpdate = state.lyrics.indexOf(foundLyric)
     if (toUpdate === -1) {
       const alert = {
@@ -238,8 +230,8 @@ export const actions = {
 }
 
 export const getters = {
-  getLyricByIndex: state => index => {
-    return state.lyrics.find(lyric => lyric.index === index)
+  getLyricByIndex: state => id => {
+    return state.lyrics.find(lyric => lyric._id === id)
   },
   getAllLyrics: state => {
     return state.lyrics
