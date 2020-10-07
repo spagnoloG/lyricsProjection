@@ -2,10 +2,7 @@
 import mongoose from 'mongoose';
 
 const LyricSchema = mongoose.Schema( {
-    index: {
-        type: Number,
-        required: true
-    },
+    _id: mongoose.Schema.Types.ObjectId,
     title: {
         type: String,
         required: true
