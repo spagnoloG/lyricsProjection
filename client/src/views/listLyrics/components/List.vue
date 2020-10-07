@@ -40,7 +40,7 @@
               <v-row justify="center" align="center">
                 <v-col cols="6" align="center">
                   <v-btn
-                    :to="{ name: 'EditLyric', params: { id: selectedLyric.index }}"
+                    :to="{ name: 'EditLyric', params: { id: selectedLyric._id }}"
                     small
                     outlined
                     color="primary"
@@ -50,7 +50,7 @@
                 </v-col>
                 <v-col cols="6" align="center">
                   <v-btn
-                    :to="{ name: 'Project', params: { id: selectedLyric.index }, query: { type: 'lyric' } }"
+                    :to="{ name: 'Project', params: { id: selectedLyric._id }, query: { type: 'lyric' } }"
                     small
                     outlined
                     color="primary"
@@ -103,10 +103,10 @@
             <v-divider></v-divider>
 
             <!-- List lyrics -->
-            <div v-for="lyric in paginatedLyrics" :key="lyric.index">
+            <div v-for="(lyric, index) in paginatedLyrics" :key="lyric._id">
               <v-list-item>
                 <v-list-item-avatar>
-                  <v-avatar color="secondary" size="56" class="white--text">{{ lyric.index }}</v-avatar>
+                  <v-avatar color="secondary" size="56" class="white--text">{{ index }}</v-avatar>
                 </v-list-item-avatar>
 
                 <v-list-item-content>
@@ -114,7 +114,7 @@
                 </v-list-item-content>
 
                 <v-list-item-action>
-                  <v-btn depressed small @click="selectLyric(lyric)">
+                  <v-btn depressed small @click="selectLyric(lyric, index)">
                     <v-icon color="secondary">mdi-dots-horizontal</v-icon>
                   </v-btn>
                 </v-list-item-action>
@@ -209,8 +209,9 @@ export default {
     goToAddLyric () {
       this.$router.push({ name: 'AddLyric' })
     },
-    selectLyric (lyric) {
+    selectLyric (lyric, index) {
       this.selectedLyric = lyric
+      this.selectedLyric.index = index
       this.showPopUp = true
     },
     showDeleteDialog () {
@@ -219,11 +220,11 @@ export default {
     },
     deleteLyric () {
       this.deleteDialog = false
-      this.$store.dispatch('lyric/deleteLyric', this.selectedLyric.index)
+      this.$store.dispatch('lyric/deleteLyric', this.selectedLyric._id)
     },
     onProject () {
       const document = {
-        currentLyric: this.selectedLyric.index,
+        currentLyric: this.selectedLyric._id,
         currentPlaylist: null
       }
       this.$store.dispatch('socket/sendRemoteMessage', document)
