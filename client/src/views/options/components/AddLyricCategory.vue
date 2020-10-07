@@ -36,7 +36,9 @@
       <v-card>
         <v-container>
         <v-card-title class="headline">Izbriši kategorijo</v-card-title>
-        <v-card-text>Ponovno napiši ime kategorije za izbris ({{ selectedCategory }})</v-card-text>
+        <v-card-text>
+          Ponovno napiši ime kategorije za izbris ({{ selectedCategory }}).
+        </v-card-text>
         <form v-on:submit.prevent>
           <v-text-field
             v-model="category"

@@ -1,40 +1,36 @@
 <template>
-<div>
-  <!-- Tab menu -->
-  <v-toolbar>
-    <v-btn
-      icon
-      :to="{ name: 'ListLyrics'}">
-      <v-icon>mdi-arrow-left-thick</v-icon>
-    </v-btn>
-    <v-spacer></v-spacer>
-    <v-btn
-      text
-      :to="{ name: 'EditLyric', params: { id: id }}">
-      Uredi besedilo pesmi
-    </v-btn>
-  </v-toolbar>
-  <!-- Lyric content container -->
-  <v-container fluid>
-    <v-row align="center">
-      <v-col align="center">
-        <!-- Lyric title and content -->
-        <div>
-          <div v-if="lyric">
-            <h1>{{ lyricTitle }}</h1>
-            <p>
-              <span v-html="lyricContent"></span>
-            </p>
+  <div>
+    <!-- Tab menu -->
+    <v-toolbar>
+      <v-btn icon :to="{ name: 'ListLyrics' }">
+        <v-icon>mdi-arrow-left-thick</v-icon>
+      </v-btn>
+      <v-spacer></v-spacer>
+      <v-btn text :to="{ name: 'EditLyric', params: { id: id } }">
+        Uredi besedilo pesmi
+      </v-btn>
+    </v-toolbar>
+    <!-- Lyric content container -->
+    <v-container fluid>
+      <v-row align="center">
+        <v-col align="center">
+          <!-- Lyric title and content -->
+          <div>
+            <div v-if="lyric">
+              <h1>{{ lyricTitle }}</h1>
+              <p>
+                <span v-html="lyricContent"></span>
+              </p>
+            </div>
+            <!-- Show no Lyric or loading -->
+            <div v-else>
+              <h2 style="max-width: 95vw">Ne obstaja</h2>
+            </div>
           </div>
-          <!-- Show no Lyric or loading -->
-          <div v-else>
-            <h2 style="max-width: 95vw;">Ne obstaja</h2>
-          </div>
-        </div>
-    </v-col>
-  </v-row>
-  </v-container>
-</div>
+        </v-col>
+      </v-row>
+    </v-container>
+  </div>
 </template>
 
 <script>
@@ -51,7 +47,7 @@ export default {
   },
   computed: {
     id () {
-      return Number(this.$route.params.id)
+      return this.$route.params.id
     },
     type () {
       return this.$route.query.type
