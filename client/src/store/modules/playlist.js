@@ -6,7 +6,7 @@ export const state = {
   playlists: [], // IDs(of lyrics), title and description
   currentPlaylist: {
     _id: 0,
-    indexes: [],
+    ids: [],
     playlistName: '',
     playlistDescription: ''
   },
@@ -19,7 +19,7 @@ export const mutations = {
   },
   set_playlist (state, playlist) {
     state.currentPlaylist._id = playlist._id
-    state.currentPlaylist.indexes = playlist.indexes
+    state.currentPlaylist.ids = playlist.ids
     state.currentPlaylist.playlistName = playlist.playlistName
     state.currentPlaylist.playlistDescription = playlist.playlistDescription
   },
