@@ -12,9 +12,9 @@ export default {
   components: {
     List
   },
-  created () {
-    this.$store.dispatch('lyric/fetchLyrics')
-    this.$store.dispatch('lyric/fetchCategories')
+  async created () {
+    await this.$store.dispatch('lyric/fetchLyrics')
+    await this.$store.dispatch('lyric/fetchCategories')
   }
 }
 </script>
