@@ -56,7 +56,7 @@
                     v-on:keyup.enter="step++"
                     v-model="currentLyric.categories"
                     :items="availableCategories"
-                    :rules="[(v) => !!v || 'Kategorija mora biti izbrana!']"
+                    :rules="[v => !!v || 'Kategorija mora biti izbrana!']"
                     label="Kategorija"
                     light
                     outlined
@@ -190,7 +190,6 @@ export default {
     }
   },
   async created () {
-    console.log(this.id)
     await this.$store.dispatch('lyric/fetchLyric', this.id)
     await this.$store.dispatch('lyric/fetchCategories')
     this.currentLyric = this.lyric
