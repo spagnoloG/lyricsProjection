@@ -4,7 +4,7 @@ const Socketio = require('socket.io')(Http);
 
 
 var state = {
-    currentLyric: -1,
+    currentLyric: null,
     currentPlaylist: null
 }
 

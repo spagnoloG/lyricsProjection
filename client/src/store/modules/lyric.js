@@ -3,11 +3,10 @@ import lyricsApi from '../../services/lyricsApi'
 export const namespaced = true
 
 export const state = {
-  lyrics: [], // index, title and category
+  lyrics: [], // id, title and category
   categories: [],
   lyricsTotal: 0,
   currentLyric: null,
-  newLyricIndex: 0,
   notFound: false
 }
 
@@ -23,9 +22,6 @@ export const mutations = {
   },
   set_lyric (state, currentLyric) {
     state.currentLyric = currentLyric
-  },
-  set_new_lyric_index (state, newLyricIndex) {
-    state.newLyricIndex = newLyricIndex
   },
   delete_lyric (state, selector) {
     if (selector !== -1) {
@@ -113,16 +109,9 @@ export const actions = {
   },
 
   fetchLyrics ({ commit }) {
-    return lyricsApi.getLyricsIndexes()
+    return lyricsApi.getLyricsAndIds()
       .then(response => {
         commit('set_lyrics', response.data)
-        // Set new lyric index
-        const helper = response.data.length - 1
-        if (helper === -1) {
-          commit('set_new_lyric_index', 1)
-        } else {
-          commit('set_new_lyric_index', response.data[helper].index + 1)
-        }
         // set total lyrics count
         commit('set_lyrics_total', response.data.length)
       })
@@ -230,14 +219,11 @@ export const actions = {
 }
 
 export const getters = {
-  getLyricByIndex: state => id => {
+  getLyricById: state => id => {
     return state.lyrics.find(lyric => lyric._id === id)
   },
   getAllLyrics: state => {
     return state.lyrics
-  },
-  getNewLyricIndex: state => {
-    return state.newLyricIndex
   },
   getCategories: state => {
     return state.categories

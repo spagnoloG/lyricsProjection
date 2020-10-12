@@ -21,7 +21,7 @@ const socket = io('http://' + window.location.hostname + ':3000')
 
 Vue.use(VueSocketIOExt, socket, { store })
 
-Vue.config.productionTip = false
+// Vue.config.productionTip = false
 
 new Vue({
   router,
