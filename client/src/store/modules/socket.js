@@ -1,7 +1,7 @@
 export const namespaced = true
 
 export const state = {
-  currentLyric: -1,
+  currentLyric: null,
   currentPlaylist: null,
   scrollPage: 0,
   position: 0,
@@ -50,7 +50,7 @@ export const actions = {
   },
   stopProjection () {
     const message = {
-      currentLyric: -1,
+      currentLyric: null,
       currentPlaylist: null
     }
     this._vm.$socket.client.emit('remoteMessage', message)

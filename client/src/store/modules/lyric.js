@@ -7,7 +7,7 @@ export const state = {
   categories: [],
   lyricsTotal: 0,
   currentLyric: null,
-  notFound: false
+  notFound: true
 }
 
 export const mutations = {
