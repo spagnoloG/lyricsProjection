@@ -5,10 +5,9 @@
       <v-overlay :value="deleteDialog">
         <h1>Si prepričan/a?</h1>
         <br />
-        <v-btn @click="deleteDialog = false"
-         color="primary"
-         class="mx-3">
-         Prekliči</v-btn>
+        <v-btn @click="deleteDialog = false" color="primary" class="mx-3">
+          Prekliči</v-btn
+        >
         <v-btn @click="deleteLyric" color="primary" class="mx-3">
           Da
           <v-icon>mdi-delete</v-icon>
@@ -24,23 +23,26 @@
             <v-container>
               <v-row>
                 <v-col align="center" cols="2">
-                  <v-avatar
-                    color="secondary"
-                    size="35"
-                    class="white--text"
-                  >{{ selectedLyric.index }}</v-avatar>
+                  <v-avatar color="secondary" size="35" class="white--text">{{
+                    selectedLyric.index
+                  }}</v-avatar>
                 </v-col>
                 <v-col cols="8" align="center">
                   <h3 class="headline">{{ selectedLyric.title }}</h3>
                 </v-col>
                 <v-col cols="1" align="center">
-                  <v-icon color="primary" @click="showDeleteDialog">mdi-delete</v-icon>
+                  <v-icon color="primary" @click="showDeleteDialog"
+                    >mdi-delete</v-icon
+                  >
                 </v-col>
               </v-row>
               <v-row justify="center" align="center">
                 <v-col cols="6" align="center">
                   <v-btn
-                    :to="{ name: 'EditLyric', params: { id: selectedLyric._id }}"
+                    :to="{
+                      name: 'EditLyric',
+                      params: { id: selectedLyric._id }
+                    }"
                     small
                     outlined
                     color="primary"
@@ -50,7 +52,11 @@
                 </v-col>
                 <v-col cols="6" align="center">
                   <v-btn
-                    :to="{ name: 'Project', params: { id: selectedLyric._id }, query: { type: 'lyric' } }"
+                    :to="{
+                      name: 'Project',
+                      params: { id: selectedLyric._id },
+                      query: { type: 'lyric' }
+                    }"
                     small
                     outlined
                     color="primary"
@@ -61,11 +67,7 @@
               </v-row>
               <v-row>
                 <v-col cols="12" align="center">
-                  <v-btn
-                  @click="onProject"
-                  small
-                  outlined
-                  color="primary">
+                  <v-btn @click="onProject" small outlined color="primary">
                     <v-icon>mdi-cast</v-icon>Projeciraj
                   </v-btn>
                 </v-col>
@@ -73,7 +75,9 @@
             </v-container>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn @click="showPopUp = false" color="primary" text>Prekliči</v-btn>
+              <v-btn @click="showPopUp = false" color="primary" text
+                >Prekliči</v-btn
+              >
             </v-card-actions>
           </v-card>
         </v-dialog>
@@ -83,12 +87,18 @@
     <v-container fluid>
       <v-row>
         <v-col cols="12" sm="8">
-           <!-- Card header -->
+          <!-- Card header -->
           <v-card class="mx-auto">
             <v-card-title class="white--text secondary">
               Seznam pesmi
               <v-spacer></v-spacer>
-              <v-btn @click="goToAddLyric" color="tercinary" class="text--primary" fab small>
+              <v-btn
+                @click="goToAddLyric"
+                color="tercinary"
+                class="text--primary"
+                fab
+                small
+              >
                 <v-icon>mdi-plus</v-icon>
               </v-btn>
             </v-card-title>
@@ -97,7 +107,12 @@
 
             <v-card-text>
               Išči, urejaj in projeciraj pesmi.
-              <v-text-field v-model="search" label="Išči" @click="page = 1" append-icon="mdi-magnify"></v-text-field>
+              <v-text-field
+                v-model="search"
+                label="Išči"
+                @click="page = 1"
+                append-icon="mdi-magnify"
+              ></v-text-field>
             </v-card-text>
 
             <v-divider></v-divider>
@@ -106,7 +121,9 @@
             <div v-for="(lyric, index) in paginatedLyrics" :key="lyric._id">
               <v-list-item>
                 <v-list-item-avatar>
-                  <v-avatar color="secondary" size="56" class="white--text">{{ index }}</v-avatar>
+                  <v-avatar color="secondary" size="56" class="white--text">{{
+                    index
+                  }}</v-avatar>
                 </v-list-item-avatar>
 
                 <v-list-item-content>
@@ -121,9 +138,14 @@
               </v-list-item>
             </div>
             <v-divider></v-divider>
-            <br/>
-            <v-pagination v-model="page" :length="totalPages" :total-visible="totalVisible" circle></v-pagination>
-            <br/>
+            <br />
+            <v-pagination
+              v-model="page"
+              :length="totalPages"
+              :total-visible="totalVisible"
+              circle
+            ></v-pagination>
+            <br />
             <v-divider></v-divider>
           </v-card>
         </v-col>
@@ -132,7 +154,13 @@
             <v-card-title class="white--text secondary">
               Izberi kategorijo
               <v-spacer></v-spacer>
-              <v-btn :to="{ name: 'Options'}" color="tercinary" class="text--primary" fab small>
+              <v-btn
+                :to="{ name: 'Options' }"
+                color="tercinary"
+                class="text--primary"
+                fab
+                small
+              >
                 <v-icon>mdi-plus</v-icon>
               </v-btn>
             </v-card-title>
@@ -141,19 +169,19 @@
               <v-row>
                 <v-col>
                   <v-select
-                  v-model="selectedCategories"
-                  :items="availableCategories"
-                  label="Izberi"
-                  multiple
-                  chips
-                  hint="možne kategorije"
-                  persistent-hint
+                    v-model="selectedCategories"
+                    :items="availableCategories"
+                    label="Izberi"
+                    multiple
+                    chips
+                    hint="možne kategorije"
+                    persistent-hint
                   ></v-select>
                 </v-col>
               </v-row>
             </v-container>
           </v-card>
-          <br>
+          <br />
           <v-card class="mx-auto">
             <v-card-title class="white--text secondary">
               Natisni seznam pesmi
@@ -164,7 +192,7 @@
             <v-container fluid>
               <v-row class="fill-height">
                 <v-col align="center" justify="center">
-                  <v-btn :to=" { name: 'Print'}">Natisni</v-btn>
+                  <v-btn :to="{ name: 'Print' }">Natisni</v-btn>
                 </v-col>
               </v-row>
             </v-container>
