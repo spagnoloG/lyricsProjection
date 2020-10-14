@@ -17,10 +17,12 @@
             <v-card-text>
               Seznam pesmi, primeren za tiskanje
             </v-card-text>
-             <div v-for="lyric in lyrics" :key="lyric.index">
+            <div v-for="(lyric, index) in lyrics" :key="lyric._id">
               <v-list-item>
                 <v-list-item-avatar>
-                  <v-avatar color="secondary" size="56" class="white--text">{{ lyric.index }}</v-avatar>
+                  <v-avatar color="secondary" size="56" class="white--text">{{
+                    index
+                  }}</v-avatar>
                 </v-list-item-avatar>
 
                 <v-list-item-content>
@@ -51,11 +53,8 @@ export default {
       window.print()
     }
   },
-  created () {
-    this.$store.dispatch('lyric/fetchLyrics')
+  async created () {
+    await this.$store.dispatch('lyric/fetchLyrics')
   }
 }
 </script>
-
-<style scoped>
-</style>
