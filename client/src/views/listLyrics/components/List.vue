@@ -131,6 +131,10 @@
           <v-card class="mx-auto">
             <v-card-title class="white--text secondary">
               Izberi kategorijo
+              <v-spacer></v-spacer>
+              <v-btn :to="{ name: 'Options'}" color="tercinary" class="text--primary" fab small>
+                <v-icon>mdi-plus</v-icon>
+              </v-btn>
             </v-card-title>
             <v-divider></v-divider>
             <v-container>
