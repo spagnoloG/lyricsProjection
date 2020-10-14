@@ -215,12 +215,23 @@ export const actions = {
       }
       return response
     })
+  },
+
+  updateNotFoundVariable ({ commit }, tOrF) {
+    commit('set_not_found_variable', tOrF)
   }
 }
 
 export const getters = {
   getLyricById: state => id => {
     return state.lyrics.find(lyric => lyric._id === id)
+  },
+  getLyricIdByNumber: state => number => {
+    if (typeof state.lyrics[number] === 'undefined') {
+      return -1
+    } else {
+      return state.lyrics[number]._id
+    }
   },
   getAllLyrics: state => {
     return state.lyrics

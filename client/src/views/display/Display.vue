@@ -3,20 +3,27 @@
     <v-container class="fill-height">
       <v-row align="center" justify="center" v-if="showInputField">
         <v-col cols="2">
-        <!-- Show search box -->
-        <div>
-          <v-text-field v-model="userInput" align="center" autofocus type="number"> </v-text-field>
-        </div>
-      </v-col>
-    </v-row>
-      <v-row v-if="!notFound">
-        <v-col cols="3">
+          <!-- Show search box -->
+          <div>
+            <v-text-field
+              v-model="userInput"
+              align="center"
+              autofocus
+              type="number"
+            >
+            </v-text-field>
+          </div>
         </v-col>
+      </v-row>
+      <v-row v-if="!notFound">
+        <v-col cols="3"> </v-col>
         <v-col align="center">
           <!-- Lyric title and content -->
           <div>
-            <h1 class="text-h3"><strong>{{ currentLyric.title.toUpperCase() }}</strong></h1>
-            <br>
+            <h1 class="text-h3">
+              <strong>{{ currentLyric.title.toUpperCase() }}</strong>
+            </h1>
+            <br />
             <p class="text-h4">
               <span v-html="currentLyric.content.toUpperCase()"></span>
             </p>
@@ -26,17 +33,12 @@
       </v-row>
       <v-row v-if="notFound">
         <v-col align="center">
-          <div v-if="currentLyricIndex === -1">
+          <div v-if="currentLyricIndex === null">
             <h1>Vtipkaj številko pesmi...</h1>
           </div>
           <div v-else>
-            <h1>Pesem {{ currentLyricIndex}} ne obstaja!</h1>
+            <h1>Pesem ne obstaja!</h1>
           </div>
-        </v-col>
-      </v-row>
-      <v-row v-if="!notFound && currentLyricIndex === -1">
-        <v-col align="center">
-          <h1>Vtipkaj številko pesmi...</h1>
         </v-col>
       </v-row>
     </v-container>
@@ -83,6 +85,7 @@ export default {
   },
   methods: {
     onNewLyric (newIndex) {
+      this.$store.dispatch('lyric/fetchLyrics')
       this.$store.dispatch('lyric/fetchLyric', newIndex)
     },
     scrollWindow (direction) {
@@ -101,20 +104,28 @@ export default {
         this.gotoTimeout = setTimeout(() => {
           this.showInputField = false
           if (this.userInput !== '') {
-            const document = {
-              currentLyric: this.userInput,
-              currentPlaylist: null
+            console.log('In here!')
+            const lyricId = this.$store.getters['lyric/getLyricIdByNumber'](Number(this.userInput))
+            if (lyricId === -1) {
+              this.$store.dispatch('lyric/updateNotFoundVariable', true)
+            } else {
+              const document = {
+                currentLyric: lyricId,
+                currentPlaylist: null
+              }
+              console.log(lyricId)
+              this.$store.dispatch('socket/sendRemoteMessage', document)
             }
-            this.$store.dispatch('socket/sendRemoteMessage', document)
           }
           this.userInput = ''
         }, 1000)
       }
     }
   },
-  created () {
+  async created () {
     this.$vuetify.theme.dark = true
-    this.$store.dispatch('socket/getCurrentState')
+    await this.$store.dispatch('lyric/fetchLyrics')
+    await this.$store.dispatch('socket/getCurrentState')
     // Setup keyboard listener
     window.addEventListener('keypress', this.doCommand)
   }
