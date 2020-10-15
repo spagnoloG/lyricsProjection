@@ -32,10 +32,10 @@ export default {
       isPlaylist: 'socket/getCurrentPlaylist'
     })
   },
-  created () {
-    this.$store.dispatch('playlist/fetchPlaylists')
-    this.$store.dispatch('lyric/fetchLyrics')
-    this.$store.dispatch('socket/getCurrentState')
+  async created () {
+    await this.$store.dispatch('playlist/fetchPlaylists')
+    await this.$store.dispatch('lyric/fetchLyrics')
+    await this.$store.dispatch('socket/getCurrentState')
   }
 }
 </script>

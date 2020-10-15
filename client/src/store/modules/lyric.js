@@ -233,6 +233,9 @@ export const getters = {
       return state.lyrics[number]._id
     }
   },
+  getLyricIndexById: state => id => {
+    return state.lyrics.findIndex(lyric => lyric._id === id)
+  },
   getAllLyrics: state => {
     return state.lyrics
   },

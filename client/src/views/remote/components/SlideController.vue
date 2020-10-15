@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <div class="select-playlist" v-if="step === 0">
+    <!-- <div class="select-playlist" v-if="step === 0">
       <v-container fluid>
         <v-row>
           <v-col align="center">
@@ -111,98 +111,99 @@
           </v-col>
         </v-row>
       </v-container>
-    </div>
+    </div> -->
+    <p> Misko</p>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+// import { mapGetters } from 'vuex'
 
-export default {
-  name: 'SlideController',
-  data () {
-    return {
-      step: 0,
-      playlists: null,
-      selectedPlaylist: null,
-      playlistId: null,
-      position: 0,
-      currentLyric: null,
-      length: 3
-    }
-  },
-  computed: {
-    progress () {
-      return this.position / (this.selectedPlaylist.indexes.length - 1) * 100
-    },
-    ...mapGetters({
-      currentLyricId: 'socket/getCurrentLyric'
-    })
-  },
-  watch: {
-    currentLyricId: function (newId, oldId) {
-      this.position = this.selectedPlaylist.indexes.indexOf(newId)
-      this.currentLyric = this.$store.getters['lyric/getLyricByIndex'](newId)
-    }
-  },
-  methods: {
-    startProjectingPlaylist () {
-      if (this.selectedPlaylist !== null) {
-        this.$store.dispatch('playlist/fetchPlaylist', this.selectedPlaylist._id)
-        this.currentLyric = this.$store.getters['lyric/getLyricByIndex'](this.selectedPlaylist.indexes[0])
-        const message = {
-          currentLyric: this.selectedPlaylist.indexes[this.position],
-          currentPlaylist: this.selectedPlaylist._id
-        }
-        this.$store.dispatch('socket/sendRemoteMessage', message)
-        this.step++
-      }
-    },
-    goForward () {
-      if (this.position === this.selectedPlaylist.indexes.length - 1) {
-        return null
-      } else {
-        this.position++
-        const message = {
-          currentLyric: this.selectedPlaylist.indexes[this.position],
-          currentPlaylist: this.selectedPlaylist._id
-        }
-        this.$store.dispatch('socket/sendRemoteMessage', message)
-      }
-    },
-    goBack () {
-      if (this.position === 0) {
-        return null
-      } else {
-        this.position--
-        const message = {
-          currentLyric: this.selectedPlaylist.indexes[this.position],
-          currentPlaylist: this.selectedPlaylist._id
-        }
-        this.$store.dispatch('socket/sendRemoteMessage', message)
-      }
-    },
-    scroll (direction) {
-      this.$store.dispatch('socket/sendScrollMessage', direction)
-    },
-    stopProjection () {
-      this.$store.dispatch('socket/stopProjection')
-      this.step--
-    }
-  },
-  mounted () {
-    setTimeout(() => {
-      if (this.$store.getters['socket/getCurrentPlaylist'] === null) {
-        this.step = 0
-        this.playlists = this.$store.getters['playlist/getAllPlaylists']
-      } else {
-        this.playlistId = this.$store.getters['socket/getCurrentPlaylist']
-        this.currentLyric = this.$store.getters['lyric/getLyricByIndex'](this.$store.getters['socket/getCurrentLyric'])
-        this.selectedPlaylist = this.$store.getters['playlist/getPlaylistById'](this.playlistId)
-        this.position = this.selectedPlaylist.indexes.indexOf(this.$store.getters['socket/getCurrentLyric'])
-        this.step = 1
-      }
-    }, 200)
-  }
-}
+// export default {
+//   name: 'SlideController',
+//   data () {
+//     return {
+//       step: 0,
+//       playlists: null,
+//       selectedPlaylist: null,
+//       playlistId: null,
+//       position: 0,
+//       currentLyric: null,
+//       length: 3
+//     }
+//   },
+//   computed: {
+//     progress () {
+//       return this.position / (this.selectedPlaylist.indexes.length - 1) * 100
+//     },
+//     ...mapGetters({
+//       currentLyricId: 'socket/getCurrentLyric'
+//     })
+//   },
+//   watch: {
+//     currentLyricId: function (newId, oldId) {
+//       this.position = this.selectedPlaylist.indexes.indexOf(newId)
+//       this.currentLyric = this.$store.getters['lyric/getLyricByIndex'](newId)
+//     }
+//   },
+//   methods: {
+//     startProjectingPlaylist () {
+//       if (this.selectedPlaylist !== null) {
+//         this.$store.dispatch('playlist/fetchPlaylist', this.selectedPlaylist._id)
+//         this.currentLyric = this.$store.getters['lyric/getLyricByIndex'](this.selectedPlaylist.indexes[0])
+//         const message = {
+//           currentLyric: this.selectedPlaylist.indexes[this.position],
+//           currentPlaylist: this.selectedPlaylist._id
+//         }
+//         this.$store.dispatch('socket/sendRemoteMessage', message)
+//         this.step++
+//       }
+//     },
+//     goForward () {
+//       if (this.position === this.selectedPlaylist.indexes.length - 1) {
+//         return null
+//       } else {
+//         this.position++
+//         const message = {
+//           currentLyric: this.selectedPlaylist.indexes[this.position],
+//           currentPlaylist: this.selectedPlaylist._id
+//         }
+//         this.$store.dispatch('socket/sendRemoteMessage', message)
+//       }
+//     },
+//     goBack () {
+//       if (this.position === 0) {
+//         return null
+//       } else {
+//         this.position--
+//         const message = {
+//           currentLyric: this.selectedPlaylist.indexes[this.position],
+//           currentPlaylist: this.selectedPlaylist._id
+//         }
+//         this.$store.dispatch('socket/sendRemoteMessage', message)
+//       }
+//     },
+//     scroll (direction) {
+//       this.$store.dispatch('socket/sendScrollMessage', direction)
+//     },
+//     stopProjection () {
+//       this.$store.dispatch('socket/stopProjection')
+//       this.step--
+//     }
+//   },
+//   mounted () {
+//     setTimeout(() => {
+//       if (this.$store.getters['socket/getCurrentPlaylist'] === null) {
+//         this.step = 0
+//         this.playlists = this.$store.getters['playlist/getAllPlaylists']
+//       } else {
+//         this.playlistId = this.$store.getters['socket/getCurrentPlaylist']
+//         this.currentLyric = this.$store.getters['lyric/getLyricByIndex'](this.$store.getters['socket/getCurrentLyric'])
+//         this.selectedPlaylist = this.$store.getters['playlist/getPlaylistById'](this.playlistId)
+//         this.position = this.selectedPlaylist.indexes.indexOf(this.$store.getters['socket/getCurrentLyric'])
+//         this.step = 1
+//       }
+//     }, 200)
+//   }
+// }
 </script>

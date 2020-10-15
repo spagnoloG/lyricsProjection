@@ -1,13 +1,19 @@
 <template>
-  <v-container fluid>
-    <v-alert v-if="alert" type="error">
-      {{ errorMessage}}
-    </v-alert>
-    <v-row>
+  <v-container class="fill-height" fluid>
+    <v-row align="center" justify="center">
 
       <!-- Dial -->
-      <v-col cols=12 md=6>
-        <v-row v-if="currentIndex !== -1">
+      <v-col lg="8" align="center" justify="center">
+        <!-- Alert -->
+        <v-alert v-if="alert"
+          type="error"
+          dismissible
+          border = "left">
+         {{ errorMessage}}
+        </v-alert>
+
+        <!-- Current lyric on display indicator -->
+        <v-row v-if="socketIndex !== -1">
           <v-col align="center">
             <v-chip
             class="ma-2"
@@ -17,7 +23,7 @@
             <v-avatar
               right
               class="green darken-4"
-            >{{ currentIndex }}</v-avatar>
+            >{{ socketIndex }}</v-avatar>
           </v-chip>
           </v-col>
         </v-row>
@@ -38,82 +44,34 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-col align="center">
-            <v-btn
-            @click="keyPress('1')"
-            class="mx-2"
-            fab
-            large
-            color="primary">1</v-btn>
-          </v-col>
-          <v-col align="center">
-            <v-btn
-            @click="keyPress('2')"
-            class="mx-2"
-            fab
-            large
-            color="primary">2</v-btn>
-          </v-col>
-          <v-col align="center">
-            <v-btn
-            @click="keyPress('3')"
-            class="mx-2"
-            fab
-            large
-            color="primary">3</v-btn>
-          </v-col>
+          <div align="center" class="col" v-for="n in [1, 2, 3]" :key="n">
+              <v-btn
+              @click="keyPress(String(n))"
+              class="mx-2"
+              fab
+              large
+              color="primary">{{ n }}</v-btn>
+          </div>
         </v-row>
         <v-row>
-          <v-col align="center">
-            <v-btn
-            @click="keyPress('4')"
-            class="mx-2"
-            fab
-            large
-            color="primary">4</v-btn>
-          </v-col>
-          <v-col align="center">
-            <v-btn
-            @click="keyPress('5')"
-            class="mx-2"
-            fab
-            large
-            color="primary">5</v-btn>
-          </v-col>
-          <v-col align="center">
-            <v-btn
-            @click="keyPress('6')"
-            class="mx-2"
-            fab
-            large
-            color="primary">6</v-btn>
-          </v-col>
+          <div align="center" class="col" v-for="n in [4, 5, 6]" :key="n">
+              <v-btn
+              @click="keyPress(String(n))"
+              class="mx-2"
+              fab
+              large
+              color="primary">{{ n }}</v-btn>
+          </div>
         </v-row>
         <v-row>
-          <v-col align="center">
-            <v-btn
-            @click="keyPress('7')"
-            class="mx-2"
-            fab
-            large
-            color="primary">7</v-btn>
-          </v-col>
-          <v-col align="center">
-            <v-btn
-            @click="keyPress('8')"
-            class="mx-2"
-            fab
-            large
-            color="primary">8</v-btn>
-          </v-col>
-          <v-col align="center">
-            <v-btn
-            @click="keyPress('9')"
-            class="mx-2"
-            fab
-            large
-            color="primary">9</v-btn>
-          </v-col>
+          <div align="center" class="col" v-for="n in [7, 8, 9]" :key="n">
+              <v-btn
+              @click="keyPress(String(n))"
+              class="mx-2"
+              fab
+              large
+              color="primary">{{ n }}</v-btn>
+          </div>
         </v-row>
         <v-row>
           <v-col align="center">
@@ -121,8 +79,8 @@
             @click="scroll('up')"
             class="mx-2"
             fab
-            elevation="20"
             large
+            elevation="20"
             color="primary"><v-icon>mdi-arrow-up-bold</v-icon></v-btn>
           </v-col>
           <v-col align="center">
@@ -138,23 +96,19 @@
             @click="scroll('down')"
             class="mx-2"
             fab
-            elevation="20"
             large
+            elevation="20"
             color="primary"><v-icon>mdi-arrow-down-bold</v-icon></v-btn>
           </v-col>
         </v-row>
-      </v-col>
-
-      <!-- Actions -->
-      <v-col cols=12 md=6 >
-        <v-row  class="fill-height">
+        <br>
+          <v-row  class="fill-height">
           <v-col align="center" justify="center">
             <v-btn
             @click="onProject"
             depressed
-            large
             color="success"
-            >Projeciraj  <v-icon>mdi-cast</v-icon></v-btn>
+            >Projeciraj <v-icon>mdi-cast</v-icon></v-btn>
           </v-col>
         </v-row>
       </v-col>
@@ -173,13 +127,13 @@ export default {
       selected: 'lyric',
       alert: false,
       errorMessage: '',
-      currentLyric: [],
-      isActive: false
+      currentLyric: []
     }
   },
   computed: {
     ...mapGetters({
-      currentIndex: 'socket/getCurrentLyric'
+      currentId: 'socket/getCurrentLyric',
+      socketIndex: 'socket/getCurrentLyricIndex'
     })
   },
   methods: {
@@ -192,12 +146,12 @@ export default {
     onProject () {
       if (this.checkForUserErrors()) {
         const document = {
-          currentLyric: this.userInput,
+          currentLyric: this.lyricId,
           currentPlaylist: null
         }
         this.$store.dispatch('socket/sendRemoteMessage', document)
-        this.userInput = ''
       }
+      this.userInput = ''
     },
     checkForUserErrors () {
       if (this.selected === '') {
@@ -208,7 +162,12 @@ export default {
         this.errorMessage = 'Vnesi številko!'
         this.alert = true
         return false
+      } else if (this.$store.getters['lyric/getLyricIdByNumber'](Number(this.userInput)) === -1) {
+        this.errorMessage = 'Ta pesem ne obstaja!'
+        this.alert = true
+        return false
       } else {
+        this.lyricId = this.$store.getters['lyric/getLyricIdByNumber'](Number(this.userInput))
         this.alert = false
         return true
       }
