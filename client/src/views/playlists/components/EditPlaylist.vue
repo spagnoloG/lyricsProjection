@@ -127,9 +127,9 @@
           <v-btn
             class="mt-6"
             text
-            color="red"
+            color="green"
             @click="sheet = !sheet"
-          >Zapri</v-btn>
+          >Zaključi</v-btn>
           <v-container fluid>
             <v-row>
               <v-col align="center">

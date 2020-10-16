@@ -4,11 +4,14 @@
       <!-- Dial -->
       <v-col lg="8" align="center" justify="center">
         <!-- Alert -->
-        <v-alert v-if="alert" type="error" dismissible border="left">
-          {{ errorMessage }}
-        </v-alert>
+        <v-fade-transition mode="out-in">
+          <v-alert v-if="alert" type="error" dismissible border="left">
+            {{ errorMessage }}
+          </v-alert>
+        </v-fade-transition>
 
         <!-- Current lyric on display indicator -->
+        <v-fade-transition mode="out-in">
         <v-row v-if="socketIndex !== -1">
           <v-col align="center">
             <v-chip class="ma-2" color="green" text-color="white">
@@ -19,6 +22,7 @@
             </v-chip>
           </v-col>
         </v-row>
+        </v-fade-transition>
         <v-row>
           <v-col cols="2"></v-col>
           <v-col align="center" cols="8">
@@ -102,10 +106,27 @@
         </v-row>
         <br />
         <v-row class="fill-height">
+          <v-fade-transition mode="out-in">
+          <v-col
+          v-if="socketIndex !== -1"
+          align="center"
+          justify="center"
+          >
+            <v-btn
+              @click="stopProjection"
+              depressed
+              color="error"
+              >Ustavi<v-icon>mdi-close</v-icon>
+            </v-btn>
+          </v-col>
+          </v-fade-transition>
           <v-col align="center" justify="center">
-            <v-btn @click="onProject" depressed color="success"
-              >Projeciraj <v-icon>mdi-cast</v-icon></v-btn
-            >
+            <v-btn
+              @click="onProject"
+              depressed
+              color="success"
+              >Projeciraj<v-icon>mdi-cast</v-icon>
+            </v-btn>
           </v-col>
         </v-row>
       </v-col>
@@ -171,6 +192,9 @@ export default {
     },
     scroll (direction) {
       this.$store.dispatch('socket/sendScrollMessage', direction)
+    },
+    stopProjection () {
+      this.$store.dispatch('socket/stopProjection')
     }
   }
 }

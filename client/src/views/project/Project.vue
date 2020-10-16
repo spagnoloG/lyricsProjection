@@ -10,24 +10,22 @@
         Uredi besedilo pesmi
       </v-btn>
     </v-toolbar>
-    <!-- Lyric content container -->
     <v-container fluid>
       <v-row align="center">
+        <v-col cols="3"></v-col>
         <v-col align="center">
-          <!-- Lyric title and content -->
+          <!-- Title and content -->
           <div>
-            <div v-if="lyric">
-              <h1>{{ lyricTitle }}</h1>
-              <p>
-                <span v-html="lyricContent"></span>
-              </p>
-            </div>
-            <!-- Show no Lyric or loading -->
-            <div v-else>
-              <h2 style="max-width: 95vw">Ne obstaja</h2>
-            </div>
+            <h1 class="text-h3">
+              <strong>{{ lyricTitle.toUpperCase() }}</strong>
+            </h1>
+            <br />
+            <p class="text-h4">
+              <span v-html="lyricContent.toUpperCase()"></span>
+            </p>
           </div>
         </v-col>
+        <v-col cols="3"></v-col>
       </v-row>
     </v-container>
   </div>
@@ -62,11 +60,11 @@ export default {
       lyric: 'lyric/getCurrentLyric'
     })
   },
-  mounted () {
+  async mounted () {
     this.$store.dispatch('lyric/fetchLyric', this.id)
   },
-  beforeRouteUpdate (to, from, next) {
-    this.$store.dispatch('lyric/fetchLyric', this.userInput)
+  async beforeRouteUpdate (to, from, next) {
+    await this.$store.dispatch('lyric/fetchLyric', this.userInput)
     next()
   }
 }
