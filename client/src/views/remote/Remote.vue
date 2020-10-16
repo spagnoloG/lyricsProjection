@@ -1,8 +1,10 @@
 <template>
- <v-container>
+  <v-container>
     <v-tabs centered>
-      <v-tabs-slider/>
-      <v-tab v-if="isPlaylist === null"><v-icon x-large>mdi-dialpad</v-icon></v-tab>
+      <v-tabs-slider />
+      <v-tab v-if="isPlaylist === null"
+        ><v-icon x-large>mdi-dialpad</v-icon></v-tab
+      >
       <v-tab><v-icon x-large>mdi-play-box-outline</v-icon></v-tab>
 
       <v-tab-item v-if="isPlaylist === null">
@@ -12,7 +14,7 @@
         <slide-controller></slide-controller>
       </v-tab-item>
     </v-tabs>
- </v-container>
+  </v-container>
 </template>
 
 <script>

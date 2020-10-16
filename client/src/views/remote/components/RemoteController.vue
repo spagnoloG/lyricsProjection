@@ -1,40 +1,32 @@
 <template>
   <v-container class="fill-height" fluid>
     <v-row align="center" justify="center">
-
       <!-- Dial -->
       <v-col lg="8" align="center" justify="center">
         <!-- Alert -->
-        <v-alert v-if="alert"
-          type="error"
-          dismissible
-          border = "left">
-         {{ errorMessage}}
+        <v-alert v-if="alert" type="error" dismissible border="left">
+          {{ errorMessage }}
         </v-alert>
 
         <!-- Current lyric on display indicator -->
         <v-row v-if="socketIndex !== -1">
           <v-col align="center">
-            <v-chip
-            class="ma-2"
-            color="green"
-            text-color="white">
-            Na zaslonu:
-            <v-avatar
-              right
-              class="green darken-4"
-            >{{ socketIndex }}</v-avatar>
-          </v-chip>
+            <v-chip class="ma-2" color="green" text-color="white">
+              Na zaslonu:
+              <v-avatar right class="green darken-4">{{
+                socketIndex
+              }}</v-avatar>
+            </v-chip>
           </v-col>
         </v-row>
-        <v-row >
+        <v-row>
           <v-col cols="2"></v-col>
           <v-col align="center" cols="8">
             <v-text-field
-            v-model="userInput"
-            label="Vtipkaj številko"
-            solo
-            readonly
+              v-model="userInput"
+              label="Vtipkaj številko"
+              solo
+              readonly
             ></v-text-field>
           </v-col>
           <v-col cols="2">
@@ -45,70 +37,75 @@
         </v-row>
         <v-row>
           <div align="center" class="col" v-for="n in [1, 2, 3]" :key="n">
-              <v-btn
+            <v-btn
               @click="keyPress(String(n))"
               class="mx-2"
               fab
               large
-              color="primary">{{ n }}</v-btn>
+              color="primary"
+              >{{ n }}</v-btn
+            >
           </div>
         </v-row>
         <v-row>
           <div align="center" class="col" v-for="n in [4, 5, 6]" :key="n">
-              <v-btn
+            <v-btn
               @click="keyPress(String(n))"
               class="mx-2"
               fab
               large
-              color="primary">{{ n }}</v-btn>
+              color="primary"
+              >{{ n }}</v-btn
+            >
           </div>
         </v-row>
         <v-row>
           <div align="center" class="col" v-for="n in [7, 8, 9]" :key="n">
-              <v-btn
+            <v-btn
               @click="keyPress(String(n))"
               class="mx-2"
               fab
               large
-              color="primary">{{ n }}</v-btn>
+              color="primary"
+              >{{ n }}</v-btn
+            >
           </div>
         </v-row>
         <v-row>
           <v-col align="center">
             <v-btn
-            @click="scroll('up')"
-            class="mx-2"
-            fab
-            large
-            elevation="20"
-            color="primary"><v-icon>mdi-arrow-up-bold</v-icon></v-btn>
+              @click="scroll('up')"
+              class="mx-2"
+              fab
+              large
+              elevation="20"
+              color="primary"
+              ><v-icon>mdi-arrow-up-bold</v-icon></v-btn
+            >
+          </v-col>
+          <v-col align="center">
+            <v-btn @click="keyPress('0')" class="mx-2" fab large color="primary"
+              >0</v-btn
+            >
           </v-col>
           <v-col align="center">
             <v-btn
-            @click="keyPress('0')"
-            class="mx-2"
-            fab
-            large
-            color="primary">0</v-btn>
-          </v-col>
-          <v-col align="center">
-            <v-btn
-            @click="scroll('down')"
-            class="mx-2"
-            fab
-            large
-            elevation="20"
-            color="primary"><v-icon>mdi-arrow-down-bold</v-icon></v-btn>
+              @click="scroll('down')"
+              class="mx-2"
+              fab
+              large
+              elevation="20"
+              color="primary"
+              ><v-icon>mdi-arrow-down-bold</v-icon></v-btn
+            >
           </v-col>
         </v-row>
-        <br>
-          <v-row  class="fill-height">
+        <br />
+        <v-row class="fill-height">
           <v-col align="center" justify="center">
-            <v-btn
-            @click="onProject"
-            depressed
-            color="success"
-            >Projeciraj <v-icon>mdi-cast</v-icon></v-btn>
+            <v-btn @click="onProject" depressed color="success"
+              >Projeciraj <v-icon>mdi-cast</v-icon></v-btn
+            >
           </v-col>
         </v-row>
       </v-col>
