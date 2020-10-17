@@ -86,7 +86,11 @@ export default {
   methods: {
     onNewLyric (newIndex) {
       this.$store.dispatch('lyric/fetchLyrics')
-      this.$store.dispatch('lyric/fetchLyric', newIndex)
+      if (newIndex !== null) {
+        this.$store.dispatch('lyric/fetchLyric', newIndex)
+      } else {
+        this.$store.dispatch('lyric/updateNotFoundVariable', true)
+      }
     },
     scrollWindow (direction) {
       if (direction === 'up') {
