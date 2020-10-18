@@ -22,14 +22,14 @@ export default {
   },
   updatePlaylist (playlist) {
     return apiClient.patch('/playlists/' + playlist._id, {
-      indexes: playlist.indexes,
+      ids: playlist.ids,
       playlistName: playlist.playlistName,
       playlistDescription: playlist.playlistDescription
     })
   },
   postPlaylist (playlist) {
     const playlistToPost = {
-      indexes: playlist.indexes,
+      ids: playlist.ids,
       playlistName: playlist.playlistName,
       playlistDescription: playlist.playlistDescription
     }
