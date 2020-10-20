@@ -90,7 +90,7 @@
                       <v-btn
                         :class="{ 'is-active': isActive.bold() }"
                         @click="commands.bold"
-                        color="#950740"
+                        color="primary"
                         small
                         dark
                         fab
@@ -101,7 +101,7 @@
                       <v-btn
                         :class="{ 'is-active': isActive.italic() }"
                         @click="commands.italic"
-                        color="#950740"
+                        color="primary"
                         class="ma-1 white--text"
                         fab
                         small
