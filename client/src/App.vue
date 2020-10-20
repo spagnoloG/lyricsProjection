@@ -69,15 +69,17 @@ export default {
     }
   },
 
-  async mounted () {
+  async created () {
     const theme = localStorage.getItem('dark_theme')
     await this.$store.dispatch('appState/fetchState')
     const fetchedState = this.$store.getters['appState/getAppState']
+
     if (this.$store.getters['appState/getDbConnection'] === false) {
       this.$router.push({ path: '/db-error' })
     } else if (fetchedState === -1) {
       this.$router.push({ path: '/init' })
     }
+
     this.finishedLoading = true
 
     if (theme) {

@@ -1,7 +1,7 @@
 <template>
     <v-app-bar app clipped-left  dark class="primary">
       <v-app-bar-nav-icon @click.stop="switchDrawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>Cerkvena projekcija</v-toolbar-title>
+      <v-toolbar-title>{{ appState.appName ? appState.appName : 'lyricsProjection'}}</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-icon
       @click="toggleDarkMode"
@@ -17,7 +17,8 @@ export default {
   computed: {
     ...mapGetters({
       drawer: 'appState/getDrawerState',
-      darkMode: 'appState/getThemeState'
+      darkMode: 'appState/getThemeState',
+      appState: 'appState/getAppState'
     })
   },
   methods: {
