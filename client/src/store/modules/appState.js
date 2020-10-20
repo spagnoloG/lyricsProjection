@@ -1,3 +1,5 @@
+import initApi from '../../services/initApi'
+
 export const namespaced = true
 
 export const state = {
@@ -7,11 +9,8 @@ export const state = {
     message: '',
     type: ''
   },
-  stateId: null,
-  marginLeft: null,
-  marginRight: null,
-  organisation: null,
-  appName: null
+  appState: {},
+  connectedToDb: true
 }
 
 export const mutations = {
@@ -23,6 +22,12 @@ export const mutations = {
   },
   hide_alert (state, alert) {
     state.alert.show = false
+  },
+  set_state (state, message) {
+    state.appState = message
+  },
+  set_connection_to_db (state, isConnected) {
+    state.connectedToDb = isConnected
   }
 }
 
@@ -30,6 +35,7 @@ export const actions = {
   setDrawerState ({ commit }, drawer) {
     commit('set_drawer_state', drawer)
   },
+
   showAlert ({ commit }, alertInfo) {
     const alert = {
       show: true,
@@ -43,8 +49,56 @@ export const actions = {
       }, 3000)
     }
   },
+
   hideAlert ({ commit }) {
     commit('hide_alert')
+  },
+
+  fetchState ({ commit }) {
+    return initApi.getState()
+      .then(response => {
+        if (Object.keys(response.data).length === 0) {
+          commit('set_connection_to_db', true)
+        } else {
+          commit('set_state', response.data.state)
+          commit('set_connection_to_db', true)
+        }
+        return response
+      })
+      .catch(err => {
+        if (!err.response) {
+          commit('set_connection_to_db', false)
+        }
+        return err
+      })
+  },
+
+  postInitialState ({ commit }, message) {
+    localStorage.setItem('state', JSON.stringify(message))
+    return initApi.postInitialState(message)
+      .then(response => {
+        commit('set_state', message)
+      })
+      .catch(err => {
+        return err
+      })
+  },
+
+  updateState ({ commit }, message) {
+    localStorage.setItem('state', JSON.stringify(message))
+    return initApi.updateState(message)
+      .then(response => {
+        commit('set_state', message)
+        return response
+      })
+      .catch(err => {
+        return err
+      })
+  },
+
+  setStateFromStorage ({ commit }, message) {
+    localStorage.setItem('state', JSON.stringify(message))
+    commit('set_state', message)
   }
 }
 
@@ -54,5 +108,15 @@ export const getters = {
   },
   getAlert () {
     return state.alert
+  },
+  getAppState () {
+    if (Object.keys(state.appState).length === 0 && state.appState.constructor === Object) {
+      return -1
+    } else {
+      return state.appState
+    }
+  },
+  getDbConnection () {
+    return state.connectedToDb
   }
 }

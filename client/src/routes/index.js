@@ -74,7 +74,18 @@ const routes = [
     component: () => import('../views/print/Print.vue')
   },
   {
+    path: '/init',
+    name: 'Init',
+    component: () => import('../views/init/Init.vue')
+  },
+  {
+    path: '/db-error',
+    name: 'DbError',
+    component: () => import('../views/dbError/DbError.vue')
+  },
+  {
     path: '/404',
+    name: 'FourOhFour',
     component: () => import('../views/notFound/NotFound.vue')
   },
   {
