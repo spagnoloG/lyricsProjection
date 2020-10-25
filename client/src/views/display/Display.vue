@@ -16,7 +16,7 @@
         </v-col>
       </v-row>
       <v-row v-if="!notFound">
-        <v-col cols="3"> </v-col>
+        <v-col :cols="marginLeft"> </v-col>
         <v-col align="center">
           <!-- Lyric title and content -->
           <div>
@@ -29,7 +29,7 @@
             </p>
           </div>
         </v-col>
-        <v-col cols="3"></v-col>
+        <v-col :cols="marginRight"></v-col>
       </v-row>
       <v-row v-if="notFound">
         <v-col align="center">
@@ -54,7 +54,10 @@ export default {
     return {
       scroll: 0,
       showInputField: false,
-      userInput: ''
+      userInput: '',
+      appState: null,
+      marginLeft: null,
+      marginRight: null
     }
   },
   computed: {
@@ -130,8 +133,12 @@ export default {
     this.$vuetify.theme.dark = true
     await this.$store.dispatch('lyric/fetchLyrics')
     await this.$store.dispatch('socket/getCurrentState')
+    await this.$store.dispatch('appState/fetchState')
+    this.appState = this.$store.getters['appState/getAppState']
     // Setup keyboard listener
     window.addEventListener('keypress', this.doCommand)
+    this.marginLeft = this.appState.marginLeft ? this.appState.marginLeft : 2
+    this.marginRight = this.appState.marginRight ? this.appState.marginRight : 2
   }
 }
 </script>
