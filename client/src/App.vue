@@ -21,7 +21,10 @@
     ></navbar>
 
     <v-main>
-      <alert-banner></alert-banner>
+
+      <v-fade-transition mode="out-in">
+        <alert-banner></alert-banner>
+      </v-fade-transition>
 
       <v-fade-transition mode="out-in">
         <router-view></router-view>
