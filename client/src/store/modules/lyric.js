@@ -55,7 +55,7 @@ export const actions = {
       .then(response => {
         commit('add_new_lyric', lyric)
         const alert = {
-          message: 'Uspešno dodana pesem',
+          message: 'Successfully added new lyric.',
           type: 'success'
         }
         dispatch('appState/showAlert', alert, { root: true })
@@ -63,7 +63,7 @@ export const actions = {
       })
       .catch(error => {
         const alert = {
-          message: 'Napaka pri shranjevanju nove pesmi!',
+          message: 'Error while posting lyric to database!',
           type: 'error'
         }
         dispatch('appState/showAlert', alert, { root: true })
@@ -79,7 +79,7 @@ export const actions = {
       .then(response => {
         commit('add_new_category', category)
         const alert = {
-          message: 'Uspešno dodana nova kategorija',
+          message: 'Successfully added new category.',
           type: 'success'
         }
         dispatch('appState/showAlert', alert, { root: true })
@@ -87,7 +87,7 @@ export const actions = {
       })
       .catch(error => {
         const alert = {
-          message: 'Napaka pri shranjevanju nove kategorije!',
+          message: 'Error while posting category to database!',
           type: 'error'
         }
         dispatch('appState/showAlert', alert, { root: true })
@@ -135,7 +135,7 @@ export const actions = {
     const toDelete = state.lyrics.indexOf(foundLyric)
     if (toDelete === -1) {
       const alert = {
-        message: 'Napaka pri brisanju pesmi!',
+        message: 'Error while trying to delete lyric!',
         type: 'error'
       }
       dispatch('appState/showAlert', alert, { root: true })
@@ -145,13 +145,13 @@ export const actions = {
       commit('delete_lyric', toDelete)
       if (response.status === 200) {
         const alert = {
-          message: 'Pesem uspešno izbrisana',
+          message: 'Successfuly deleted lyric.',
           type: 'success'
         }
         dispatch('appState/showAlert', alert, { root: true })
       } else {
         const alert = {
-          message: 'Napaka pri brisanju pesmi!',
+          message: 'Error while trying to delete lyric!',
           type: 'error'
         }
         dispatch('appState/showAlert', alert, { root: true })
@@ -164,7 +164,7 @@ export const actions = {
     const toDelete = state.categories.lastIndexOf(category)
     if (toDelete === -1) {
       const alert = {
-        message: 'Napaka pri brisanju kategorije!',
+        message: 'Error while trying to delete category!',
         type: 'error'
       }
       dispatch('appState/showAlert', alert, { root: true })
@@ -174,13 +174,13 @@ export const actions = {
       commit('delete_category', toDelete)
       if (response.status === 200) {
         const alert = {
-          message: 'Kategorija uspešno izbrisana',
+          message: 'Successfuly deleted category',
           type: 'success'
         }
         dispatch('appState/showAlert', alert, { root: true })
       } else {
         const alert = {
-          message: 'Napaka pri brisanju kategorije iz baze!',
+          message: 'Error while trying to delete category!',
           type: 'error'
         }
         dispatch('appState/showAlert', alert, { root: true })
@@ -195,7 +195,7 @@ export const actions = {
     const toUpdate = state.lyrics.indexOf(foundLyric)
     if (toUpdate === -1) {
       const alert = {
-        message: 'Napaka med posodabljanjem pesmi!',
+        message: 'Error while updating lyric!',
         type: 'error'
       }
       dispatch('appState/showAlert', alert, { root: true })
@@ -208,7 +208,7 @@ export const actions = {
       })
       if (response.status === 200) {
         const alert = {
-          message: 'Pesem uspešno posodobljena',
+          message: 'Successfully updated lyric.',
           type: 'success'
         }
         dispatch('appState/showAlert', alert, { root: true })
