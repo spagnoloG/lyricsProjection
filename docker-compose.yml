@@ -1,4 +1,4 @@
-version: '3'
+version: '3.7'
 services:
   vue-client:
      image: client
@@ -17,3 +17,9 @@ services:
     restart: always
     ports:
       - "3000:3000"
+  
+  mongodb_container: 
+    image: mongo:latest
+    command: ["--bind_ip_all"]
+    ports:
+      - "27017:27017"
