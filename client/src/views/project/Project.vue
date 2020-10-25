@@ -51,10 +51,10 @@ export default {
       return this.$route.query.type
     },
     lyricTitle () {
-      return this.lyric ? this.lyric.title : null
+      return this.lyric ? this.lyric.title : ''
     },
     lyricContent () {
-      return this.lyric ? this.lyric.content : null
+      return this.lyric ? this.lyric.content : ''
     },
     ...mapGetters({
       lyric: 'lyric/getCurrentLyric'
