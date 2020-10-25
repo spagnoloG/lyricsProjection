@@ -9,7 +9,7 @@
       </v-avatar>
       {{ alert.message }}
       <template v-slot:actions>
-        <v-btn text color="primary" @click="closeAlert">Zapri</v-btn>
+        <v-btn text color="primary" @click="closeAlert">Close</v-btn>
       </template>
     </v-banner>
     <!-- Success banner -->
@@ -21,7 +21,7 @@
       </v-avatar>
       {{ alert.message }}
       <template v-slot:actions>
-        <v-btn text color="primary" @click="closeAlert">Zapri</v-btn>
+        <v-btn text color="primary" @click="closeAlert">Close</v-btn>
       </template>
     </v-banner>
     <!-- Ethernet connection failure -->
@@ -31,7 +31,7 @@
           mdi-wifi-strength-1-alert
         </v-icon>
       </v-avatar>
-       Ni internetne povezave! Poglej v nastavitve brezžičnega omrežja.
+       No internet connection! Check your network settings.
       <template v-slot:actions>
       </template>
     </v-banner>
