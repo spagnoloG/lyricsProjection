@@ -2,57 +2,16 @@
     <v-navigation-drawer v-model="drawer" app clipped>
       <v-list dense>
 
-        <v-list-item :to="{name: 'Home'}">
+        <v-list-item
+        v-for="(route, i) in routes"
+        :key="i"
+        router
+        :to="route.route">
           <v-list-item-action>
-            <v-icon>mdi-home</v-icon>
+            <v-icon>{{ route.icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Domov</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-list-item :to="{name: 'ListPlaylists'}">
-          <v-list-item-action >
-            <v-icon>mdi-presentation-play</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Seznami predvajanj</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-list-item :to="{name: 'AddLyric'}">
-          <v-list-item-action >
-            <v-icon>mdi-music</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Dodaj novo pesem</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-list-item :to="{name: 'ListLyrics'}">
-          <v-list-item-action >
-            <v-icon>mdi-playlist-music</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Seznam pesmi</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-list-item :to="{name: 'Options'}">
-          <v-list-item-action >
-            <v-icon>mdi-cog</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Možnosti</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-list-item :to="{name: 'Remote'}">
-          <v-list-item-action >
-            <v-icon>mdi-remote</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Upravljaj</v-list-item-title>
+            <v-list-item-title>{{ route.routeName }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -64,6 +23,44 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'navigationDrawer',
+
+  data () {
+    return {
+      routes: [
+        {
+          route: '/home',
+          routeName: 'Home',
+          icon: 'mdi-home'
+        },
+        {
+          route: '/list-playlists',
+          routeName: 'List Playlists',
+          icon: 'mdi-presentation-play'
+        },
+        {
+          route: '/add-lyric',
+          routeName: 'Add new Lyric',
+          icon: 'mdi-music'
+        },
+        {
+          route: '/list-lyrics',
+          routeName: 'List Lyrics',
+          icon: 'mdi-playlist-music'
+        },
+        {
+          route: '/options',
+          routeName: 'Options',
+          icon: 'mdi-cog'
+        },
+        {
+          route: '/remote',
+          routeName: 'Remote Controller',
+          icon: 'mdi-remote'
+        }
+      ]
+    }
+  },
+
   computed: {
     ...mapGetters({
       drawerState: 'appState/getDrawerState'
