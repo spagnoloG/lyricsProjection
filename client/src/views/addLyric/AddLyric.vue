@@ -3,18 +3,18 @@
     <v-stepper v-model="e1">
       <v-stepper-header>
         <v-stepper-step :complete="e1 > 1" step="1"
-          >Vnesi naslov</v-stepper-step
+          >Enter Title</v-stepper-step
         >
 
         <v-divider></v-divider>
 
         <v-stepper-step :complete="e1 > 2" step="2"
-          >Izberi kategorijo</v-stepper-step
+          >Choose Category</v-stepper-step
         >
 
         <v-divider></v-divider>
 
-        <v-stepper-step step="3">Vnesi besedilo</v-stepper-step>
+        <v-stepper-step step="3">Enter Lyric Content</v-stepper-step>
       </v-stepper-header>
 
       <v-stepper-items>
@@ -25,7 +25,7 @@
                 <v-row>
                   <v-col align="center">
                     <h2 class="font-weight-regular black--text">
-                      Vnesi naslov pesmi
+                      Enter Lyric Title
                     </h2>
                   </v-col>
                 </v-row>
@@ -36,7 +36,7 @@
                       <v-text-field
                         v-on:keyup.enter="nextOne"
                         v-model="title"
-                        label="Naslov pesmi"
+                        label="Lyric Title"
                         class="black--text"
                         light
                         outlined
@@ -54,10 +54,10 @@
           <v-container fluid>
             <v-row>
               <v-col>
-                <v-btn color="primary" @click="nextOne">Nadaljuj</v-btn>
+                <v-btn color="primary" @click="nextOne">Next</v-btn>
               </v-col>
               <v-col align="end">
-                <v-btn text :to="{ name: 'Home' }">Domov</v-btn>
+                <v-btn text :to="{ name: 'Home' }">Home</v-btn>
               </v-col>
             </v-row>
           </v-container>
@@ -70,7 +70,7 @@
                 <v-row>
                   <v-col align="center">
                     <h2 class="font-weight-regular black--text">
-                      Izberi kategorijo
+                      Choose Category
                     </h2>
                   </v-col>
                 </v-row>
@@ -81,8 +81,8 @@
                       v-on:keyup.enter="e1++"
                       v-model="selected"
                       :items="categories"
-                      :rules="[v => !!v || 'Kategorija mora biti izbrana!']"
-                      label="Kategorija"
+                      :rules="[v => !!v || 'Category must be chosen!']"
+                      label="Category"
                       light
                       outlined
                       multiple
@@ -98,8 +98,8 @@
           <v-container fluid>
             <v-row>
               <v-col>
-                <v-btn color="primary" @click="nextTwo">Nadaljuj</v-btn>
-                <v-btn text @click="--e1">Nazaj</v-btn>
+                <v-btn color="primary" @click="nextTwo">Next</v-btn>
+                <v-btn text @click="--e1">Back</v-btn>
               </v-col>
             </v-row>
           </v-container>
@@ -111,7 +111,7 @@
               <v-row>
                 <v-col align="center">
                   <h2 class="font-weight-regular black--text">
-                    Vnesi besedilo pesmi
+                    Enter Lyric Content
                   </h2>
                 </v-col>
               </v-row>
@@ -173,10 +173,10 @@
           <v-container fluid>
             <v-row class="fill-height">
               <v-col align="start" justify="start">
-                <v-btn text @click="--e1">Nazaj</v-btn>
+                <v-btn text @click="--e1">Back</v-btn>
               </v-col>
               <v-col align="end" justify="end">
-                <v-btn color="primary" text @click="submitEntry">Shrani</v-btn>
+                <v-btn color="primary" text @click="submitEntry">Save</v-btn>
               </v-col>
             </v-row>
           </v-container>
@@ -216,7 +216,7 @@ export default {
         ],
         content: `
           <p>
-            Vnesi besedilo...
+            Enter content
           </p>
         `,
         onUpdate: ({ getHTML }) => {
