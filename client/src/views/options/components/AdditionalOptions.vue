@@ -62,7 +62,7 @@
   <v-container fluid v-if="edited">
     <v-row class="fill-height" align="center" justify="center">
       <v-col align="center" justify="center">
-        <v-btn color="green darken-1" text
+        <v-btn color="green darken-1" text @click="updateState"
           >Save</v-btn>
       </v-col>
     </v-row>
@@ -110,18 +110,23 @@ export default {
 
   methods: {
     updateState () {
-      if(this.organisation === '') {
+      if (this.organisation === '') {
         alert('You must enter at least organisation!')
+        this.edited = false
+      } else {
+        this.$store.dispatch('appState/updateState', this.returnDocument())
+        this.edited = false
       }
-
-      //if(res.status200)
-      
     },
     returnDocument () {
-      cons doc = {
+      const doc = {
         _id: this.appState._id,
-        organisation: this.organisation
+        organisation: this.organisation,
+        appName: this.appName,
+        marginLeft: this.marginLeft,
+        marginRight: this.marginRight
       }
+      return doc
     }
   },
 

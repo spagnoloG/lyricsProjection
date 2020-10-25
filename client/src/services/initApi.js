@@ -18,6 +18,6 @@ export default {
     return apiClient.post('/state/', state)
   },
   updateState (state) {
-    return apiClient.patch('state' + state._id, state)
+    return apiClient.patch('/state/' + state._id, state)
   }
 }
