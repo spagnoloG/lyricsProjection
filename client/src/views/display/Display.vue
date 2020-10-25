@@ -34,10 +34,10 @@
       <v-row v-if="notFound">
         <v-col align="center">
           <div v-if="currentLyricIndex === null">
-            <h1>Vtipkaj številko pesmi...</h1>
+            <h1>Enter Lyric number...</h1>
           </div>
           <div v-else>
-            <h1>Pesem ne obstaja!</h1>
+            <h1>This Lyric does not exist!</h1>
           </div>
         </v-col>
       </v-row>
@@ -111,7 +111,6 @@ export default {
         this.gotoTimeout = setTimeout(() => {
           this.showInputField = false
           if (this.userInput !== '') {
-            console.log('In here!')
             const lyricId = this.$store.getters['lyric/getLyricIdByNumber'](Number(this.userInput))
             if (lyricId === -1) {
               this.$store.dispatch('lyric/updateNotFoundVariable', true)
@@ -120,7 +119,6 @@ export default {
                 currentLyric: lyricId,
                 currentPlaylist: null
               }
-              console.log(lyricId)
               this.$store.dispatch('socket/sendRemoteMessage', document)
             }
           }
