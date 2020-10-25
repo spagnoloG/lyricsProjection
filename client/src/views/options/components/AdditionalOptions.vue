@@ -16,7 +16,7 @@
               <v-slider
               label="Left margin"
               v-model="marginLeft"
-              max="5"
+              max="4"
               min="0"
               thumb-label="always">
               </v-slider>
@@ -25,7 +25,7 @@
               <v-slider
               label="Right margin"
               v-model="marginRight"
-              max="5"
+              max="4"
               min="0"
               thumb-label="always">
               </v-slider>

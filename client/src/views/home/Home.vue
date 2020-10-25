@@ -2,8 +2,9 @@
   <v-container fluid>
     <v-row>
       <v-col>
-        <v-img :src="require(`@/assets/homePage.jpg`)"
+        <v-img
         :lazy-src="require(`@/assets/homePage-lazy.jpg`)"
+        :src="require(`@/assets/homePage.jpg`)"
         max-height="600" contain>
        </v-img>
       </v-col>
