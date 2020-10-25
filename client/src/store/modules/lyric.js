@@ -145,7 +145,7 @@ export const actions = {
       commit('delete_lyric', toDelete)
       if (response.status === 200) {
         const alert = {
-          message: 'Successfuly deleted lyric.',
+          message: 'Successfully deleted lyric.',
           type: 'success'
         }
         dispatch('appState/showAlert', alert, { root: true })
@@ -174,7 +174,7 @@ export const actions = {
       commit('delete_category', toDelete)
       if (response.status === 200) {
         const alert = {
-          message: 'Successfuly deleted category',
+          message: 'Successfully deleted category',
           type: 'success'
         }
         dispatch('appState/showAlert', alert, { root: true })

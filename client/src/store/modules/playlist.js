@@ -43,7 +43,7 @@ export const actions = {
       .then(response => {
         commit('add_new_playlist', playlist)
         const alert = {
-          message: 'Uspešno dodan nov seznam predvajanj',
+          message: 'Successfully added new playlist',
           type: 'success'
         }
         dispatch('appState/showAlert', alert, { root: true })
@@ -51,7 +51,7 @@ export const actions = {
       })
       .catch(error => {
         const alert = {
-          message: 'Napaka pri shranjevanju seznama predvajanj!',
+          message: 'Error whlie posting playlist to database!',
           type: 'error'
         }
         dispatch('appState/showAlert', alert, { root: true })
@@ -85,7 +85,7 @@ export const actions = {
     const toDelete = state.playlists.indexOf(foundPlaylist)
     if (toDelete === -1) {
       const alert = {
-        message: 'Napaka pri brisanju seznama!',
+        message: 'Error while trying to delete playlist!',
         type: 'error'
       }
       dispatch('appState/showAlert', alert, { root: true })
@@ -95,7 +95,7 @@ export const actions = {
       commit('delete_playlist', toDelete)
       if (response.status === 200) {
         const alert = {
-          message: 'Uspešno izbrisan seznam predvajanj',
+          message: 'Successfully deleted playlist',
           type: 'success'
         }
         dispatch('appState/showAlert', alert, { root: true })
@@ -111,7 +111,7 @@ export const actions = {
     const toUpdate = state.playlists.indexOf(foundPlaylist)
     if (toUpdate === -1) {
       const alert = {
-        message: 'Napaka med posodabljanjem seznama!',
+        message: 'Error while updating playlist!',
         type: 'error'
       }
       dispatch('appState/showAlert', alert, { root: true })
@@ -124,7 +124,7 @@ export const actions = {
       })
       if (response.status === 200) {
         const alert = {
-          message: 'Seznam uspešno posodobljen',
+          message: 'Successfully updated playlist',
           type: 'success'
         }
         dispatch('appState/showAlert', alert, { root: true })
