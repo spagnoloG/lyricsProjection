@@ -5,7 +5,9 @@
         <v-col cols="8">
           <v-card class="mx-auto">
             <v-card-title class="white--text secondary">
-              Seznam pesmi župnije Šempeter pri Gorici
+             List of Lyrics
+              <v-spacer></v-spacer>
+              {{ appState.organisation }}
               <v-spacer></v-spacer>
               <v-btn @click="print()" icon>
                 <v-icon>mdi-printer</v-icon>
@@ -15,7 +17,7 @@
             <v-divider></v-divider>
 
             <v-card-text>
-              Seznam pesmi, primeren za tiskanje
+              List of Lyrics, suitable for printing
             </v-card-text>
             <div v-for="(lyric, index) in lyrics" :key="lyric._id">
               <v-list-item>
@@ -45,7 +47,8 @@ export default {
   name: 'Print',
   computed: {
     ...mapGetters({
-      lyrics: 'lyric/getAllLyrics'
+      lyrics: 'lyric/getAllLyrics',
+      appState: 'appState/getAppState'
     })
   },
   methods: {
