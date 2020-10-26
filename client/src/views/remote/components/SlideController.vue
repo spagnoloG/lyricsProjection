@@ -4,7 +4,7 @@
       <v-container fluid>
         <v-row>
           <v-col align="center">
-            <h2>Projeciraj seznam predvajanj</h2>
+            <h2>Project Playlist</h2>
           </v-col>
         </v-row>
         <v-row>
@@ -15,7 +15,7 @@
               item-text="playlistName"
               v-model="selectedPlaylist"
               return-object
-              label="Izberi"
+              label="Choose"
             />
           </v-col>
           <v-col></v-col>
@@ -23,7 +23,7 @@
         <v-row>
           <v-col class="fill-height" align="center" justify="center">
             <v-btn @click="startProjectingPlaylist" depressed color="success"
-              >Projeciraj <v-icon>mdi-cast</v-icon></v-btn
+              >Project <v-icon>mdi-cast</v-icon></v-btn
             >
           </v-col>
         </v-row>
@@ -100,7 +100,7 @@
             sm="4"
           >
             <v-btn @click="stopProjection" text large color="error"
-              >Zaključi</v-btn
+              >Stop Projection</v-btn
             >
           </v-col>
           <v-col align="center" cols="12" sm="4">

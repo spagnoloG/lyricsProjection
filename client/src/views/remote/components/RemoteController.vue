@@ -15,7 +15,7 @@
         <v-row v-if="socketIndex !== -1">
           <v-col align="center">
             <v-chip class="ma-2" color="green" text-color="white">
-              Na zaslonu:
+              On Display
               <v-avatar right class="green darken-4">{{
                 socketIndex
               }}</v-avatar>
@@ -28,7 +28,7 @@
           <v-col align="center" cols="8">
             <v-text-field
               v-model="userInput"
-              label="Vtipkaj številko"
+              label="Enter Lyric Number"
               solo
               readonly
             ></v-text-field>
@@ -116,7 +116,7 @@
               @click="stopProjection"
               depressed
               color="error"
-              >Ustavi<v-icon>mdi-close</v-icon>
+              >Stop Projection<v-icon>mdi-close</v-icon>
             </v-btn>
           </v-col>
           </v-fade-transition>
@@ -125,7 +125,7 @@
               @click="onProject"
               depressed
               color="success"
-              >Projeciraj<v-icon>mdi-cast</v-icon>
+              >Project<v-icon>mdi-cast</v-icon>
             </v-btn>
           </v-col>
         </v-row>
@@ -173,15 +173,15 @@ export default {
     },
     checkForUserErrors () {
       if (this.selected === '') {
-        this.errorMessage = 'Izberi vrsto projeciranja!'
+        this.errorMessage = 'Choose type of projection!'
         this.alert = true
         return false
       } else if (this.userInput === '') {
-        this.errorMessage = 'Vnesi številko!'
+        this.errorMessage = 'Enter Number!'
         this.alert = true
         return false
       } else if (this.$store.getters['lyric/getLyricIdByNumber'](Number(this.userInput)) === -1) {
-        this.errorMessage = 'Ta pesem ne obstaja!'
+        this.errorMessage = 'Lyric with typed index does not exist!'
         this.alert = true
         return false
       } else {
