@@ -4,7 +4,7 @@
       <!-- Card header -->
       <v-card class="mx-auto" max-width="600">
         <v-card-title class="white--text secondary">
-          Seznami predvajanj
+          Playlists
           <v-spacer></v-spacer>
           <v-btn
             @click="newPlaylist"
@@ -20,10 +20,10 @@
         <v-divider></v-divider>
 
         <v-card-text>
-          Dodaj pesmi v nov seznam, ali posodobi obstoječega.
+          Add lyrics to a new playlist, or update an existing one.
           <v-text-field
             v-model="search"
-            label="Išči"
+            label="Search"
             @click="page = 1"
             append-icon="mdi-magnify"
           ></v-text-field>
@@ -96,12 +96,12 @@
                     outlined
                     color="primary"
                   >
-                    <v-icon>mdi-lead-pencil</v-icon>Uredi
+                    <v-icon>mdi-lead-pencil</v-icon>Edit
                   </v-btn>
                 </v-col>
                 <v-col cols="6" align="center">
                   <v-btn @click="onProject" small outlined color="primary">
-                    <v-icon>mdi-cast</v-icon>Projeciraj
+                    <v-icon>mdi-cast</v-icon>Project
                   </v-btn>
                 </v-col>
               </v-row>
@@ -109,7 +109,7 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn @click="showPopUp = false" color="primary" text
-                >Prekliči</v-btn
+                >Cancel</v-btn
               >
             </v-card-actions>
           </v-card>
@@ -120,13 +120,13 @@
     <div class="deleteDialog">
       <!-- Show delete dialog -->
       <v-overlay :value="deleteDialog">
-        <h1>Si prepričan/a?</h1>
+        <h1>Are you sure?</h1>
         <br />
         <v-btn @click="deleteDialog = false" color="primary" class="mx-3">
-          Prekliči</v-btn
+          Cancel</v-btn
         >
         <v-btn @click="deletePlaylist" color="primary" class="mx-3">
-          Da<v-icon>mdi-delete</v-icon>
+          Delete<v-icon>mdi-delete</v-icon>
         </v-btn>
       </v-overlay>
     </div>

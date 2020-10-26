@@ -13,7 +13,7 @@
       <v-col align="center" cols=12 sm=6>
         <v-btn
         :to="{ name: 'ListLyrics'}"
-        color="primary">Lyrics List<v-icon>mdi-playlist-music</v-icon></v-btn>
+        color="primary">List of Lyrics<v-icon>mdi-playlist-music</v-icon></v-btn>
       </v-col>
       <v-col align="center" cols=12 sm=6>
         <v-btn

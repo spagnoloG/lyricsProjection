@@ -18,7 +18,7 @@
 
                 <v-card>
                   <v-card-title class="headline">
-                    <h5>Dodaj pesem v seznam</h5>
+                    <h5>Add a lyric to the playlist</h5>
                   </v-card-title>
 
                   <!-- List lyrics -->
@@ -79,7 +79,7 @@
                   <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn color="indigo" text @click="dialog = false"
-                      >Zapri</v-btn
+                      >Close</v-btn
                     >
                   </v-card-actions>
                 </v-card>
@@ -95,7 +95,7 @@
             </template>
             <v-list>
               <v-list-item @click="sheet = true">
-                <v-list-item-title>Spremeni ime</v-list-item-title>
+                <v-list-item-title>Change Name</v-list-item-title>
               </v-list-item>
             </v-list>
           </v-menu>
@@ -108,7 +108,7 @@
                 </v-btn>
               </div>
             </template>
-            <span>Shrani</span>
+            <span>Save</span>
           </v-tooltip>
         </v-toolbar>
         <v-list>
@@ -141,14 +141,14 @@
       <v-bottom-sheet v-model="sheet" inset>
         <v-sheet class="text-center" height="200px">
           <v-btn class="mt-6" text color="green" @click="sheet = !sheet"
-            >Zaključi</v-btn
+            >Finish</v-btn
           >
           <v-container fluid>
             <v-row>
               <v-col align="center">
                 <v-text-field
                   v-model="playlistName"
-                  label="Naslov seznama"
+                  label="Playlist Title"
                   color="indigo"
                 ></v-text-field>
               </v-col>
@@ -270,7 +270,7 @@ export default {
     await this.$store.dispatch('lyric/fetchLyrics')
     if (this.id === 'new') {
       this.selectedIds = []
-      this.playlistName = 'Nov seznam'
+      this.playlistName = 'New Playlist'
       this.sheet = true
     } else {
       await this.$store.dispatch('playlist/fetchPlaylist', this.id)

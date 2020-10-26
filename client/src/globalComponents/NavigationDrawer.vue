@@ -44,7 +44,7 @@ export default {
         },
         {
           route: '/list-lyrics',
-          routeName: 'List Lyrics',
+          routeName: 'List of Lyrics',
           icon: 'mdi-playlist-music'
         },
         {
