@@ -35,7 +35,7 @@
               </v-col>
               <v-col align="end">
                 <v-btn text :to="{ name: 'Home' }"
-                  ><v-icon>mdi-home</v-icon> Home</v-btn
+                  ><v-icon left>mdi-home</v-icon> Home</v-btn
                 >
               </v-col>
             </v-row>
@@ -134,7 +134,7 @@
               </v-col>
               <v-col align="end">
                 <v-btn color="primary" text @click="updateEntry"
-                  >Update <v-icon>mdi-update</v-icon></v-btn
+                  >Update <v-icon right>mdi-update</v-icon></v-btn
                 >
               </v-col>
             </v-row>
