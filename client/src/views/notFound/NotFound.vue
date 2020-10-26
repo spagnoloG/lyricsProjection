@@ -8,12 +8,12 @@
     <v-container fluid>
       <v-row class="fill-height">
         <v-col align="center" justify="center">
-          <p class="font-weight-light">Te strani ni mogoče najti</p>
+          <p class="font-weight-light">Not Found!</p>
         </v-col>
       </v-row>
       <v-row class="fill-height">
         <v-col align="center" justify="center">
-          <v-btn text :to="{ name: 'Home' }" color="primary">Domov</v-btn>
+          <v-btn text :to="{ name: 'Home' }" color="primary">Home</v-btn>
         </v-col>
       </v-row>
     </v-container>
