@@ -7,7 +7,7 @@
       </v-btn>
       <v-spacer></v-spacer>
       <v-btn text :to="{ name: 'EditLyric', params: { id: id } }">
-        Uredi besedilo pesmi
+        Edit Lyric content
       </v-btn>
     </v-toolbar>
     <v-container fluid>
