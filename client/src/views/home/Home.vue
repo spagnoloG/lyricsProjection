@@ -13,12 +13,12 @@
       <v-col align="center" cols=12 sm=6>
         <v-btn
         :to="{ name: 'ListLyrics'}"
-        color="primary">Seznam pesmi <v-icon>mdi-playlist-music</v-icon></v-btn>
+        color="primary">Lyrics List<v-icon>mdi-playlist-music</v-icon></v-btn>
       </v-col>
       <v-col align="center" cols=12 sm=6>
         <v-btn
         :to="{name: 'AddLyric'}"
-        color="primary">Dodaj novo pesem <v-icon>mdi-music</v-icon></v-btn>
+        color="primary">Add new Lyric<v-icon>mdi-music</v-icon></v-btn>
       </v-col>
     </v-row>
     <v-row>
@@ -26,7 +26,7 @@
         <v-btn
         :to="{name: 'Remote'}"
         color="#59A96A"
-        large>Upravljaj <v-icon>mdi-remote</v-icon></v-btn>
+        large>Remote<v-icon>mdi-remote</v-icon></v-btn>
       </v-col>
     </v-row>
   </v-container>
