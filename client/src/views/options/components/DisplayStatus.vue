@@ -8,7 +8,7 @@
       </v-col>
       <v-col>
         <v-card-title>
-          <h2 class="text-color-white">Možnosti prikazovalnika...</h2>
+          <h2 class="text-color-white">Display Options...</h2>
           <v-spacer></v-spacer>
           <p class="title font-weight-regular text-h4 mt-2">{{ currentDay }}, {{ currentTime }}</p>
         </v-card-title>
@@ -19,15 +19,15 @@
         <v-card-actions>
           <v-chip @click="refreshDisplay" class="mr-2">
             <v-icon left>mdi-refresh</v-icon>
-            Osveži prikazovalnik
+            Refresh Display
           </v-chip>
          <v-chip @click="stopProjection" class="mr-2">
           <v-icon left>mdi-close-circle</v-icon>
-          Ustavi projekcijo
+          Stop Projection
           </v-chip>
           <v-chip :to="{ name: 'Remote'}" class="mr-2">
           <v-icon left>mdi-remote</v-icon>
-          Projeciraj
+          Project
           </v-chip>
         </v-card-actions>
       </v-card-text>
@@ -59,25 +59,25 @@ export default {
       const dateVariable = new Date().getUTCDay()
       switch (dateVariable) {
         case 0:
-          this.currentDay = 'Nedelja'
+          this.currentDay = 'Sunday'
           break
         case 1:
-          this.currentDay = 'Ponedeljek'
+          this.currentDay = 'Monday'
           break
         case 2:
-          this.currentDay = 'Torek'
+          this.currentDay = 'Tuesday'
           break
         case 3:
-          this.currentDay = 'Sreda'
+          this.currentDay = 'Wednesday'
           break
         case 4:
-          this.currentDay = 'Četrtek'
+          this.currentDay = 'Thursday'
           break
         case 5:
-          this.currentDay = 'Petek'
+          this.currentDay = 'Friday'
           break
         case 6:
-          this.currentDay = 'Sobota'
+          this.currentDay = 'Saturday'
           break
       }
     },

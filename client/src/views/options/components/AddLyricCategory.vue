@@ -7,13 +7,13 @@
           <v-card>
             <v-container>
               <v-card-title class="headline"
-                >Dodaj novo kategorijo</v-card-title
+                >Add a new Category</v-card-title
               >
               <form v-on:submit.prevent>
                 <v-text-field
                   v-model="category"
                   v-on:keyup.enter="saveCategory"
-                  label="Vnesi kategorijo"
+                  label="Enter Category"
                   class="black--text"
                   outlined
                   required
@@ -27,10 +27,10 @@
                 color="red darken-1"
                 text
                 @click="addCategoryDialog = false"
-                >Prekliči</v-btn
+                >Cancel</v-btn
               >
               <v-btn color="green darken-1" text @click="saveCategory"
-                >Shrani</v-btn
+                >Save</v-btn
               >
             </v-card-actions>
           </v-card>
@@ -44,17 +44,15 @@
         <v-dialog v-model="deletecategoryDialog" persistent max-width="290">
           <v-card>
             <v-container>
-              <v-card-title class="headline">Izbriši kategorijo</v-card-title>
+              <v-card-title class="headline">Delete Category</v-card-title>
               <v-card-text>
-                Ponovno napiši ime kategorije za izbris ({{
-                  selectedCategory
-                }}).
+                To delete <strong>{{ selectedCategory }}</strong> type the Category name
               </v-card-text>
               <form v-on:submit.prevent>
                 <v-text-field
                   v-model="category"
                   v-on:keyup.enter="deleteCategory"
-                  label="Vnesi kategorijo"
+                  label="Enter Category"
                   class="black--text"
                   outlined
                   required
@@ -67,11 +65,11 @@
                 color="red darken-1"
                 text
                 @click="deletecategoryDialog = false"
-                >Prekliči</v-btn
+                >Cancel</v-btn
               >
               <div v-if="selectedCategory === category">
                 <v-btn color="green darken-1" text @click="deleteCategory"
-                  >Izbriši</v-btn
+                  >Delete</v-btn
                 >
               </div>
             </v-card-actions>
@@ -84,7 +82,7 @@
     <div>
       <v-card class="mx-auto">
         <v-card-title class="white--text secondary">
-          Kategorije pesmi
+          Lyrics Categories
           <v-spacer></v-spacer>
 
           <v-btn
@@ -99,7 +97,7 @@
         </v-card-title>
 
         <v-card-text class="pt-4"
-          >Spodaj so navedene vse kategorije pesmi</v-card-text
+          >All Lyric categories are listed below</v-card-text
         >
 
         <v-divider></v-divider>
@@ -119,7 +117,7 @@
 
               <v-list-item-action>
                 <v-btn depressed small @click="showDeleteDialog(item.name)">
-                  Izbriši
+                  Delete
                   <v-icon color="secondary" right>
                     mdi-delete
                   </v-icon>
