@@ -84,14 +84,24 @@ export const actions = {
       })
   },
 
-  updateState ({ commit }, message) {
+  updateState ({ commit, dispatch }, message) {
     localStorage.setItem('state', JSON.stringify(message))
     return initApi.updateState(message)
       .then(response => {
         commit('set_state', message)
+        const alert = {
+          message: 'Successfully updated App info.',
+          type: 'success'
+        }
+        dispatch('appState/showAlert', alert, { root: true })
         return response
       })
       .catch(err => {
+        const alert = {
+          message: 'Error while updating App info',
+          type: 'error'
+        }
+        dispatch('appState/showAlert', alert, { root: true })
         return err
       })
   },
