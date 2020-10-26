@@ -23,7 +23,7 @@
         <v-row>
           <v-col class="fill-height" align="center" justify="center">
             <v-btn @click="startProjectingPlaylist" depressed color="success"
-              >Project <v-icon>mdi-cast</v-icon></v-btn
+              >Project <v-icon right>mdi-cast</v-icon></v-btn
             >
           </v-col>
         </v-row>

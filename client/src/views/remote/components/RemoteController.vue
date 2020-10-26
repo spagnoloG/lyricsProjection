@@ -116,7 +116,7 @@
               @click="stopProjection"
               depressed
               color="error"
-              >Stop Projection<v-icon>mdi-close</v-icon>
+              >Stop Projection<v-icon right>mdi-close</v-icon>
             </v-btn>
           </v-col>
           </v-fade-transition>
@@ -125,7 +125,7 @@
               @click="onProject"
               depressed
               color="success"
-              >Project<v-icon>mdi-cast</v-icon>
+              >Project<v-icon right>mdi-cast</v-icon>
             </v-btn>
           </v-col>
         </v-row>
