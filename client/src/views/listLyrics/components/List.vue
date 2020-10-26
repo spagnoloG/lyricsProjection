@@ -47,7 +47,7 @@
                     outlined
                     color="primary"
                   >
-                    <v-icon>mdi-lead-pencil</v-icon>Edit
+                    <v-icon left>mdi-lead-pencil</v-icon>Edit
                   </v-btn>
                 </v-col>
                 <v-col cols="6" align="center">
@@ -61,14 +61,14 @@
                     outlined
                     color="primary"
                   >
-                    <v-icon>mdi-image-multiple</v-icon>Peek
+                    <v-icon left>mdi-image-multiple</v-icon>Peek
                   </v-btn>
                 </v-col>
               </v-row>
               <v-row>
                 <v-col cols="12" align="center">
                   <v-btn @click="onProject" small outlined color="primary">
-                    <v-icon>mdi-cast</v-icon>Project
+                    <v-icon left>mdi-cast</v-icon>Project
                   </v-btn>
                 </v-col>
               </v-row>
