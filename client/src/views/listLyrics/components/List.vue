@@ -3,13 +3,13 @@
     <!-- Show delete dialog -->
     <div>
       <v-overlay :value="deleteDialog">
-        <h1>Si prepričan/a?</h1>
+        <h1>Are you sure?</h1>
         <br />
         <v-btn @click="deleteDialog = false" color="primary" class="mx-3">
-          Prekliči</v-btn
+          Cancel</v-btn
         >
         <v-btn @click="deleteLyric" color="primary" class="mx-3">
-          Da
+          Yes
           <v-icon>mdi-delete</v-icon>
         </v-btn>
       </v-overlay>
@@ -47,7 +47,7 @@
                     outlined
                     color="primary"
                   >
-                    <v-icon>mdi-lead-pencil</v-icon>Uredi
+                    <v-icon>mdi-lead-pencil</v-icon>Edit
                   </v-btn>
                 </v-col>
                 <v-col cols="6" align="center">
@@ -61,14 +61,14 @@
                     outlined
                     color="primary"
                   >
-                    <v-icon>mdi-image-multiple</v-icon>Oglej
+                    <v-icon>mdi-image-multiple</v-icon>Peek
                   </v-btn>
                 </v-col>
               </v-row>
               <v-row>
                 <v-col cols="12" align="center">
                   <v-btn @click="onProject" small outlined color="primary">
-                    <v-icon>mdi-cast</v-icon>Projeciraj
+                    <v-icon>mdi-cast</v-icon>Project
                   </v-btn>
                 </v-col>
               </v-row>
@@ -76,7 +76,7 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn @click="showPopUp = false" color="primary" text
-                >Prekliči</v-btn
+                >Cancel</v-btn
               >
             </v-card-actions>
           </v-card>
@@ -90,7 +90,7 @@
           <!-- Card header -->
           <v-card class="mx-auto">
             <v-card-title class="white--text secondary">
-              Seznam pesmi
+              List of Lyrics
               <v-spacer></v-spacer>
               <v-btn
                 @click="goToAddLyric"
@@ -106,10 +106,10 @@
             <v-divider></v-divider>
 
             <v-card-text>
-              Išči, urejaj in projeciraj pesmi.
+              Search, Edit and Project Lyrics.
               <v-text-field
                 v-model="search"
-                label="Išči"
+                label="Search"
                 @click="page = 1"
                 append-icon="mdi-magnify"
               ></v-text-field>
@@ -152,7 +152,7 @@
         <v-col cols="12" sm="4">
           <v-card class="mx-auto">
             <v-card-title class="white--text secondary">
-              Izberi kategorijo
+              Choose Category
               <v-spacer></v-spacer>
               <v-btn
                 :to="{ name: 'Options' }"
@@ -171,10 +171,10 @@
                   <v-select
                     v-model="selectedCategories"
                     :items="availableCategories"
-                    label="Izberi"
+                    label="Choose"
                     multiple
                     chips
-                    hint="možne kategorije"
+                    hint="Available Categories"
                     persistent-hint
                   ></v-select>
                 </v-col>
@@ -184,7 +184,7 @@
           <br />
           <v-card class="mx-auto">
             <v-card-title class="white--text secondary">
-              Natisni seznam pesmi
+              Print List of Lyrics
               <v-spacer></v-spacer>
               <v-icon>mdi-printer</v-icon>
             </v-card-title>
@@ -192,7 +192,7 @@
             <v-container fluid>
               <v-row class="fill-height">
                 <v-col align="center" justify="center">
-                  <v-btn :to="{ name: 'Print' }">Natisni</v-btn>
+                  <v-btn :to="{ name: 'Print' }">Print</v-btn>
                 </v-col>
               </v-row>
             </v-container>
