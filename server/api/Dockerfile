@@ -8,6 +8,8 @@ RUN yarn
 
 COPY . .
 
+ENV DB_host=db
+
 EXPOSE 4200
 
 CMD ["yarn", "dev"]
