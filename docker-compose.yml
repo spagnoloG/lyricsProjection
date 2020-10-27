@@ -17,6 +17,8 @@ services:
       context: ./server/api
     depends_on: 
       - db
+    environment:
+      - DB_HOST
     volumes:
       - ./server/api:/api
       - /api/node_modules
