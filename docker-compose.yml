@@ -1,25 +1,41 @@
 version: '3.7'
 services:
-  vue-client:
-     image: client
-     command: serve -s dist
-     ports:
-       - "80:5000"
+  client:
+    container_name: client
+    build:
+      context: ./client
+    volumes:
+      - ./client:/client
+      - /client/node_modules
+      - /client/dist
+    ports:
+      - "80:5000"
 
-  node-server:
-    image: api
-    restart: always
+  api:
+    container_name: api
+    build:
+      context: ./server/api
+    depends_on: 
+      - db
+    volumes:
+      - ./server/api:/api
+      - /api/node_modules
     ports:
       - "4200:4200"
-
-  socket-io-server:
-    image: socket
     restart: always
+
+  socket:
+    container_name: socket
+    build:
+      context: ./server/socket
+    volumes:
+      - ./server/socket:/socket
+      - /socket/node_modules
     ports:
       - "3000:3000"
+    restart: always
   
-  mongodb_container: 
+  db: 
     image: mongo:latest
-    command: ["--bind_ip_all"]
-    ports:
-      - "27017:27017"
+    container_name: db
+    restart: always
