@@ -1,33 +1,30 @@
-# lyricsProjection[SLO]
-Moderna spletna aplikacija namenjena za rabo v cerkvah.
-Enostavno vnašanje pesmi v aplikacijo, pregled, urejanje in projeciranje le-teh na oddaljeni zaslon.
+# lyricsProjection
 
+Modern WebApp for lyrics Projection in any place.
+Easily enter lyrics into the app, view, edit and project them on a remote screen.
 
 ![homepage_image](https://iili.io/208drP.md.png)
 
+## Features
 
-Projekt je nastal v sodelovanju z župnijo Šempeter pri Gorici.
+* Inserting lyrics
+* Editing lyrics
+* Categorization of lyrics
+* Compiling Playlists
+* Projection of lyrics
+* Projectin of playlists
+* Multiple projection displays supported
+* Active indicator
+* Active indicator of the current song in the web interface
+* Fully Mobile / Tablet supported
 
-Možnosti
-<ol>
-  <li>Vnašanje pesmi</li>
-  <li>Urejanje pesmi</li>
-  <li>Ketegorizacija pesmi</li>
-  <li>Sestavljanje seznamov predvajanj</li>
-  <li>Projeciranje pesmi</li>
-  <li>Projeciranje seznamov predvajanj</li>
-  <li>Aktivni indikator trenutne pesmi v spletnem vmesniku</li>
-</ol>
+## Installation
 
-Uporabljeni programski jeziki: js, vue, (vuetify - component library)
+Firstly you must have docker and docker-compose installed.
+Then clone this app and run **docker-compose up**.
 
-Potrebno dodatno delo: 
-<ol>
-  <li> celotna docker implementacija za RPi/PC</li>
-  <li> support za psalme</li>
-</ol>
+App will be abailable on your localhost at port 80. To preview whats on Display you must go to /display route.
 
-Inštalacijska skripta trenutno deluje samo na linux debian(ubuntu, raspbian) operacijskem sistemu(aplikacijo se v nasprotnem primeru lahko zažene z npm run serve/yarn seve na kateremkoli sistemu), dokler se ne poštima docker implementacije(Katera bo lahko zaznala arm64 ali amd64 cpu).
-Za backend je potrebna namestitev baze mongoDB(na default portu :27017), brez avtentikacije. 
 
-Popravki so dobrodošli.
+Project came to life with support of local church.
+Fixes are welcome.
