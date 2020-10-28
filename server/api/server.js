@@ -5,7 +5,6 @@ import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import mongoose from 'mongoose';
 
-require('dotenv').config()
 
 // Defining port
 const port = process.env.PORT || 4200;
@@ -36,8 +35,7 @@ app.use('/playlists', require('./routes/playlists'));
 // Application state
 app.use('/state', require('./routes/appState'));
 
-// Connect to database after 15s
-mongoose.connect("mongodb://" + process.env.DB_HOST + ":27017/projectionDb",
+mongoose.connect("mongodb://db:27017/projectionDb",
     { useNewUrlParser: true, useUnifiedTopology: true}, () =>
     console.log('Connected to database')
 );
