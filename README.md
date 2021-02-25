@@ -12,7 +12,7 @@ Easily enter lyrics into the app, view, edit and project them on a remote screen
 * Categorization of lyrics
 * Compiling Playlists
 * Projection of lyrics
-* Projectin of playlists
+* Projection of playlists
 * Multiple projection displays supported
 * Active indicator
 * Active indicator of the current song in the web interface
@@ -23,7 +23,7 @@ Easily enter lyrics into the app, view, edit and project them on a remote screen
 Firstly you must have docker and docker-compose installed.
 Then clone this app and run **docker-compose up**.
 
-App will be abailable on your localhost at port 80. To preview whats on Display you must go to /display route.
+App will be abailable on your localhost at port 80. To preview what is on Display you must go to /display route.
 
 
 Project came to life with support of local church.
