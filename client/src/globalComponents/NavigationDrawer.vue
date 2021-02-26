@@ -15,6 +15,48 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
+      <v-container>
+        <v-row>
+          <v-col>
+            <!-- <v-menu offset-y>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  color="primary"
+                  dark
+                  v-bind="attrs"
+                  v-on="on"
+                >
+                <v-icon left>mdi-translate</v-icon>
+                  Language
+                </v-btn>
+              </template>
+              <v-list
+                v-model="$root.$i18n.locale"
+              >
+                <v-list-item
+                  v-for="(lang, i) in langs"
+                 :key="`Lang${i}`"
+                 :value="lang"
+                 link
+                >
+                  <v-list-item-title>{{ lang }}</v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-menu> -->
+            <!-- <select v-model="$i18n.locale">
+              <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">
+                {{ lang }}
+              </option> -->
+            <v-select
+              v-model="$i18n.locale"
+              :items="langs"
+              persistent-hint
+              return-object
+              single-line
+            ></v-select>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-navigation-drawer>
 </template>
 
@@ -57,7 +99,8 @@ export default {
           routeName: 'Remote Controller',
           icon: 'mdi-remote'
         }
-      ]
+      ],
+      langs: ['en', 'si']
     }
   },
 
