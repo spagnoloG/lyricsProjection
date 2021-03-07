@@ -48,7 +48,7 @@
                 {{ lang }}
               </option> -->
             <v-select
-              v-model="$i18n.locale"
+              v-model="locale"
               :items="langs"
               persistent-hint
               return-object
@@ -106,7 +106,8 @@ export default {
 
   computed: {
     ...mapGetters({
-      drawerState: 'appState/getDrawerState'
+      drawerState: 'appState/getDrawerState',
+      currentLocale: 'appState/getLocale'
     }),
     drawer: {
       get () {
@@ -114,6 +115,15 @@ export default {
       },
       set (newState) {
         this.$store.dispatch('appState/setDrawerState', newState)
+      }
+    },
+    locale: {
+      get () {
+        return this.currentLocale
+      },
+      set (newLocale) {
+        this.$root.$i18n.locale = newLocale
+        this.$store.dispatch('appState/changeLocale', newLocale)
       }
     }
   }

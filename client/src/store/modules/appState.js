@@ -10,7 +10,8 @@ export const state = {
     type: ''
   },
   appState: {},
-  connectedToDb: true
+  connectedToDb: true,
+  locale: 'en'
 }
 
 export const mutations = {
@@ -28,6 +29,9 @@ export const mutations = {
   },
   set_connection_to_db (state, isConnected) {
     state.connectedToDb = isConnected
+  },
+  set_locale (state, locale) {
+    state.locale = locale
   }
 }
 
@@ -63,6 +67,8 @@ export const actions = {
           commit('set_state', response.data.state)
           commit('set_connection_to_db', true)
         }
+        // Define locale from localStorage
+        commit('set_locale', localStorage.getItem('locale') ? localStorage.getItem('locale') : 'en')
         return response
       })
       .catch(err => {
@@ -109,6 +115,11 @@ export const actions = {
   setStateFromStorage ({ commit }, message) {
     localStorage.setItem('state', JSON.stringify(message))
     commit('set_state', message)
+  },
+
+  changeLocale ({ commit }, message) {
+    localStorage.setItem('locale', message)
+    commit('set_locale', message)
   }
 }
 
@@ -128,5 +139,8 @@ export const getters = {
   },
   getDbConnection () {
     return state.connectedToDb
+  },
+  getLocale () {
+    return state.locale
   }
 }

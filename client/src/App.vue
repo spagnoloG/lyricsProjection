@@ -83,6 +83,8 @@ export default {
       this.$router.push({ path: '/init' })
     }
 
+    this.$root.$i18n.locale = this.$store.getters['appState/getLocale']
+
     this.finishedLoading = true
 
     if (theme) {
