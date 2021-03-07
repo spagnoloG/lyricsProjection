@@ -14,13 +14,13 @@
     <v-row>
       <v-col align="center" cols="12" sm="6">
         <v-btn :to="{ name: 'ListLyrics' }" color="primary"
-          >{{ $t("List Of Lyrics")
+          >{{ $t('List Of Lyrics')
           }}<v-icon right>mdi-playlist-music</v-icon></v-btn
         >
       </v-col>
       <v-col align="center" cols="12" sm="6">
         <v-btn :to="{ name: 'AddLyric' }" color="primary"
-          >{{ $t("Add new Lyric")
+          >{{ $t('Add new Lyric')
           }}<v-icon right>mdi-music</v-icon></v-btn
         >
       </v-col>
@@ -28,7 +28,7 @@
     <v-row>
       <v-col align="center">
         <v-btn :to="{ name: 'Remote' }" color="#59A96A" large
-          >{{ $t("Remote")
+          >{{ $t('Remote')
           }}<v-icon right>mdi-remote</v-icon></v-btn
         >
       </v-col>

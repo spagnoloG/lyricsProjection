@@ -3,9 +3,9 @@
     <v-container fluid>
       <v-row>
         <v-col align="center">
-          <h1>{{$t("About application")}}</h1>
+          <h1>{{$t('About application')}}</h1>
           <br />
-          <p>{{$t("WebApp is written in Vue.js")}}</p>
+          <p>{{$t('WebApp is written in Vue.js')}}</p>
         </v-col>
       </v-row>
       <v-row>
@@ -16,7 +16,7 @@
       </v-row>
       <v-row>
         <v-col align="center">
-          <p>{{$t("Technologies")}} / {{$t("libraries used")}}:</p>
+          <p>{{$t('Technologies')}} / {{$t('libraries used')}}:</p>
           <ul>
             <li>Socket.io</li>
             <li>Tiptap extension for Vue</li>
