@@ -2,5 +2,9 @@
   "message": "hello i18n !!",
   "List Of Lyrics" : "List Of Lyrics",
   "Remote" : "Remote",
-  "Add new Lyric" : "Add new Lyric"
+  "Add new Lyric" : "Add new Lyric",
+  "Technologies": "Technologies",
+  "libraries used": "libraries used",
+  "About application": "About application",
+  "WebApp is written in Vue.js" : "WebApp is written in Vue.js"
 }

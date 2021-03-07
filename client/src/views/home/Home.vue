@@ -44,15 +44,8 @@ export default {
 
 <i18n>
 {
-  "en": {
-    "List Of Lyrics" : "List Of Lyrics",
-    "Remote" : "Remote",
-    "Add new Lyric" : "Add new Lyric"
-  },
   "si": {
-    "List Of Lyrics": "Seznam Pesmi",
-    "Remote" : "Nazdiraj",
-    "Add new Lyric" : "Dodaj novo pesem"
+    "Example of component localization": "Test123"
   }
 }
 </i18n>
