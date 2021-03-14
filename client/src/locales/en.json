@@ -16,5 +16,7 @@
   "Back": "Back",
   "Category": "Category",
   "Category must be chosen!": "Category must be chosen!",
-  "Save" : "Save"
+  "Save" : "Save",
+  "Error connecting to database!": "Error conneting to database!",
+  "Contact your admin." : "Contact your admin."
 }
