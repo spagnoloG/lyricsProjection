@@ -1,10 +1,19 @@
 {
-  "message": "hello i18n !!",
-  "List Of Lyrics" : "List Of Lyrics",
-  "Remote" : "Remote",
-  "Add new Lyric" : "Add new Lyric",
+  "List Of Lyrics": "List Of Lyrics",
+  "Remote": "Remote",
+  "Add new Lyric": "Add new Lyric",
   "Technologies": "Technologies",
   "libraries used": "libraries used",
   "About application": "About application",
-  "WebApp is written in Vue.js" : "WebApp is written in Vue.js"
+  "WebApp is written in Vue.js": "WebApp is written in Vue.js",
+  "Enter Title": "Enter Title",
+  "Choose Category": "Choose Category",
+  "Enter Lyric Content": "Enter Lyric Content",
+  "Enter Lyric Title": "Enter Lyric Title",
+  "Lyric Title": "Lyric Title",
+  "Next": "Next",
+  "Home": "Home",
+  "Back": "Back",
+  "Category": "Category",
+  "Category must be chosen!": "Category must be chosen!"
 }

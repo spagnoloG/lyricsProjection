@@ -11,7 +11,7 @@
             <v-icon>{{ route.icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>{{ route.routeName }}</v-list-item-title>
+            <v-list-item-title>{{ $t(route.routeName) }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>

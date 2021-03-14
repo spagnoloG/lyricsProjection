@@ -3,18 +3,18 @@
     <v-stepper v-model="e1">
       <v-stepper-header>
         <v-stepper-step :complete="e1 > 1" step="1"
-          >Enter Title</v-stepper-step
+          >{{$t('Enter Title')}}</v-stepper-step
         >
 
         <v-divider></v-divider>
 
         <v-stepper-step :complete="e1 > 2" step="2"
-          >Choose Category</v-stepper-step
+          >{{$t('Choose Category')}}</v-stepper-step
         >
 
         <v-divider></v-divider>
 
-        <v-stepper-step step="3">Enter Lyric Content</v-stepper-step>
+        <v-stepper-step step="3">{{$t('Enter Lyric Content')}}</v-stepper-step>
       </v-stepper-header>
 
       <v-stepper-items>
@@ -25,7 +25,7 @@
                 <v-row>
                   <v-col align="center">
                     <h2 class="font-weight-regular black--text">
-                      Enter Lyric Title
+                      {{$t('Enter Lyric Title')}}
                     </h2>
                   </v-col>
                 </v-row>
@@ -36,7 +36,7 @@
                       <v-text-field
                         v-on:keyup.enter="nextOne"
                         v-model="title"
-                        label="Lyric Title"
+                        :label="$t('Lyric Title')"
                         class="black--text"
                         light
                         outlined
@@ -54,10 +54,10 @@
           <v-container fluid>
             <v-row>
               <v-col>
-                <v-btn color="primary" @click="nextOne">Next</v-btn>
+                <v-btn color="primary" @click="nextOne">{{$t('Next')}}</v-btn>
               </v-col>
               <v-col align="end">
-                <v-btn text :to="{ name: 'Home' }">Home</v-btn>
+                <v-btn text :to="{ name: 'Home' }">{{$t('Home')}}</v-btn>
               </v-col>
             </v-row>
           </v-container>
@@ -70,7 +70,7 @@
                 <v-row>
                   <v-col align="center">
                     <h2 class="font-weight-regular black--text">
-                      Choose Category
+                      {{$t('Choose Category')}}
                     </h2>
                   </v-col>
                 </v-row>
@@ -81,8 +81,8 @@
                       v-on:keyup.enter="e1++"
                       v-model="selected"
                       :items="categories"
-                      :rules="[v => !!v || 'Category must be chosen!']"
-                      label="Category"
+                      :rules="[v => !!v || $t('Category must be chosen!')]"
+                      :label="$t('Category')"
                       light
                       outlined
                       multiple
@@ -98,8 +98,8 @@
           <v-container fluid>
             <v-row>
               <v-col>
-                <v-btn color="primary" @click="nextTwo">Next</v-btn>
-                <v-btn text @click="--e1">Back</v-btn>
+                <v-btn color="primary" @click="nextTwo">{{$t('Next')}}</v-btn>
+                <v-btn text @click="--e1">{{$t('Back')}}</v-btn>
               </v-col>
             </v-row>
           </v-container>
