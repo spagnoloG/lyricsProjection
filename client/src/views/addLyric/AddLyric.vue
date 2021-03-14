@@ -111,7 +111,7 @@
               <v-row>
                 <v-col align="center">
                   <h2 class="font-weight-regular black--text">
-                    Enter Lyric Content
+                    {{$t('Enter Lyric Content')}}
                   </h2>
                 </v-col>
               </v-row>
@@ -173,10 +173,10 @@
           <v-container fluid>
             <v-row class="fill-height">
               <v-col align="start" justify="start">
-                <v-btn text @click="--e1">Back</v-btn>
+                <v-btn text @click="--e1">{{$t('Back')}}</v-btn>
               </v-col>
               <v-col align="end" justify="end">
-                <v-btn color="primary" text @click="submitEntry">Save</v-btn>
+                <v-btn color="primary" text @click="submitEntry">{{$t('Save')}}</v-btn>
               </v-col>
             </v-row>
           </v-container>
@@ -246,17 +246,19 @@ export default {
       }
     },
     submitEntry () {
-      if (this.content === '') {
-        return alert('Vnesi besedilo !')
+      console.log(this.content)
+      if (this.content === '<p></p>') {
+        this.$store.dispatch('lyric/noLyricEnteredError')
+      } else {
+        // Form a document
+        const document = {
+          title: this.title,
+          categories: this.selected,
+          content: this.content
+        }
+        // Post to database
+        this.$store.dispatch('lyric/addNewLyric', document)
       }
-      // Form a document
-      const document = {
-        title: this.title,
-        categories: this.selected,
-        content: this.content
-      }
-      // Post to database
-      this.$store.dispatch('lyric/addNewLyric', document)
       this.$router.push({ name: 'Home' })
     }
   },
