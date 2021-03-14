@@ -16,7 +16,9 @@
   "Back": "Back",
   "Category": "Category",
   "Category must be chosen!": "Category must be chosen!",
-  "Save" : "Save",
-  "Error connecting to database!": "Error conneting to database!",
-  "Contact your admin." : "Contact your admin."
+  "Save": "Save",
+  "Error connecting to database!":  "Error conneting to database!",
+  "Contact your admin.": "Contact your admin.",
+  "Enter Lyric number...": "Enter Lyric number...",
+  "This lyric does not exist!": "This lyric does not exist!"
 }

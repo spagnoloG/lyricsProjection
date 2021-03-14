@@ -34,10 +34,10 @@
       <v-row v-if="notFound">
         <v-col align="center">
           <div v-if="currentLyricIndex === null">
-            <h1>Enter Lyric number...</h1>
+            <h1>{{$t('Enter Lyric number...')}}</h1>
           </div>
           <div v-else>
-            <h1>This Lyric does not exist!</h1>
+            <h1>{{$t('This lyric does not exist!')}}</h1>
           </div>
         </v-col>
       </v-row>
@@ -141,8 +141,21 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .nocursor {
   cursor: none;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  text-align: center;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+  text-align: center;
 }
 </style>
