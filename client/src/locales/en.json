@@ -20,5 +20,10 @@
   "Error connecting to database!":  "Error conneting to database!",
   "Contact your admin.": "Contact your admin.",
   "Enter Lyric number...": "Enter Lyric number...",
-  "This lyric does not exist!": "This lyric does not exist!"
+  "This lyric does not exist!": "This lyric does not exist!",
+  "Change Titile": "Change Titile",
+  "Skip this step, if you don't want to change Title": "Skip this step, if you don't want to change Title",
+  "Change / Add Category": "Change / Add Category",
+  "Skip this step, if you don't want to change / add Category": "Skip this step, if you don't want to change / add Category",
+  "Update": "Update"
 }
