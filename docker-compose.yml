@@ -40,4 +40,6 @@ services:
   db: 
     image: mongo:latest
     container_name: db
+    volumes:
+      - ./db:/data/db
     restart: always
