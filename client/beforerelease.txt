@@ -1,0 +1,5 @@
+Localize all components
+write a good markdown
+check for errors
+test
+check server
