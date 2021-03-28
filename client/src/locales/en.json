@@ -25,5 +25,13 @@
   "Skip this step, if you don't want to change Title": "Skip this step, if you don't want to change Title",
   "Change / Add Category": "Change / Add Category",
   "Skip this step, if you don't want to change / add Category": "Skip this step, if you don't want to change / add Category",
-  "Update": "Update"
+  "Update": "Update",
+  "Are you sure?": "Are you sure?",
+  "Yes": "Yes",
+  "Project": "Project",
+  "Cancel": "Cancel",
+  "List of Lyrics": "List of Lyrics",
+  "Search, Edit and Project Lyrics.": "Search, Edit and Project Lyrics.",
+  "Print List of Lyrics": "Print List of Lyrics",
+  "Print": "Print"
 }
