@@ -120,16 +120,12 @@
             <!-- List lyrics -->
             <div v-for="(lyric, index) in paginatedLyrics" :key="lyric._id">
               <v-list-item>
-                <v-list-item-avatar>
-                  <v-avatar color="secondary" size="56" class="white--text">{{
-                    index
-                  }}</v-avatar>
-                </v-list-item-avatar>
-
+                <div class="lyric-index">
+                  {{ lyric.index }}
+                </div>
                 <v-list-item-content>
                   <v-list-item-title>{{ lyric.title }}</v-list-item-title>
                 </v-list-item-content>
-
                 <v-list-item-action>
                   <v-btn depressed small @click="selectLyric(lyric, index)">
                     <v-icon color="secondary">mdi-dots-horizontal</v-icon>
@@ -211,7 +207,7 @@ export default {
   data () {
     return {
       search: '',
-      perPage: 5,
+      perPage: 12,
       page: 1,
       totalVisible: 6,
       showPopUp: false,
@@ -265,3 +261,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.lyric-index{
+  margin-right: 30px;
+}
+</style>

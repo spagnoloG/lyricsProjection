@@ -4,7 +4,7 @@
       <v-container fluid>
         <v-row>
           <v-col align="center">
-            <h2>Project Playlist</h2>
+            <h2>{{$t('Project Playlist')}}</h2>
           </v-col>
         </v-row>
         <v-row>
@@ -54,7 +54,7 @@
                         align="center"
                         justify="center"
                       >
-                        <h1 class="white--text">
+                        <h1 class="white--text current-lyric">
                           {{ currentLyric.title.toUpperCase() }}
                         </h1>
                       </v-row>
@@ -203,3 +203,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.current-lyric {
+  text-align: center;
+}
+</style>
