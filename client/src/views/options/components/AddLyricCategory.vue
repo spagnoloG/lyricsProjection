@@ -44,7 +44,7 @@
         <v-dialog v-model="deletecategoryDialog" persistent max-width="290">
           <v-card>
             <v-container>
-              <v-card-title class="headline">{{$t('Delete Category')}}/v-card-title>
+              <v-card-title class="headline">{{$t('Delete Category')}}</v-card-title>
               <v-card-text>
                 {{$t('To delete')}} <strong>{{ selectedCategory }}</strong> type the Category name
               </v-card-text>

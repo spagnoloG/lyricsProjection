@@ -8,7 +8,7 @@
       </v-col>
       <v-col>
         <v-card-title>
-          <h2 class="text-color-white">Display Options...</h2>
+          <h2 class="text-color-white">{{('Display Options...')}}</h2>
           <v-spacer></v-spacer>
           <p class="title font-weight-regular text-h4 mt-2">{{ currentDay }}, {{ currentTime }}</p>
         </v-card-title>
@@ -19,15 +19,15 @@
         <v-card-actions>
           <v-chip @click="refreshDisplay" class="mr-2">
             <v-icon left>mdi-refresh</v-icon>
-            Refresh Display
+            {{$t('Refresh Display')}}
           </v-chip>
          <v-chip @click="stopProjection" class="mr-2">
           <v-icon left>mdi-close-circle</v-icon>
-          Stop Projection
+          {{$t('Stop Projection')}}
           </v-chip>
           <v-chip :to="{ name: 'Remote'}" class="mr-2">
           <v-icon left>mdi-remote</v-icon>
-          Project
+          {{$t('Project')}}
           </v-chip>
         </v-card-actions>
       </v-card-text>
