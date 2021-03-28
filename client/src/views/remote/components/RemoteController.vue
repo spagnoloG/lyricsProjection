@@ -15,7 +15,7 @@
         <v-row v-if="socketIndex !== -1">
           <v-col align="center">
             <v-chip class="ma-2" color="green" text-color="white">
-              On Display
+              {{$t('On Display')}}
               <v-avatar right class="green darken-4">{{
                 socketIndex
               }}</v-avatar>
@@ -28,7 +28,7 @@
           <v-col align="center" cols="8">
             <v-text-field
               v-model="userInput"
-              label="Enter Lyric Number"
+              :label="$t('Enter Lyric Number')"
               solo
               readonly
             ></v-text-field>
@@ -116,7 +116,7 @@
               @click="stopProjection"
               depressed
               color="error"
-              >Stop Projection<v-icon right>mdi-close</v-icon>
+              >{{$t('Stop Projection')}}<v-icon right>mdi-close</v-icon>
             </v-btn>
           </v-col>
           </v-fade-transition>
@@ -125,7 +125,7 @@
               @click="onProject"
               depressed
               color="success"
-              >Project<v-icon right>mdi-cast</v-icon>
+              >{{$t('Project')}}<v-icon right>mdi-cast</v-icon>
             </v-btn>
           </v-col>
         </v-row>
