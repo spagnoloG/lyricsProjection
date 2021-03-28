@@ -36,5 +36,18 @@
   "Print": "Print",
   "Not Found": "Not Found",
   "Additional Options": "Additional Options",
-  "Margins (define margins on display)": "Margins (define margins on display)"
+  "Margins (define margins on display)": "Margins (define margins on display)",
+  "Right margin": "Right margin",
+  "Left margin": "Left margin",
+  "Organisation name": "Organisation name",
+  "Application name": "Application name",
+  "App name": "App name",
+  "Add a new Category": "Add a new Category",
+  "Enter Category": "Enter Category",
+  "Delete Category": "Delete Category",
+  "To delete": "To delete",
+  "type the Category name": "type the Category name",
+  "Lyrics Categories": "Lyrics Categories",
+  "All Lyric categories are listed below": "All Lyric categories are listed below",
+  "Delete": "Delete"
 }
