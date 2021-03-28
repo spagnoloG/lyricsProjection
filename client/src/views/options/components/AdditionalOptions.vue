@@ -1,20 +1,20 @@
 <template>
 <div>
   <v-card class="mx-auto">
-    <v-card-title class="white--text secondary">AdditionalOptions</v-card-title>
+    <v-card-title class="white--text secondary">{{$t('Additional Options')}}</v-card-title>
   </v-card>
   <br>
   <v-expansion-panels multiple>
     <v-expansion-panel>
       <v-expansion-panel-header>
-        Margins (define margins in display)
+        Margins (define margins on display)
       </v-expansion-panel-header>
       <v-expansion-panel-content>
         <v-container fluid>
           <v-row>
             <v-col cols="12" md="6">
               <v-slider
-              label="Left margin"
+              :label="$t('Left margin')"
               v-model="marginLeft"
               max="4"
               min="0"
@@ -23,7 +23,7 @@
             </v-col>
             <v-col cols="12" md="6">
               <v-slider
-              label="Right margin"
+              :label="$t('Right margin')"
               v-model="marginRight"
               max="4"
               min="0"
@@ -36,25 +36,25 @@
     </v-expansion-panel>
     <v-expansion-panel>
       <v-expansion-panel-header>
-        Organisation name
+        {{$t('Organisation name')}}
       </v-expansion-panel-header>
       <v-expansion-panel-content>
          <v-text-field
             v-model="organisation"
             counter="25"
-            label="Organisation name"
+            :label="$t('Organisation name')"
           ></v-text-field>
       </v-expansion-panel-content>
     </v-expansion-panel>
     <v-expansion-panel>
       <v-expansion-panel-header>
-        Application name
+        {{$t('Application name')}}
       </v-expansion-panel-header>
       <v-expansion-panel-content>
         <v-text-field
             v-model="appName"
             counter="25"
-            label="App name"
+            :label="$t('App name')"
           ></v-text-field>
       </v-expansion-panel-content>
     </v-expansion-panel>
@@ -63,7 +63,7 @@
     <v-row class="fill-height" align="center" justify="center">
       <v-col align="center" justify="center">
         <v-btn color="green darken-1" text @click="updateState"
-          >Save</v-btn>
+          >{{$t(Save)}}</v-btn>
       </v-col>
     </v-row>
   </v-container>
