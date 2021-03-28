@@ -15,7 +15,7 @@
               item-text="playlistName"
               v-model="selectedPlaylist"
               return-object
-              label="Choose"
+              :label="$t('Choose')"
             />
           </v-col>
           <v-col></v-col>
@@ -23,7 +23,7 @@
         <v-row>
           <v-col class="fill-height" align="center" justify="center">
             <v-btn @click="startProjectingPlaylist" depressed color="success"
-              >Project <v-icon right>mdi-cast</v-icon></v-btn
+              >{{$t('Project')}} <v-icon right>mdi-cast</v-icon></v-btn
             >
           </v-col>
         </v-row>
@@ -100,7 +100,7 @@
             sm="4"
           >
             <v-btn @click="stopProjection" text large color="error"
-              >Stop Projection</v-btn
+              >{{$t('Stop Projection')}}</v-btn
             >
           </v-col>
           <v-col align="center" cols="12" sm="4">
@@ -122,7 +122,7 @@ export default {
   data () {
     return {
       step: 0,
-      playlists: null,
+      playlists: [],
       selectedPlaylist: null,
       playlistId: null,
       position: 0,
