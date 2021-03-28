@@ -148,7 +148,7 @@
               <v-col align="center">
                 <v-text-field
                   v-model="playlistName"
-                  label="Playlist Title"
+                  :label="$t('Playlist Title')"
                   color="indigo"
                 ></v-text-field>
               </v-col>
