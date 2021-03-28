@@ -5,7 +5,7 @@
         <v-col cols="8">
           <v-card class="mx-auto">
             <v-card-title class="white--text secondary">
-             List of Lyrics
+             {{$t('List of Lyrics')}}
               <v-spacer></v-spacer>
               {{ appState.organisation }}
               <v-spacer></v-spacer>
@@ -17,7 +17,7 @@
             <v-divider></v-divider>
 
             <v-card-text>
-              List of Lyrics, suitable for printing
+              {{$t('List of Lyrics, suitable for printing')}}
             </v-card-text>
             <div v-for="(lyric, index) in lyrics" :key="lyric._id">
               <v-list-item>
