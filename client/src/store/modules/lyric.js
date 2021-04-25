@@ -71,6 +71,14 @@ export const actions = {
       })
   },
 
+  noLyricEnteredError ({ dispatch }) {
+    const alert = {
+      message: 'Did not save, no data was provided',
+      type: 'error'
+    }
+    dispatch('appState/showAlert', alert, { root: true })
+  },
+
   addNewCategory ({ commit, dispatch }, category) {
     const document = {
       category: category

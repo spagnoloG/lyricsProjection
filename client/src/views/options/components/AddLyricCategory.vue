@@ -7,13 +7,13 @@
           <v-card>
             <v-container>
               <v-card-title class="headline"
-                >Add a new Category</v-card-title
+                >{{$t('Add a new Category')}}</v-card-title
               >
               <form v-on:submit.prevent>
                 <v-text-field
                   v-model="category"
                   v-on:keyup.enter="saveCategory"
-                  label="Enter Category"
+                  :label="$t('Enter Category')"
                   class="black--text"
                   outlined
                   required
@@ -27,10 +27,10 @@
                 color="red darken-1"
                 text
                 @click="addCategoryDialog = false"
-                >Cancel</v-btn
+                >{{$t('Cancel')}}</v-btn
               >
               <v-btn color="green darken-1" text @click="saveCategory"
-                >Save</v-btn
+                >{{$t('Save')}}</v-btn
               >
             </v-card-actions>
           </v-card>
@@ -44,15 +44,15 @@
         <v-dialog v-model="deletecategoryDialog" persistent max-width="290">
           <v-card>
             <v-container>
-              <v-card-title class="headline">Delete Category</v-card-title>
+              <v-card-title class="headline">{{$t('Delete Category')}}</v-card-title>
               <v-card-text>
-                To delete <strong>{{ selectedCategory }}</strong> type the Category name
+                {{$t('To delete')}} <strong>{{ selectedCategory }}</strong> type the Category name
               </v-card-text>
               <form v-on:submit.prevent>
                 <v-text-field
                   v-model="category"
                   v-on:keyup.enter="deleteCategory"
-                  label="Enter Category"
+                  :label="$t('Enter Category')"
                   class="black--text"
                   outlined
                   required
@@ -65,11 +65,11 @@
                 color="red darken-1"
                 text
                 @click="deletecategoryDialog = false"
-                >Cancel</v-btn
+                >{{$t('Cancel')}}</v-btn
               >
               <div v-if="selectedCategory === category">
                 <v-btn color="green darken-1" text @click="deleteCategory"
-                  >Delete</v-btn
+                  >{{$t('Delete')}}</v-btn
                 >
               </div>
             </v-card-actions>
@@ -82,7 +82,7 @@
     <div>
       <v-card class="mx-auto">
         <v-card-title class="white--text secondary">
-          Lyrics Categories
+          {{$t('Lyrics Categories')}}
           <v-spacer></v-spacer>
 
           <v-btn
@@ -97,7 +97,7 @@
         </v-card-title>
 
         <v-card-text class="pt-4"
-          >All Lyric categories are listed below</v-card-text
+          >{{$t('All Lyric categories are listed below')}}</v-card-text
         >
 
         <v-divider></v-divider>
@@ -117,7 +117,7 @@
 
               <v-list-item-action>
                 <v-btn depressed small @click="showDeleteDialog(item.name)">
-                  Delete
+                  {{$t('Delete')}}
                   <v-icon color="secondary" right>
                     mdi-delete
                   </v-icon>

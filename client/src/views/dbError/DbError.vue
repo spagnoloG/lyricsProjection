@@ -2,8 +2,10 @@
   <v-container fluid>
     <v-row class="fill-height" align="center" justify="center">
       <v-col align="center" justify="center">
-        <h1>Error connecting to database!</h1>
-        <p>Contact your admin.</p>
+        <h1>{{$t('Error connecting to database!')}}</h1>
+        <p>
+          {{$t('Contact your admin.')}}
+        </p>
         <br />
         <h1 class="text-h4">&#x1F615;</h1>
       </v-col>

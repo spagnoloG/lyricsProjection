@@ -23,10 +23,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
-
 import RemoteController from './components/RemoteController.vue'
 import SlideController from './components/SlideController'
-
 export default {
   name: 'Remote',
   components: {

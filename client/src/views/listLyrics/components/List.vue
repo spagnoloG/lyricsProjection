@@ -3,13 +3,13 @@
     <!-- Show delete dialog -->
     <div>
       <v-overlay :value="deleteDialog">
-        <h1>Are you sure?</h1>
+        <h1>{{$t('Are you sure?')}}</h1>
         <br />
         <v-btn @click="deleteDialog = false" color="primary" class="mx-3">
-          Cancel</v-btn
+          {{$t('Cancel')}}</v-btn
         >
         <v-btn @click="deleteLyric" color="primary" class="mx-3">
-          Yes
+          {{$t('Yes')}}
           <v-icon>mdi-delete</v-icon>
         </v-btn>
       </v-overlay>
@@ -68,7 +68,7 @@
               <v-row>
                 <v-col cols="12" align="center">
                   <v-btn @click="onProject" small outlined color="primary">
-                    <v-icon left>mdi-cast</v-icon>Project
+                    <v-icon left>mdi-cast</v-icon>{{$t(Project)}}
                   </v-btn>
                 </v-col>
               </v-row>
@@ -76,7 +76,7 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn @click="showPopUp = false" color="primary" text
-                >Cancel</v-btn
+                >{{$t('Cancel')}}</v-btn
               >
             </v-card-actions>
           </v-card>
@@ -90,7 +90,7 @@
           <!-- Card header -->
           <v-card class="mx-auto">
             <v-card-title class="white--text secondary">
-              List of Lyrics
+              {{$t('List of Lyrics')}}
               <v-spacer></v-spacer>
               <v-btn
                 @click="goToAddLyric"
@@ -106,7 +106,7 @@
             <v-divider></v-divider>
 
             <v-card-text>
-              Search, Edit and Project Lyrics.
+              {{$t('Search, Edit and Project Lyrics.')}}
               <v-text-field
                 v-model="search"
                 label="Search"
@@ -120,16 +120,12 @@
             <!-- List lyrics -->
             <div v-for="(lyric, index) in paginatedLyrics" :key="lyric._id">
               <v-list-item>
-                <v-list-item-avatar>
-                  <v-avatar color="secondary" size="56" class="white--text">{{
-                    index
-                  }}</v-avatar>
-                </v-list-item-avatar>
-
+                <div class="lyric-index">
+                  {{ lyric.index }}
+                </div>
                 <v-list-item-content>
                   <v-list-item-title>{{ lyric.title }}</v-list-item-title>
                 </v-list-item-content>
-
                 <v-list-item-action>
                   <v-btn depressed small @click="selectLyric(lyric, index)">
                     <v-icon color="secondary">mdi-dots-horizontal</v-icon>
@@ -152,7 +148,7 @@
         <v-col cols="12" sm="4">
           <v-card class="mx-auto">
             <v-card-title class="white--text secondary">
-              Choose Category
+              {{$t('Choose Category')}}
               <v-spacer></v-spacer>
               <v-btn
                 :to="{ name: 'Options' }"
@@ -184,7 +180,7 @@
           <br />
           <v-card class="mx-auto">
             <v-card-title class="white--text secondary">
-              Print List of Lyrics
+              {{$t('Print List of Lyrics')}}
               <v-spacer></v-spacer>
               <v-icon>mdi-printer</v-icon>
             </v-card-title>
@@ -192,7 +188,7 @@
             <v-container fluid>
               <v-row class="fill-height">
                 <v-col align="center" justify="center">
-                  <v-btn :to="{ name: 'Print' }">Print</v-btn>
+                  <v-btn :to="{ name: 'Print' }">{{$t('Print')}}</v-btn>
                 </v-col>
               </v-row>
             </v-container>
@@ -211,7 +207,7 @@ export default {
   data () {
     return {
       search: '',
-      perPage: 5,
+      perPage: 12,
       page: 1,
       totalVisible: 6,
       showPopUp: false,
@@ -265,3 +261,10 @@ export default {
   }
 }
 </script>
+
+<style>
+.lyric-index{
+  margin-right: 30px;
+  font-weight: bold;
+}
+</style>

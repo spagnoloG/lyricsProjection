@@ -18,7 +18,7 @@
 
                 <v-card>
                   <v-card-title class="headline">
-                    <h5>Add a lyric to the playlist</h5>
+                    <h5>{{$t('Add a lyric to the playlist')}}</h5>
                   </v-card-title>
 
                   <!-- List lyrics -->
@@ -27,7 +27,7 @@
                       <v-card-text>
                         <v-text-field
                           v-model="search"
-                          label="Išči"
+                          :label="$t('Search')"
                           @click="page = 1"
                           color="indigo"
                           prepend-inner-icon="mdi-magnify"
@@ -79,7 +79,7 @@
                   <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn color="indigo" text @click="dialog = false"
-                      >Close</v-btn
+                      >{{$t('Close')}}</v-btn
                     >
                   </v-card-actions>
                 </v-card>
@@ -95,7 +95,7 @@
             </template>
             <v-list>
               <v-list-item @click="sheet = true">
-                <v-list-item-title>Change Name</v-list-item-title>
+                <v-list-item-title>{{$t('Change Name')}}</v-list-item-title>
               </v-list-item>
             </v-list>
           </v-menu>
@@ -108,7 +108,7 @@
                 </v-btn>
               </div>
             </template>
-            <span>Save</span>
+            <span>{{$t('Save')}}</span>
           </v-tooltip>
         </v-toolbar>
         <v-list>
@@ -141,14 +141,14 @@
       <v-bottom-sheet v-model="sheet" inset>
         <v-sheet class="text-center" height="200px">
           <v-btn class="mt-6" text color="green" @click="sheet = !sheet"
-            >Finish</v-btn
+            >{{$t('Finish')}}</v-btn
           >
           <v-container fluid>
             <v-row>
               <v-col align="center">
                 <v-text-field
                   v-model="playlistName"
-                  label="Playlist Title"
+                  :label="$t('Playlist Title')"
                   color="indigo"
                 ></v-text-field>
               </v-col>
