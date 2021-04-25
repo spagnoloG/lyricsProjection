@@ -265,5 +265,6 @@ export default {
 <style>
 .lyric-index{
   margin-right: 30px;
+  font-weight: bold;
 }
 </style>
