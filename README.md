@@ -3,7 +3,7 @@
 Modern WebApp for lyrics Projection in any place.
 Easily enter lyrics into the app, view, edit and project them on a remote screen.
 
-![homepage_image](https://i.ibb.co/H49QwFZ/urejena.png)
+![homepage_image](https://i.ibb.co/SXgQzkg/Optimized-urejena.jpg)
 
 ## Features
 
