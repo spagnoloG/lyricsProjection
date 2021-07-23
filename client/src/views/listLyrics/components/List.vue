@@ -61,14 +61,14 @@
                     outlined
                     color="primary"
                   >
-                    <v-icon left>mdi-image-multiple</v-icon>Peek
+                    <v-icon left>mdi-image-multiple</v-icon>{{ $t('Peek')}}
                   </v-btn>
                 </v-col>
               </v-row>
               <v-row>
                 <v-col cols="12" align="center">
                   <v-btn @click="onProject" small outlined color="primary">
-                    <v-icon left>mdi-cast</v-icon>{{$t(Project)}}
+                    <v-icon left>mdi-cast</v-icon>{{$t('Project')}}
                   </v-btn>
                 </v-col>
               </v-row>
@@ -170,7 +170,7 @@
                     label="Choose"
                     multiple
                     chips
-                    hint="Available Categories"
+                    :hint="$t('Available Categories')"
                     persistent-hint
                   ></v-select>
                 </v-col>

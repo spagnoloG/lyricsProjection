@@ -8,7 +8,7 @@
       </v-col>
       <v-col>
         <v-card-title>
-          <h2 class="text-color-white">{{('Display Options...')}}</h2>
+          <h2 class="text-color-white">{{$t('Display Options...')}}</h2>
           <v-spacer></v-spacer>
           <p class="title font-weight-regular text-h4 mt-2">{{ currentDay }}, {{ currentTime }}</p>
         </v-card-title>
