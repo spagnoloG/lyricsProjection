@@ -7,7 +7,7 @@
   <v-expansion-panels multiple>
     <v-expansion-panel>
       <v-expansion-panel-header>
-        Margins (define margins on display)
+        {{ $t('Margins (define margins on display)')}}
       </v-expansion-panel-header>
       <v-expansion-panel-content>
         <v-container fluid>
@@ -54,7 +54,7 @@
         <v-text-field
             v-model="appName"
             counter="25"
-            :label="$t('App name')"
+            :label="$t('Application name')"
           ></v-text-field>
       </v-expansion-panel-content>
     </v-expansion-panel>

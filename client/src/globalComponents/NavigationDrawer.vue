@@ -18,35 +18,6 @@
       <v-container>
         <v-row>
           <v-col>
-            <!-- <v-menu offset-y>
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn
-                  color="primary"
-                  dark
-                  v-bind="attrs"
-                  v-on="on"
-                >
-                <v-icon left>mdi-translate</v-icon>
-                  Language
-                </v-btn>
-              </template>
-              <v-list
-                v-model="$root.$i18n.locale"
-              >
-                <v-list-item
-                  v-for="(lang, i) in langs"
-                 :key="`Lang${i}`"
-                 :value="lang"
-                 link
-                >
-                  <v-list-item-title>{{ lang }}</v-list-item-title>
-                </v-list-item>
-              </v-list>
-            </v-menu> -->
-            <!-- <select v-model="$i18n.locale">
-              <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">
-                {{ lang }}
-              </option> -->
             <v-select
               v-model="locale"
               :items="langs"
