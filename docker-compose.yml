@@ -10,6 +10,7 @@ services:
       - /client/dist
     ports:
       - "80:5000"
+    restart: always
 
   api:
     container_name: api
