@@ -20,10 +20,10 @@
         <v-col align="center">
           <!-- Lyric title and content -->
           <div>
-            <h1 class="text-h3">
+            <!--            <h1 class="text-h3">
               <strong>{{ currentLyric.title.toUpperCase() }}</strong>
-            </h1>
-            <br />
+              </h1> -->
+              <br />
             <p class="text-h4">
               <span v-html="currentLyric.content.toUpperCase()"></span>
             </p>

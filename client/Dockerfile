@@ -15,4 +15,4 @@ RUN yarn global add serve
 # Port to expose
 EXPOSE 5000
 
-CMD ["serve", "-s", "dist"]
+CMD ["serve", "-s", "dist", "-l", "5000"]
