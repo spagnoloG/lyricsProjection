@@ -71,7 +71,7 @@ export default {
           icon: 'mdi-remote'
         }
       ],
-      langs: ['en', 'si']
+      langs: ['si', 'en']
     }
   },
 
