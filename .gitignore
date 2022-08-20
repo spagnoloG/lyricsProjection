@@ -2,6 +2,9 @@
 node_modules
 /dist
 db
+
+yarn.lock
+
 # local env files
 .env.local
 .env.*.local

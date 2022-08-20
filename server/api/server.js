@@ -36,8 +36,8 @@ app.use('/playlists', require('./routes/playlists'));
 app.use('/state', require('./routes/appState'));
 
 mongoose.connect("mongodb://db:27017/projectionDb",
-    { useNewUrlParser: true, useUnifiedTopology: true}, () =>
-    console.log('Connected to database')
+  { useNewUrlParser: true, useUnifiedTopology: true }, () =>
+  console.log('Connected to database')
 );
 
 // Listening to port

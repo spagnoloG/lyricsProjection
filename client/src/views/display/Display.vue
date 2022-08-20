@@ -89,6 +89,7 @@ export default {
   methods: {
     onNewLyric (newIndex) {
       this.$store.dispatch('lyric/fetchLyrics')
+      this.scroll = 0
       if (newIndex !== null) {
         this.$store.dispatch('lyric/fetchLyric', newIndex)
       } else {

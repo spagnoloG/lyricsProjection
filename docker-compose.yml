@@ -1,7 +1,13 @@
 version: '3.7'
+
+networks:
+   backend:
+    name: backend
+
 services:
   client:
     container_name: client
+    restart: unless-stopped
     build:
       context: ./client
     volumes:
@@ -10,25 +16,25 @@ services:
       - /client/dist
     ports:
       - "80:5000"
-    restart: always
 
   api:
     container_name: api
+    restart: unless-stopped
     build:
       context: ./server/api
     depends_on: 
       - db
-    environment:
-      - DB_HOST
     volumes:
       - ./server/api:/api
       - /api/node_modules
     ports:
       - "4200:4200"
-    restart: always
+    networks:
+      - backend
 
   socket:
     container_name: socket
+    restart: unless-stopped 
     build:
       context: ./server/socket
     volumes:
@@ -36,11 +42,12 @@ services:
       - /socket/node_modules
     ports:
       - "3000:3000"
-    restart: always
-  
+ 
   db: 
     image: mongo:4.0
     container_name: db
+    restart: unless-stopped
     volumes:
       - ./db:/data/db
-    restart: always
+    networks:
+      - backend

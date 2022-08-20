@@ -1,4 +1,4 @@
-FROM node:15.0-alpine3.10
+FROM node:16.3.0-alpine 
 
 WORKDIR /client
 
@@ -12,7 +12,6 @@ RUN yarn run build
 
 RUN yarn global add serve
 
-# Port to expose
 EXPOSE 5000
 
 CMD ["serve", "-s", "dist", "-l", "5000"]
