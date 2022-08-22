@@ -1,16 +1,13 @@
-const mongoose = require('mongoose');
-const App = require('../models/App');
+const db = require('../knex/db');
 
 exports.app_state_on_init = (req, res, next) => {
-  const app = new App({
-    _id: mongoose.Types.ObjectId(),
-    appName: req.body.appName ? req.body.appName : null,
-    organisation: req.body.organisation,
-    marginLeft: req.body.marginLeft ? req.body.marginLeft : null,
-    marginRight: req.body.marginRight ? req.body.marginRight : null
-  })
-
-  app.save()
+  db('app')
+    .insert({
+      appName: req.body.appName ? req.body.appName : null,
+      organisation: req.body.organisation,
+      marginLeft: req.body.marginLeft ? req.body.marginLeft : null,
+      marginRight: req.body.marginRight ? req.body.marginRight : null
+    })
     .then(result => {
       res.status(201).json({
         message: 'Inital App State Stored!',
@@ -25,8 +22,8 @@ exports.app_state_on_init = (req, res, next) => {
 }
 
 exports.app_state_get_state = (req, res, next) => {
-  App.find()
-    .select('_id appName organisation marginLeft marginRight')
+  db('app')
+    .select('_id', 'appName', 'organisation',  'marginLeft', 'marginRight')
     .then(doc => {
       if (doc) {
         res.status(200).json({
@@ -41,12 +38,14 @@ exports.app_state_get_state = (req, res, next) => {
         error: err
       });
     });
-}
+  }
 
 exports.app_state_update_state = (req, res, next) => {
   const stateId = req.params.stateId;
-  const props = req.body
-  App.updateOne({ _id: stateId }, props)
+  const props = req.body;
+
+  db('app').where({ _id: stateId})
+    .update(props, ['_id'])
     .then(result => {
       res.status(200).json({
         message: 'State updated',

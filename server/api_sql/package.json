@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "nyc mocha --exit --compilers js:babel-core/register ./test/*.spec.js",
+    "migrate": "npx knex migrate:latest --knexfile knex/knexfile.js",
     "dev": "node index.js",
     "serve": "nodemon index.js",
     "lint": "standard"

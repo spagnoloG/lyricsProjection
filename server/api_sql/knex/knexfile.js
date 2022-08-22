@@ -20,5 +20,4 @@ module.exports = {
     directory: __dirname + '/migrations',
     tableName: 'knex_migrations'
   }
-
 };

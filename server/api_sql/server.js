@@ -4,8 +4,8 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import { require } from 'app-root-path';
-let knex_config = require('./knex/knexfile');
-module.exports = require('knex')(knex_config);
+//let knex_config = require('./knex/knexfile');
+//module.exports = require('knex')(knex_config);
 
 // Defining port
 const port = process.env.PORT || 5200;
@@ -34,7 +34,7 @@ app.use(express.static(__dirname + '/views/'));
 // // Playlists
 // app.use('/playlists', require('./routes/playlists'));
 // // Application state
-// app.use('/state', require('./routes/appState'));
+app.use('/state', require('./routes/appState'));
 
 // connection string: https://stackoverflow.com/a/20722229
 // const pg = require('knex')({
