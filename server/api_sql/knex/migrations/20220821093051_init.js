@@ -14,7 +14,7 @@ exports.up = function(knex) {
     table.increments('_id');
     table.string('content', 42069).notNullable();
     table.string('title', 255).notNullable();
-    table.specificType('categories', 'integer ARRAY');
+    table.specificType('categories', 'varchar(255) ARRAY');
   })
   .createTable('lyric-category', function(table) {
     table.increments('_id');

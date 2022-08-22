@@ -5,8 +5,11 @@ const router = express.Router();
 // Get all categories
 router.get("/", async (req, res) => {
   db("lyric-category")
-    .select("*")
-    .then((reponse) => {
+    .select("_id", "category")
+    .then((response) => {
+      console.log("H");
+      console.log(response);
+      console.log("H");
       res.status(200).json(response);
     })
     .catch((err) => {

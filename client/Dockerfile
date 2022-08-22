@@ -4,11 +4,11 @@ WORKDIR /client
 
 COPY package*.json ./
 
-RUN yarn
+RUN yarn install
 
 COPY . .
 
-RUN yarn run build
+RUN yarn build
 
 RUN yarn global add serve
 

@@ -8,7 +8,7 @@ import { require } from 'app-root-path';
 //module.exports = require('knex')(knex_config);
 
 // Defining port
-const port = process.env.PORT || 5200;
+const port = process.env.PORT || 4200;
 
 // Defining app
 const app = express();
@@ -24,30 +24,17 @@ app.set('view engine', 'html');
 app.use(express.static(__dirname + '/views/'));
 
 // // Defining the Routes
-// app.use('/api', require('./routes/index'));
+app.use('/api', require('./routes/index'));
 // // Lyrics route
 app.use('/lyrics', require('./routes/lyrics'));
 // // Only lyrics indexes and titles
-// app.use('/lyricsit', require('./routes/lyricsit'));
+app.use('/lyricsit', require('./routes/lyricsit'));
 // // Lyric categories
-// app.use('/lyricsc', require('./routes/lyricsC'));
+app.use('/lyricsc', require('./routes/lyricsC'));
 // // Playlists
 app.use('/playlists', require('./routes/playlists'));
 // // Application state
 app.use('/state', require('./routes/appState'));
-
-// connection string: https://stackoverflow.com/a/20722229
-// const pg = require('knex')({
-//   client: 'pg',
-//   connection: 'postgresql://dev:dev@localhost/lyrics_projection',
-//   searchPath: ['knex', 'public'],
-// });
-// 
-// pg.raw('select 1+1 as result').catch(err => {
-//   console.log(err);
-//   console.log("Database unreachable!");
-//   process.exit(1);
-// });
 
 // Listening to port
 app.listen(port);

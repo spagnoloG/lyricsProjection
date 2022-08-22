@@ -12,8 +12,6 @@ services:
       context: ./client
     volumes:
       - ./client:/client
-      - /client/node_modules
-      - /client/dist
     ports:
       - "80:5000"
 
@@ -21,12 +19,11 @@ services:
     container_name: api
     restart: unless-stopped
     build:
-      context: ./server/api
+      context: ./server/api_sql
     depends_on: 
       - db
     volumes:
-      - ./server/api:/api
-      - /api/node_modules
+      - ./server/api_sql:/api
     ports:
       - "4200:4200"
     networks:
@@ -39,7 +36,6 @@ services:
       context: ./server/socket
     volumes:
       - ./server/socket:/socket
-      - /socket/node_modules
     ports:
       - "3000:3000"
 
