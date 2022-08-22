@@ -26,7 +26,7 @@ app.use(express.static(__dirname + '/views/'));
 // // Defining the Routes
 // app.use('/api', require('./routes/index'));
 // // Lyrics route
-// app.use('/lyrics', require('./routes/lyrics'));
+app.use('/lyrics', require('./routes/lyrics'));
 // // Only lyrics indexes and titles
 // app.use('/lyricsit', require('./routes/lyricsit'));
 // // Lyric categories

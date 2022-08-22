@@ -13,6 +13,7 @@ exports.up = function(knex) {
   .createTable('lyrics', function(table) {
     table.increments('_id');
     table.string('content', 42069).notNullable();
+    table.string('title', 255).notNullable();
     table.specificType('categories', 'integer ARRAY');
   })
   .createTable('lyric-category', function(table) {
