@@ -32,7 +32,7 @@ app.use('/lyrics', require('./routes/lyrics'));
 // // Lyric categories
 // app.use('/lyricsc', require('./routes/lyricsC'));
 // // Playlists
-// app.use('/playlists', require('./routes/playlists'));
+app.use('/playlists', require('./routes/playlists'));
 // // Application state
 app.use('/state', require('./routes/appState'));
 
