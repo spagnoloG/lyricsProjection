@@ -103,7 +103,7 @@ exports.lyrics_delete_lyric = (req, res, next) => {
   const lyricId = req.params.lyricId;
 
   db("lyrics")
-    .where("_id", lyricId)
+    .where("_id", '=', lyricId)
     .del(["_id"])
     .then((result) => {
       if (result.n === 0) {
