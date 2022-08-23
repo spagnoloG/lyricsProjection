@@ -1,6 +1,7 @@
 module.exports = {
   transpileDependencies: [
-    'vuetify'
+    'vuetify',
+    '/[\\/]node_modules[\\/]tiptap.*/'
   ],
 
   pluginOptions: {

@@ -118,49 +118,9 @@
               <v-row>
                 <v-col></v-col>
                 <v-col cols="12" lg="6" align="center" justify="center">
-                  <!-- Menu -->
-                  <editor-menu-bar :editor="editor" v-slot="{ commands }">
-                    <div class="menubar">
-                      <v-item-group class="v-btn-toggle">
-                        <v-btn
-                          @click="commands.redo"
-                          color="primary"
-                          class="inactive"
-                          inactive
-                        >
-                          <v-icon>mdi-redo</v-icon>
-                        </v-btn>
-
-                        <v-btn
-                          class="inactive"
-                          @click="commands.bold"
-                          color="primary"
-                        >
-                          <v-icon>mdi-format-bold</v-icon>
-                        </v-btn>
-
-                        <v-btn
-                          class="inactive"
-                          @click="commands.italic"
-                          color="primary"
-                        >
-                          <v-icon>mdi-format-italic</v-icon>
-                        </v-btn>
-
-                        <v-btn
-                          class="inactive"
-                          @click="commands.undo"
-                          color="primary"
-                        >
-                          <v-icon>mdi-undo</v-icon>
-                        </v-btn>
-                      </v-item-group>
-                    </div>
-                  </editor-menu-bar>
                   <br />
                   <!-- Editor -->
                   <editor-content
-                    class="editor-content"
                     :editor="editor"
                     focus
                   />
@@ -189,40 +149,19 @@
 <script>
 import {
   Editor,
-  EditorContent,
-  EditorMenuBar
-} from 'tiptap'
+  EditorContent
+} from '@tiptap/vue-2'
 import { mapGetters } from 'vuex'
-
-import {
-  Bold,
-  Italic,
-  History
-} from 'tiptap-extensions'
+import StarterKit from '@tiptap/starter-kit'
 
 export default {
   name: 'AddLyric',
   components: {
-    EditorContent,
-    EditorMenuBar
+    EditorContent
   },
   data () {
     return {
-      editor: new Editor({
-        extensions: [
-          new Bold(),
-          new Italic(),
-          new History()
-        ],
-        content: `
-          <p>
-            Enter content
-          </p>
-        `,
-        onUpdate: ({ getHTML }) => {
-          this.content = getHTML()
-        }
-      }),
+      editor: null,
       e1: 1,
       title: '',
       content: {},
@@ -246,7 +185,6 @@ export default {
       }
     },
     submitEntry () {
-      console.log(this.content)
       if (this.content === '<p></p>') {
         this.$store.dispatch('lyric/noLyricEnteredError')
       } else {
@@ -256,6 +194,8 @@ export default {
           categories: this.selected,
           content: this.content
         }
+        console.log(this.content)
+        console.log(document)
         // Post to database
         this.$store.dispatch('lyric/addNewLyric', document)
       }
@@ -266,9 +206,22 @@ export default {
     await this.$store.dispatch('lyric/fetchLyrics')
     await this.$store.dispatch('lyric/fetchCategories')
   },
+  mounted () {
+    this.editor = new Editor({
+      content: 'Enter!',
+      extensions: [
+        StarterKit
+      ],
+      onUpdate: () => {
+        console.log('Update!')
+        this.content = this.editor.getHTML()
+      }
+    })
+  },
   async beforeDestroy () {
     await this.$store.dispatch('lyric/fetchLyrics')
     await this.$store.dispatch('lyric/fetchCategories')
+    this.editor.destroy()
   }
 }
 </script>
