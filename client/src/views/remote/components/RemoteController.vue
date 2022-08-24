@@ -180,12 +180,12 @@ export default {
         this.errorMessage = 'Enter Number!'
         this.alert = true
         return false
-      } else if (this.$store.getters['lyric/getLyricIdByNumber'](Number(this.userInput)) === -1) {
+      } else if (Number(this.userInput) === -1) {
         this.errorMessage = 'Lyric with typed index does not exist!'
         this.alert = true
         return false
       } else {
-        this.lyricId = this.$store.getters['lyric/getLyricIdByNumber'](Number(this.userInput))
+        this.lyricId = Number(this.userInput)
         this.alert = false
         return true
       }

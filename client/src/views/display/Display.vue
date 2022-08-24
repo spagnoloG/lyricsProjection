@@ -112,7 +112,7 @@ export default {
         this.gotoTimeout = setTimeout(() => {
           this.showInputField = false
           if (this.userInput !== '') {
-            const lyricId = this.$store.getters['lyric/getLyricIdByNumber'](Number(this.userInput))
+            const lyricId = Number(this.userInput)
             if (lyricId === -1) {
               this.$store.dispatch('lyric/updateNotFoundVariable', true)
             } else {

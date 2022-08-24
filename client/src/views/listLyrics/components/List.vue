@@ -24,7 +24,7 @@
               <v-row>
                 <v-col align="center" cols="2">
                   <v-avatar color="secondary" size="35" class="white--text">{{
-                    selectedLyric.index
+                    selectedLyric._id
                   }}</v-avatar>
                 </v-col>
                 <v-col cols="8" align="center">
@@ -121,7 +121,7 @@
             <div v-for="(lyric, index) in paginatedLyrics" :key="lyric._id">
               <v-list-item>
                 <div class="lyric-index">
-                  {{ lyric.index }}
+                  {{ lyric._id }}
                 </div>
                 <v-list-item-content>
                   <v-list-item-title>{{ lyric.title }}</v-list-item-title>
@@ -219,7 +219,7 @@ export default {
   computed: {
     filteredLyrics () {
       return this.lyrics.filter((lyric) => {
-        return (lyric.title.toUpperCase().match(this.search.toUpperCase()) || lyric.index === Number(this.search)) && this.selectedCategories.every(i => lyric.categories.includes(i))
+        return (lyric.title.toUpperCase().match(this.search.toUpperCase()) || lyric._id === Number(this.search)) && this.selectedCategories.every(i => lyric.categories.includes(i))
       })
     },
     paginatedLyrics () {

@@ -1,0 +1,5 @@
+tiptap menu
+lyrics -> refrain, kitica
+remove console logs
+automatic migrations
+indexes in list
