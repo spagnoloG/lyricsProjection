@@ -63,7 +63,7 @@
     <v-row class="fill-height" align="center" justify="center">
       <v-col align="center" justify="center">
         <v-btn color="green darken-1" text @click="updateState"
-          >{{$t(Save)}}</v-btn>
+          >{{$t('Save')}}</v-btn>
       </v-col>
     </v-row>
   </v-container>

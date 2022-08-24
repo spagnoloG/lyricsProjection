@@ -37,7 +37,7 @@
                       <v-divider></v-divider>
 
                       <div
-                        v-for="(lyric, index) in paginatedLyrics"
+                        v-for="(lyric) in paginatedLyrics"
                         :key="lyric._id"
                       >
                         <v-list-item>
@@ -46,7 +46,7 @@
                               color="indigo"
                               size="56"
                               class="white--text"
-                              >{{ index }}</v-avatar
+                              >{{ lyric._id }}</v-avatar
                             >
                           </v-list-item-avatar>
 

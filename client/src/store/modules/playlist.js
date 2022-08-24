@@ -61,7 +61,7 @@ export const actions = {
   //
   fetchPlaylist ({ commit }, playlistId) {
     return playlistsApi.getPlaylist(playlistId).then(response => {
-      const data = response.data.playlist
+      const data = response.data.playlist[0]
       if (typeof data === 'undefined') {
         // Catch err
       } else {
