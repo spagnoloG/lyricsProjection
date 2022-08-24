@@ -33,10 +33,10 @@ export const mutations = {
 export const actions = {
   socket_onChangedState ({ commit, dispatch, rootGetters }, message) {
     commit('set_recieved_state', message)
-    if (typeof rootGetters['lyric/getLyricIndexById'](message.currentLyric) === 'undefined') {
+    if (typeof message.currentLyric === 'undefined') {
       commit('set_current_lyric_index', null)
     } else {
-      commit('set_current_lyric_index', rootGetters['lyric/getLyricIndexById'](message.currentLyric))
+      commit('set_current_lyric_index', message.currentLyric)
     }
     if (message.currentPlaylist !== null) {
       dispatch('playlist/fetchPlaylist', message.currentPlaylist, { root: true })

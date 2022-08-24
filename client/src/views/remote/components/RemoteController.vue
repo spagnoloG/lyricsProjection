@@ -12,7 +12,7 @@
 
         <!-- Current lyric on display indicator -->
         <v-fade-transition mode="out-in">
-        <v-row v-if="socketIndex !== -1">
+        <v-row v-if="socketIndex !== null && socketIndex !== -1">
           <v-col align="center">
             <v-chip class="ma-2" color="green" text-color="white">
               {{$t('On Display')}}
@@ -108,7 +108,7 @@
         <v-row class="fill-height">
           <v-fade-transition mode="out-in">
           <v-col
-          v-if="socketIndex !== -1"
+          v-if="socketIndex !== -1 && socketIndex !== null"
           align="center"
           justify="center"
           >

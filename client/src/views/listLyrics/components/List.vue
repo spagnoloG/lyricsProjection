@@ -219,7 +219,9 @@ export default {
   computed: {
     filteredLyrics () {
       return this.lyrics.filter((lyric) => {
-        return (lyric.title.toUpperCase().match(this.search.toUpperCase()) || lyric._id === Number(this.search)) && this.selectedCategories.every(i => lyric.categories.includes(i))
+        return (lyric.title.toUpperCase().match(this.search.toUpperCase()) ||
+          lyric._id === Number(this.search ||
+          this.ignoreNoisemakers(lyric.title, this.search))) && this.selectedCategories.every(i => lyric.categories.includes(i))
       })
     },
     paginatedLyrics () {
@@ -257,6 +259,18 @@ export default {
       }
       this.$store.dispatch('socket/sendRemoteMessage', document)
       this.showPopUp = false
+    },
+    ignoreNoisemakers (t1, t2) {
+      t1.replaceAll('š', 's')
+        .replaceAll('č', 'c')
+        .replaceAll('ć', 'c')
+        .replaceAll('ž', 'c').toUpperCase()
+
+      t2.replaceAll('š', 's')
+        .replaceAll('č', 'c')
+        .replaceAll('ć', 'c')
+        .replaceAll('ž', 'c').toUpperCase()
+      return t1 === t2
     }
   }
 }
