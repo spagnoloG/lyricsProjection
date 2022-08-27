@@ -31,6 +31,7 @@ exports.lyrics_new_lyric = (req, res, next) => {
 exports.lyrics_get_all_lyrics = (req, res, next) => {
   db("lyrics")
     .select("_id", "title", "content", "categories")
+    .orderBy("_id", "asc")
     .then((docs) => {
       const response = {
         count: docs.lengh,
