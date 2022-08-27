@@ -7,9 +7,6 @@ router.get("/", async (req, res) => {
   db("lyric-category")
     .select("_id", "category")
     .then((response) => {
-      console.log("H");
-      console.log(response);
-      console.log("H");
       res.status(200).json(response);
     })
     .catch((err) => {

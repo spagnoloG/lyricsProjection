@@ -217,8 +217,6 @@ export default {
           categories: this.selected,
           content: this.content
         }
-        console.log(this.content)
-        console.log(document)
         // Post to database
         this.$store.dispatch('lyric/addNewLyric', document)
       }
@@ -236,7 +234,6 @@ export default {
         StarterKit
       ],
       onUpdate: () => {
-        console.log('Update!')
         this.content = this.editor.getHTML()
       }
     })

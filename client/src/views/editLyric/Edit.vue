@@ -166,7 +166,6 @@ export default {
   },
   methods: {
     updateEntry () {
-      console.log(this.currentLyric)
       this.$store.dispatch('lyric/updateLyric', this.currentLyric)
       this.$router.push({ name: 'ListLyrics' })
     }

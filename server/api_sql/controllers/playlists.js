@@ -12,7 +12,6 @@ exports.playlists_new_playlist = (req, res, next) => {
   db("playlists")
     .insert(playlist)
     .then((result) => {
-      console.log(result)
       res.status(201).json({
         message: "Playlist stored!",
         request: {

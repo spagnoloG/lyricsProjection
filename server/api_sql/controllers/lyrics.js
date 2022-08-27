@@ -7,7 +7,6 @@ exports.lyrics_new_lyric = (req, res, next) => {
     categories: req.body.categories ? req.body.categories : null,
   };
 
-  console.log(lyric);
 
   db("lyrics")
     .insert(lyric)
