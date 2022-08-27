@@ -49,7 +49,7 @@
     "vuetify-loader": "^1.3.0"
   },
   "resolutions": {
-    "prosemirror-model": "^1.14.1",
-    "prosemirror-state": "^1.14.1"
+    "prosemirror-model": "~1.4.1",
+    "prosemirror-state": "~1.4.1"
   }
 }

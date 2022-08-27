@@ -7,7 +7,7 @@
 module.exports = {
   client: 'postgresql',
   connection: {
-    host: 'localhost',
+    host: 'db',
     database: 'lyrics_projection',
     user:     'dev',
     password: 'dev'

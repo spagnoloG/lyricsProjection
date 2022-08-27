@@ -38,5 +38,5 @@ app.use('/state', require('./routes/appState'));
 
 // Listening to port
 app.listen(port);
-console.log(`Listening On http://localhost:${port}/api`);
+console.log(`Listening On http://db:${port}/api`);
 module.exports = app;

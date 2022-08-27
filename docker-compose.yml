@@ -20,7 +20,7 @@ services:
     restart: unless-stopped
     build:
       context: ./server/api_sql
-    command: sh -c 'echo "running migration..."; cd /api ; yarn migrate'
+    command: sh -c 'echo "running migration..."; cd /api ; yarn migrate; yarn serve'
     depends_on: 
       - db
     volumes:
