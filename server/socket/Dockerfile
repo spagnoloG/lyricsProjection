@@ -2,11 +2,11 @@ FROM node:15.0-alpine3.10
 
 WORKDIR /socket
 
-COPY package*.json ./
-
-RUN yarn
-
 COPY . .
+
+RUN yarn install
+
+RUN yarn global add nodemon
 
 EXPOSE 3000
 

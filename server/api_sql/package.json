@@ -21,9 +21,7 @@
     "knex": "^2.2.0",
     "morgan": "^1.9.0",
     "pg": "^8.7.3",
-    "winston": "^3.0.0"
-  },
-  "devDependencies": {
+    "winston": "^3.0.0",
     "babel-core": "^6.26.3",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-polyfill": "^6.26.0",
@@ -36,8 +34,8 @@
     "chai-http": "^4.0.0",
     "istanbul": "^0.4.5",
     "mocha": "^6.0.0",
-    "nodemon": "^1.18.3",
     "nyc": "^14.0.0",
-    "standard": "^12.0.1"
+    "standard": "^12.0.1",
+    "nodemon": "^1.18.3"
   }
 }
