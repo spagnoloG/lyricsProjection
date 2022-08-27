@@ -1,5 +1,5 @@
-tiptap menu
-lyrics -> refrain, kitica
+tiptap menu --> done
+fix editor
 remove console logs
 automatic migrations
-indexes in list
+indexes in list --> done

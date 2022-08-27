@@ -261,15 +261,18 @@ export default {
       this.showPopUp = false
     },
     ignoreNoisemakers (t1, t2) {
-      t1.replaceAll('š', 's')
+      t1.toLowerCase()
+        .replaceAll('š', 's')
         .replaceAll('č', 'c')
         .replaceAll('ć', 'c')
-        .replaceAll('ž', 'c').toUpperCase()
+        .replaceAll('ž', 'c')
 
-      t2.replaceAll('š', 's')
+      t2.toLowerCase()
+        .replaceAll('š', 's')
         .replaceAll('č', 'c')
         .replaceAll('ć', 'c')
-        .replaceAll('ž', 'c').toUpperCase()
+        .replaceAll('ž', 'c')
+
       return t1 === t2
     }
   }

@@ -119,6 +119,29 @@
                 <v-col></v-col>
                 <v-col cols="12" lg="6" align="center" justify="center">
                   <br />
+                  <!-- Editor menu-->
+                   <div class="menubar">
+                      <v-btn
+                        @click="editor.chain().focus().toggleBold().run()"
+                        color="primary"
+                        small
+                        dark
+                        fab
+                      >
+                        <v-icon>mdi-format-bold</v-icon>
+                      </v-btn>
+
+                      <v-btn
+                        @click="editor.chain().focus().toggleItalic().run()"
+                        color="primary"
+                        class="ma-1 white--text"
+                        fab
+                        small
+                        dark
+                      >
+                        <v-icon>mdi-format-italic</v-icon>
+                      </v-btn>
+                    </div>
                   <!-- Editor -->
                   <editor-content
                     :editor="editor"
@@ -226,7 +249,18 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+/* Basic editor styles */
+.ProseMirror {
+  > * + * {
+    margin-top: 0.75em;
+  }
+
+  ul,
+  ol {
+    padding: 0 1rem;
+  }
+}
 .v-btn--active.inactive::before {
   opacity: 0 !important;
 }
