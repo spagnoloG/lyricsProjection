@@ -7,6 +7,7 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   db("lyrics")
     .select("_id", "title", "categories")
+    .orderBy("_id", "asc")
     .then((result) => {
       res.status(200).json(result);
     })
