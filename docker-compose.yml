@@ -10,8 +10,6 @@ services:
     restart: unless-stopped
     build:
       context: ./client
-    volumes:
-      - ./client:/client
     ports:
       - "80:5000"
 
@@ -23,8 +21,6 @@ services:
     command: sh -c 'echo "running migration..."; cd /api ; yarn migrate; yarn serve'
     depends_on: 
       - db
-    volumes:
-      - ./server/api_sql:/api
     ports:
       - "4200:4200"
     networks:
@@ -35,8 +31,6 @@ services:
     restart: unless-stopped 
     build:
       context: ./server/socket
-    volumes:
-      - ./server/socket:/socket
     ports:
       - "3000:3000"
 
