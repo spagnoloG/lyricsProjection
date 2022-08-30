@@ -1,5 +1,0 @@
-tiptap menu --> done
-fix editor --> done
-remove console logs --> done
-automatic migrations
-indexes in list --> done
